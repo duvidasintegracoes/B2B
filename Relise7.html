@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+
+<head>
+  <!-- PAGE INFO -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Limite de crédito</title>
+  <link rel="icon" type="image/png" href="./assets/img/icoifc">
+
+  <!-- Icones -->
+  <link rel="stylesheet" href="assets/fonts/style.css" />
+
+  <!-- Swiper -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+  <!-- STYLES -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+  <header id="header">
+    <nav class="container">
+      <div class="logo">
+        <a href="index.html"><img src="assets/img/IFC.png" alt="Logo infracommerce" /></a>
+        <!--<a class="logo" href="#">beauty<span>salon</span>.</a> -->
+      </div>
+      <!-- menu -->
+      <div class="menu">
+        <ul class="grid">
+          <li><a class="title" href="#home">Limite de crédito</a></li>
+          <li><a class="title" href="#box2"></a></li>
+          <li><a class="title" href="#box3"></a></li>
+          <li><a class="title" href="#box4"></a></li>
+          <li><a class="title" href="#box5"></a></li>
+          <li><a class="title" href="#box6"></a></li>
+          <li><a class="title" href="#box7"></a></li>
+          <li><a class="title" href="#box8"></a></li>
+          <li><a class="title" href="#box9"></a></li>
+          <li><a class="title" href="#box10"></a></li>
+        </ul>
+      </div>
+      <!-- /menu -->
+      <div class="toggle icon-menu"></div>
+      <div class="toggle icon-cross"></div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section class="section" id="home">
+      <div class="container grid">
+        <div class="faq">
+          <h2 class="title">integração de limite de crédito</h2>
+          
+          <p>
+            A integração de status de cliente é de origem distribuidor para plataforma, e para esta ação, será disponibilizado pela Infracommerce, o endereço do endpoint e credenciais.
+            <br><br>
+          </p>
+          <p>
+            Conceito: Uma vez que um determinado CNPJ possua limite de crédito, status de aprovação é liberado na plataforma a funcionalidade que permite de compras em forma de boleto faturado. É fundamental que o distribuidor gerencie os limites e disponibilize esses valores apenas para os clientes desejados e que tenham confiabilidade no mercado, a fim de evitar inadimplência.
+            <br><br>
+          </p>
+          <h4>Exemplo de requisição de limite de crédito</h4>
+          <p>
+            <br><br>
+            <textarea rows="20" cols="100">
+              soapenv:Envelope xmlns:cou="http://www.accurate.com/acec/coupon" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:vou="http://www.accurate.com/acec/VoucherServices">
+                <soapenv:Header/>
+                <soapenv:Body>
+                  <vou:replaceVoucherRequest>
+                    <cou:coupons>
+                      <cou:coupon>
+                        <cou:customerDocumentNr>49985972000171</cou:customerDocumentNr>
+                        <cou:value>1700.00</cou:value>
+                        <cou:origin>SELLER</cou:origin>
+                      </cou:coupon>
+                    </cou:coupons>
+                  </vou:replaceVoucherRequest>
+                </soapenv:Body>
+              </soapenv:Envelope>
+                           
+                              </textarea>
+                              <br><br>
+          </p>
+          <p>
+           <strong> customerDocumentNr</strong> = CNPJ do cliente que será concedido limite.
+           <br><br>
+          </p>
+          <p>
+           <strong> customerDocumentNr</strong> = CNPJ do cliente que será concedido limite.
+           <br><br>
+          </p>
+          <p>
+           <strong> Origin = SELLER</strong> (Limite gerenciado pelo distribuidor). Caso esse campo seja informado com valor:IFC e seja enviado com qualquer valor fictício, o limite de crédito será gerenciado pela Infracommerce. Esse tipo de integração gerenciada pela plataforma vale apenas para casos para projetos gerenciados pelo Infrapay. Em caso de dúvidas, falar com o time de projetos da infracommerce para mais informações.
+           <br><br>
+          </p>
+          <h4>Exemplo de Retorno da requisição</h4>
+          <p>
+            <br><br>
+            <textarea rows="15" cols="100">
+              <env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
+                <env:Body>
+                  <replaceVoucherResponse xmlns="http://www.accurate.com/acec/VoucherServices">
+                    <success>true</success>
+                  </replaceVoucherResponse>
+                </env:Body>
+              </env:Envelope>
+               
+              
+                               </textarea>   
+            <br><br>
+          </p>
+          <h4>Informações Complementares:</h4>
+          <p>
+            <br><br>
+            <i class="gambi">Para impossibilitar o cliente (já ativo nessa modalidade em outro momento) basta enviar valor 0 de limite de crédito.</i>
+            <br> <br>
+            <i class="gambi">Caso o distribuidor enviar duas requisições com valores diferentes para um cliente, o que prevalecerá como valor é sempre a requisição mais recente (os valores não são somados)</i>
+            <br> <br>
+            <i class="gambi">Enviar apenas atualizações, boas práticas, não repetir valores que não houve atualizações.</i>
+            <br><br>
+          </p>
+          <h4>Objeto replaceVoucherRequest</h4>
+          <p>
+            <br><br>
+            <table style="border: 1p%">
+              <tr>
+                <th width="25%">Parametro</th>
+                <th width="25%">Descrição</th>
+                <th width="25%">Tipo</th>
+                 <th width="25%">Obrigatoriedade</th>
+              </tr> 
+                <tr>
+                <td>coupons</td>
+                <td>Lista de atualizações de limite de crédito</td>
+                <td>List<'Coupon></td>
+                  <td><b>Obrigatório</b></td>
+              </tr>
+            </table>
+            <br><br>
+          </p>
+          <h4>Objeto Coupon</h4>
+          <p>
+            <br><br>
+            <table style="border: 1p%">
+              <tr>
+                <th width="25%">Campo</th>
+                <th width="25%">Descrição</th>
+                <th width="25%">Tipo</th>
+                 <th width="25%">Obrigatoriedade</th>
+              </tr> 
+                <tr>
+                <td>customerDocumentNr</td>
+                <td>CNPJ do cliente</td>
+                <td>String (15)</td>
+                  <td><b>Obrigatório</b></td>
+              </tr>
+                <tr>
+                <td>value</td>
+                <td>Valor disponível para o limite de crédito</td>
+                <td>Decimal (15.2) Valores com separados com ponto e não virgula</td>
+                  <td><b>Obrigatório</b></td>
+              </tr>
+                <tr>
+                <td>origin</td>
+                <td>Valor disponível para o limite de crédito</td>
+                <td>Este campo identifica para onde o distribuidor está passando o crédito do cliente. Caso Selecione IFC o campo value é desconsiderado, caso mande SELLER, o funcionamento se mantém como é hoje em dia.
+Caso a tag não seja enviada, mantém-se o que está cadastrado. </td>
+                  <td><b>Obrigatório</b></td>
+              </tr>
+            </table>
+            <br><br>
+          </p>
+
+          <h4>replaceVoucherResponse</h4>
+          <p>
+            <br><br>
+            <table style="border: 1p%">
+              <tr>
+                <th width="25%">Campo</th>
+                <th width="25%">Descrição</th>
+                <th width="25%">Tipo</th>
+                 <th width="25%">Obrigatoriedade</th>
+              </tr> 
+                <tr>
+                <td>Success</td>
+                <td>String(4000)</td>
+                <td>Contém uma mensagem indicando se o preço foi recebido com sucesso ou se houve um erro.</td>
+                  <td><b>Obrigatório</b></td>
+              </tr>
+            </table>
+            <br><br>
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="section">
+    <div class="container grid">
+      <div class="brand">
+        <div class="logoft">
+          <a href="https://www.infracommerce.com.br/" target="_blank"><img src="assets/img/GifInfracommerce.gif"
+              alt="GifInfracommerce" /></a>
+          <!--<a class="logo" href="#">beauty<span>salon</span>.</a> -->
+        </div>
+        <!--<a class="logo logo-alt" href="#home">pantheon<span>.net</span>.br</a> -->
+        <p>©2022 infracommerce.com.br</p>
+        <p>Todos os direitos reservados.</p>
+      </div>
+
+      <div class="social grid">
+        <a href="https://www.instagram.com/infracommerce/" target="_blank">
+          <i class="icon-instagram"></i>
+        </a>
+        <a href="https://www.facebook.com/infracommerce" target="_blank">
+          <i class="icon-facebook2"></i></a>
+        <a href="https://www.youtube.com/channel/UCMTRfzdvbTB0HTQPvwpwhLg" target="_blank"><i
+            class="icon-youtube"></i></a>
+        <a href="https://www.linkedin.com/company/infracommerce/" target="_blank"><i class="icon-linkedin"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#home" class="back-to-top"><i class="icon-arrow-up"></i></a>
+
+  <!-- swiper -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+  <!-- scrollreveal -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <!-- main.js -->
+  <script src="main.js"></script>
+  <!-- Por: Jonatha A. Oliveira-->
+</body>
+
+</html>

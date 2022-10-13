@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+
+<head>
+  <!-- PAGE INFO -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introdução</title>
+  <link rel="icon" type="image/png" href="./assets/img/icoifc">
+
+  <!-- Icones -->
+  <link rel="stylesheet" href="assets/fonts/style.css" />
+
+  <!-- Swiper -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+  <!-- STYLES -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+  <header id="header">
+    <nav class="container">
+      <div class="logo">
+        <a href="index.html"><img src="assets/img/IFC.png" alt="Logo infracommerce" /></a>
+        <!--<a class="logo" href="#">beauty<span>salon</span>.</a> -->
+      </div>
+      <!-- menu -->
+      <div class="menu">
+        <ul class="grid">
+          <li><a class="title" href="#home">Introdução</a></li>
+          <li><a class="title" href="#box2">Web Services dist.</a></li>
+          <li><a class="title" href="#box3">Pré-requisitos I</a></li>
+          <li><a class="title" href="#box4">Web Services IFC</a></li>
+          <li><a class="title" href="#box5">Pré-requisitos II </a></li>
+          <li><a class="title" href="#box6">Recomendações</a></li>
+        </ul>
+      </div>
+      <!-- /menu -->
+      <div class="toggle icon-menu"></div>
+      <div class="toggle icon-cross"></div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section class="section" id="home">
+      <div class="container grid">
+        <div class="faq">
+          <h2 class="title">01 - Introdução</h2>
+          <p>
+            O objetivo deste material, é fornecer as instruções necessárias para que os distribuidores estejam aptos para plugar em nossa plataforma e comercializar em nossos marketplaces.</br></br>
+          </p>
+          <p>
+            A seguir tem por objetivo descrever todos os Web Services expostos pelo Middleware na plataforma Infrashop e os Web Services que devem ser expostos pelo Distribuidor para que seja possível realizar a integração do Distribuidor com o e-commerce.</br></br>
+          </p>
+          <p>
+            De forma geral, a integração consiste em trocas de informações/dados entre a plataforma e sellers e vice e versa. Segue abaixo os fluxos de integrações:
+          </p>
+          
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider-1"></div>
+
+    <section class="section" id="box2">
+      <div class="container grid">
+        <div class="faq">
+          <h2 class="title">02 - Web services que devem ser disponibilizados pelo distribuidor:</h2>
+          <p>
+            <strong>Cliente (Protocolo Soap)</strong> - Do lado distribuidor, será necessário disponibilizar um endpoint de cliente para que a plataforma envie cadastros de clientes e atualizações, em nosso material de apoio é disponibilizado os arquivos WSDL e XSD’s para que sejam importados em um servidor IIS, por exemplo, para torná-lo público.</br></br>
+          </p>
+          <p>
+            <strong> Pedido (Protocolo Soap)</strong> Seguindo o mesmo conceito de cliente, porém para receber pedidos da plataforma.</br></br>
+          </p>
+          <p>
+            <strong> Pagamento (Protocolo Soap)</strong> Para receber as confirmações de pagamentos dos pedidos, cujo meio de pagamento é gerenciado pela infracommerce (Boleto antecipado, PIX e Cartão de crédito), notificamos esses pagamentos com status tanto de aprovação, quanto reprovação.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider-2"></div>
+
+    <section class="section" id="box3">
+      <div class="container grid">
+        <div class="faq">
+          <h2 class="title">03 - Pré-requisitos dos endpoints acima:</h2>
+          <p>
+            Devem estar protegidos por criptografia Basica (Basic64). </br></br>
+          </p>
+          <p>
+            Devem ser expostos em protocolo HTTPS com um certificado válido (Recomendamos Modelo Wildcard, por atender subdomínios, e uma vez que, o distribuidor irá trabalhar com nos ambientes de homologação e produção. não é aceito certificado auto assinado como A1 e A3).</br></br>
+          </p>
+          <p>
+            O certificado deverá ser compatível com protocolo de segurança TLS 1.2 ou superior.</br></br>
+          </p>
+          <p>
+            <strong> Observação</strong>: <i> Somente após a disponibilização dos web services de cliente, pedido e pagamento, atendendo aos requisitos acima, serão disponibilizados os acessos aos web services da Infracommerce. Lembrando que o retorno das respostas deve estar de acordo com os retornos requerido no manual de integração, conforme os exemplos de retornos.</i>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-1"></div>
+
+    <section class="section" id="box4">
+      <div class="container grid">
+        <div class="faq">
+          <h2 class="title">04 - Web services que devem ser disponibilizados pela Infracommerce:</h2>
+          <p>
+            <strong> Estoque (Protocolo Soap)</strong> - Será disponibilizado pela infracommerce o endpoint de estoque para que o distribuidor realize os envios, contendo os produtos e valores de estoque.
+            </br></br>
+          </p>
+          <p>
+            <strong> Política de preços (REST)</strong> – Duas API’s, uma que gera o token de autenticação no no protocolo (GET) e outra API para o envio via (POST) para que o seller envie as políticas de preços.
+            </br></br>
+          </p>
+          <p>
+            <strong> Status de cliente (SOAP)</strong> – Para que o distribuidor envie Status de aprovação e reprovação parar os clientes enviados via plataforma.
+            </br></br>
+          </p>
+          <p>
+            <strong> Limite de crédito (SOAP)</strong> – Disponibilizar limite de crédito para os clientes desejados, lembrando que para validar essa funcionalidade, o cliente precisa constar com status aprovado.
+            </br></br>
+          </p>
+          <p>
+          <strong> Tracking (SOAP)</strong> – enviar as trackings de pedidos, sendo elas, separação, nota fiscal, faturamento concluído, entrega em andamento, entrega concluída, Cancelamento, Analise de credito aprovada e reprovada.
+          </br></br>
+          </p>
+          <h4>Ambiente : </h4>
+          <p> <br> </p>
+          <p>
+            E Vale ressaltar, que o processo de implantação terá início no ambiente de homologação da plataforma e deverá seguir a mesma premissa do lado do seller a fim de evitar qualquer risco, e apenas após a conclusão de todas as etapas de implantação, o distribuidor será migrado para o ambiente de produção tendo em vista a execução do plano de testes dado como finalizado.
+          </br></br>
+          </p>
+          <p>
+            <strong>IMPORTANTE : </strong> Uma vez que o Seller realiza toda integração com o time infracommerce, é importante manter a consistência de tudo que foi testado, a fim de evitar o processo de re-rollout, que consiste em realizar uma nova integração, refazendo todos os testes, esse processo envolve custos.
+            <br><br>
+          </p>
+          <H4>Protocolo : </H4>
+          <p> <br> </p>
+          <p>
+            Os webs services utilizam o protocolo SOAP para comunicação e apenas a integração de Política de preços segue o padrão REST, esses, serão utilizados possibilitar a integração do caminho plataforma > distribuidor e vice versa.
+            <br><br>
+          </p>
+          <h4>Limite de requisições : </h4>
+          <p> <br> </p>
+          <p>
+            Ao fazer uma requisição para o Middleware, independente do serviço (estoque, preço, política de preço, tracking, limite de crédito ou aprovação de clientes), o distribuidor deve limitar a lista de objetos em no máximo 100 objetos. Exemplo: o Seller precisa enviar preço para 200 produtos, neste caso, deverá dividir os envios em 2 requisições contendo 100 produtos.
+            <br><br>
+          </p>
+          <p>
+            Para preços por exemplo, não incluir mais de 100 produtos ou exceder acima de 100 clientes na mesma requisição, e assim por diante para as outras integrações
+            <br><br>
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider-2"></div>
+
+    <section class="section" id="box5">
+      <div class="container grid">
+        <div class="faq">
+          <h2 class="title">05 - Pré - requisitos de Hardware e rede</h2>
+          <p>
+            Conexão estável de internet para não haver falha nas integrações.
+            </br></br>
+          </p>
+
+          <p>
+            Endpoints estáveis e sem alterações de URL ou senha (deve ser fixo e não dinâmico).
+            <br><br>
+          </p>
+
+          <p>
+            ERP apto para emitir notas fiscais nos ambientes de homologação e produção e gerenciar o cancelamento das notas durante os testes de homologação.
+            <br><br>
+          </p>
+         
+          <p>
+            Não utilizar recursos ou programas que possam comprometer o processamento das integrações ou disputar recursos de hardware ou rede.
+            <br><br>
+          </p>
+
+          <p>
+            <strong> Observação:</strong> Toda alteração feita no ambiente do distribuidor como: Endpoint, credenciais, alteração no certificado digital, deverá comunicar com pelo menos duas semanas de antecedência, para que possamos prevenir futuros impactos na plataforma de integração.
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider-1"></div>
+
+    <section class="section" id="box6">
+      <div class="container grid">
+        <div class="faq">
+          <h2 class="title">06 - Recomendações</h2>
+          <p>
+            Sistema Operacional: Windows 10 ou Superior.
+            <br><br>
+          </p>
+          <p>
+            Processador: I5 8 geração ou superior
+            <br><br>
+          </p>
+          <p>
+            Memoria: 8GB ou superior
+            <br><br>
+          </p>
+          <p>
+            Espaço em disco: Minimo de 60GB disponível
+            <br><br>
+          </p>
+          <p>
+            Conectividade: Internet estavel, IP fixo para os web services
+            <br><br>
+          </p>
+          <p>
+            Banco de dados ou APIS: Gerenciamento do ERP utilizado.
+            <br><br>
+          </p>
+      </div>
+    </section>
+
+    <div class="divider-1"></div>
+  </main>
+
+  <footer class="section">
+    <div class="container grid">
+      <div class="brand">
+        <div class="logoft">
+          <a href="https://www.infracommerce.com.br/" target="_blank"><img src="assets/img/GifInfracommerce.gif" alt="GifInfracommerce" /></a>
+          <!--<a class="logo" href="#">beauty<span>salon</span>.</a> -->
+        </div>
+        <!--<a class="logo logo-alt" href="#home">pantheon<span>.net</span>.br</a> -->
+        <p>©2022 infracommerce.com.br</p>
+        <p>Todos os direitos reservados.</p>
+      </div>
+
+      <div class="social grid">
+        <a href="https://www.instagram.com/infracommerce/" target="_blank">
+          <i class="icon-instagram"></i>
+        </a>
+        <a href="https://www.facebook.com/infracommerce" target="_blank">
+          <i class="icon-facebook2"></i></a>
+        <a href="https://www.youtube.com/channel/UCMTRfzdvbTB0HTQPvwpwhLg" target="_blank"><i
+            class="icon-youtube"></i></a>
+        <a href="https://www.linkedin.com/company/infracommerce/" target="_blank"><i class="icon-linkedin"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#home" class="back-to-top"><i class="icon-arrow-up"></i></a>
+
+  <!-- swiper -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+  <!-- scrollreveal -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <!-- main.js -->
+  <script src="main.js"></script>
+  <!-- Por: Jonatha A. Oliveira-->
+</body>
+
+</html>

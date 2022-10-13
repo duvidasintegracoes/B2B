@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+
+<head>
+  <!-- PAGE INFO -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Integração de Pedidos</title>
+  <link rel="icon" type="image/png" href="./assets/img/icoifc">
+
+  <!-- Icones -->
+  <link rel="stylesheet" href="assets/fonts/style.css" />
+
+  <!-- Swiper -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+  <!-- STYLES -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+  <header id="header">
+    <nav class="container">
+      <div class="logo">
+        <a href="index.html"><img src="assets/img/IFC.png" alt="Logo infracommerce" /></a>
+        <!--<a class="logo" href="#">beauty<span>salon</span>.</a> -->
+      </div>
+      <!-- menu -->
+      <div class="menu">
+        <ul class="grid">
+          <li><a class="title" href="#home">Integração de Pedidos</a></li>
+          <li><a class="title" href="#box2">--2</a></li>
+          <li><a class="title" href="#box3">--3</a></li>
+          <li><a class="title" href="#box4"></a></li>
+          <li><a class="title" href="#box5"></a></li>
+          <li><a class="title" href="#box6"></a></li>
+          <li><a class="title" href="#box7"></a></li>
+          <li><a class="title" href="#box8"></a></li>
+          <li><a class="title" href="#box9"></a></li>
+          <li><a class="title" href="#box10"></a></li>
+        </ul>
+      </div>
+      <!-- /menu -->
+      <div class="toggle icon-menu"></div>
+      <div class="toggle icon-cross"></div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section class="section" id="home">
+      <div class="container grid">
+        <div class="faq">
+          <h2 class="title">Integração de Pedidos</h2>
+          
+          <p>
+            A integração de pedidos nasce na plataforma e é enviado para o distribuidor através do web service que deve ser disponibilizado pelo distribuidor para que os dados enviados sejam integrados em sua base de dados. O distribuidor devera disponibilizar e implementar o WSDL OrderINtegration.wsdl, presente em nosso manual de integração. Através desse serviço o Middleware padroniza a estrutura do pedido que é enviada para todos os Distribuidores.
+            <br><br>
+          </p>
+          <p>
+            Um pedido feito na plataforma pode conter SKUs de mais de um Distribuidor. Dentro da estrutura desse pedido haverá uma entrega (nó delivery) para cada Distribuidor, contendo apenas os produtos e os valores referentes ao Distribuidor em questão.
+            <br><br>
+          </p>
+          <p>
+            Antes do pedido ser integrado com os Distribuidores ele passa pelo processo de quebra de entregas, onde é gerada uma estrutura completa de pedido (objeto Order) para cada uma das entregas que o pedido possuir, gerando assim, uma estrutura completa de pedido que será enviada para cada um dos Distribuidores.
+            <br><br>
+          </p>
+          <p>
+            <strong>
+              OBS: os pagamentos de produtos referentes ao mesmo Distribuidor devem ser pagos integralmente com um único meio de pagamento, ou seja, os produtos referentes a um Distribuidor devem ser pagos integralmente com boleto faturado OU cartão de crédito OU boleto à vista. A única exceção a essa regra é o vale troca. O meio de pagamento vale troca pode ser combinado com qualquer outro meio de pagamento gerenciado pela plataforma Infrashop, sendo assim, podem existir casos nos quais o pedido enviado para o Distribuidor possua dois pagamentos: vale troca e cartão de crédito/boleto à vista e PIX. Pedidos pagos com boleto faturado não poderão ser combinados com vale troca.
+            </strong>
+            <br><br>
+          </p>
+          <p>
+            Pedidos feitos na forma de pagamento boleto antecipado/cartão o Distribuidor não pode emitir data de vencimento do pagamento na nota fiscal, pois essas formas de pagamento são tratadas pela infracommerce.
+            <br><br>
+          </p>
+          <p>
+            As promoções aplicadas (criados) na plataforma Infrashop podem dar descontos no valor dos SKUs e também podem dar bonificações (SKUs que não são cobrados do lojista). Quando um SKU recebe desconto o seu preço de listagem (listPrice) é diferente do preço de venda (salePrice). Quando um SKU é bonificado ele é enviado com o tipo FFR e o preço de venda R$ 0,00, indicando que o Distribuidor deve aplicar o tratamento necessário para faturar tal SKU como uma bonificação.
+            <br><br>
+          </p>
+          <p>
+            Caso haja alguma falha no envio do pedido ele é enfileirado para futuras tentativas. Após cinco tentativas falhas de integração o pedido automaticamente cai em um alarme para que passe por análise manual.
+            <br><br>
+          </p>
+          <p>
+            Conforme requisitado pela plataforma, a integração do primeiro pedido do cliente sempre deve ser aceita pelo distribuidor.
+            <br><br>
+          </p>
+          <p>
+            Devido ao fato da plataforma Infrashop trabalhar com filas distintas de integração, é necessário que o Distribuidor esteja preparado para que, eventualmente, o primeiro pedido do cliente seja informado antes da Notificação de Criação do Cliente.
+            <br><br>
+          </p>
+          <p>
+            É necessário que o Distribuidor receba a requisição e retorne uma resposta imediatamente para o Middleware. Somente após retornar a resposta para o Middleware o distribuidor deve realizar a integração do pedido com o seu ERP.
+            <br><br>
+          </p>
+          <p>
+            OBS: O pedido realizado através da plataforma, é integrado no ERP do seller de forma unificada, caso o distribuidor tenha necessidade do split de pedido a partir de pastas de vendedores ou indústrias, esta configuração deve ser desenhada e desenvolvida internamente pelo distribuidor.
+            <br><br>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-1"></div>
+
+    <section class="section" id="box2">
+      <div class="container grid">
+        <div class="faq">
+          <h2 class="title">Dados técnicos</h2>
+          <p>
+            <i class="gambi">O Web Service responsável pela integração de pedido é o OrderServices.</i>
+            <br><br>
+            <i class="gambi">A operação responsável pela integração de pedido é a integrateOrder.</i>
+            <br><br>
+            <i class="gambi">Esse WebService fica hospedado no Distribuidor e é chamado pelo Middleware.</i>
+            <br><br>
+          </p>
+        </div>
+    </section>
+
+    <div class="divider-2"></div>
+
+    <section class="section" id="box3">
+      <div class="container grid">
+        <div class="faq">
+          <h2 class="title">03</h2>
+          
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-2"></div>
+  </main>
+
+  <footer class="section">
+    <div class="container grid">
+      <div class="brand">
+        <div class="logoft">
+          <a href="https://www.infracommerce.com.br/" target="_blank"><img src="assets/img/GifInfracommerce.gif"
+              alt="GifInfracommerce" /></a>
+          <!--<a class="logo" href="#">beauty<span>salon</span>.</a> -->
+        </div>
+        <!--<a class="logo logo-alt" href="#home">pantheon<span>.net</span>.br</a> -->
+        <p>©2022 infracommerce.com.br</p>
+        <p>Todos os direitos reservados.</p>
+      </div>
+
+      <div class="social grid">
+        <a href="https://www.instagram.com/infracommerce/" target="_blank">
+          <i class="icon-instagram"></i>
+        </a>
+        <a href="https://www.facebook.com/infracommerce" target="_blank">
+          <i class="icon-facebook2"></i></a>
+        <a href="https://www.youtube.com/channel/UCMTRfzdvbTB0HTQPvwpwhLg" target="_blank"><i
+            class="icon-youtube"></i></a>
+        <a href="https://www.linkedin.com/company/infracommerce/" target="_blank"><i class="icon-linkedin"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#home" class="back-to-top"><i class="icon-arrow-up"></i></a>
+
+  <!-- swiper -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+  <!-- scrollreveal -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <!-- main.js -->
+  <script src="main.js"></script>
+  <!-- Por: Jonatha A. Oliveira-->
+</body>
+
+</html>

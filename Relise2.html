@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+
+<head>
+  <!-- PAGE INFO -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Integração de estoque</title>
+  <link rel="icon" type="image/png" href="./assets/img/icoifc">
+
+  <!-- Icones -->
+  <link rel="stylesheet" href="assets/fonts/style.css" />
+
+  <!-- Swiper -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+  <!-- STYLES -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+  <header id="header">
+    <nav class="container">
+      <div class="logo">
+        <a href="index.html"><img src="assets/img/IFC.png" alt="Logo infracommerce" /></a>
+        <!--<a class="logo" href="#">beauty<span>salon</span>.</a> -->
+      </div>
+      <!-- menu -->
+      <div class="menu">
+        <ul class="grid">
+          <li><a class="title" href="#home">Introdução</a></li>
+          <li><a class="title" href="#box2">Regras</a></li>
+          <li><a class="title" href="#box3">Desenvolvimento</a></li>
+          <li><a class="title" href="#box4"></a></li>
+          <li><a class="title" href="#box5"></a></li>
+          <li><a class="title" href="#box6"></a></li>
+          <li><a class="title" href="#box7"></a></li>
+          <li><a class="title" href="#box8"></a></li>
+          <li><a class="title" href="#box9"></a></li>
+          <li><a class="title" href="#box10"></a></li>
+        </ul>
+      </div>
+      <!-- /menu -->
+      <div class="toggle icon-menu"></div>
+      <div class="toggle icon-cross"></div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section class="section" id="home">
+      <div class="container grid">
+        <div class="faq">
+          <h2 class="title">Introdução</h2>
+          <p>
+            O padrão utilizado na plataforma, segue o padrão EAN/SKU, sendo necessário que os produtos estejam cadastrados no ERP e também na plataforma.
+            <br> <br>
+            <strong> Exemplo de SKU unitário: 7891150058428 </strong>
+            <br> <br> 
+          </p>
+          <h4>Produtos no padrão caixa</h4>
+          <p> <br> </p>
+          <p>
+            O Padrão de SKU de caixa, segue no modelo <strong> EAN + C + Quantidade que será vendido na caixa</strong>, sendo necessário que o distribuidor configure e cadastre os produtos em caixaria nesse padrão em seu ERP. <br><br>
+          </p>
+          <p>
+            Exemplo do EAN 7891150058428 sendo vendido em uma caixa de 4 unidades, o cadastro em seu erp deve ser: <strong> 7891150058428C4</strong>.
+            <br> <br>
+          </p>
+          <h4>Gerenciamento de estoque para produtos com caixa</h4>
+          <p> <br> </p>
+          <p>
+            Se SKU1234 (exemplo fictício) tem 1000 unidades em estoque, mas é vendido em caixa com 4 unidades:
+            <br><br>
+          </p>
+          <p>
+            Enviar 250 como unidade de estoque, pois 1000/4=250. Se enviasse 1000, permitiríamos que o cliente compre até 1000 caixas de 4, totalizando 4000 unidades.
+            <br><br>
+          </p>
+          <p>
+            Atenção: Este desenvolvimento só é necessário para distribuidores que enviam integrações de SKU’s de caixas que não são trabalhadas fisicamente pelo distribuidor.
+            <br><br>
+          </p>
+          <p>
+            O distribuidor deve ser capaz de desabilitar a trava, caso a tenha, de envio de estoque via integração apenas quando o SKU respeitar a regra de possuir estoque mínimo suficiente para a venda de pelo menos 3 dias (D-3) de venda.
+            <br><br>
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider-1"></div>
+
+    <section class="section" id="box2">
+      <div class="container grid">
+        <div class="faq">
+          <h2 class="title">Regras</h2>
+          <p>
+            O distribuidor deve ser capaz de definir de quanto em quanto tempo a integração de estoque deve ocorrer, para que sejam enviadas em períodos pré-determinados e não a todo momento que há alguma alteração de estoque em algum SKU.
+            <br><br>
+          </p>
+          <p>
+            Só enviar a integração de atualização de estoque para SKUs que tenham alteração em sua quantidade de 5% ou mais desde a última integração enviada. <strong> Importante que o Seller não envie carga FULL a todo momento para não onerar a fila de integração.</strong>
+            <br><br>
+          </p>
+          <p>
+            A quantidade enviada deve ser em numeral, sem casas decimais e, consequentemente, sem ponto ou virgula.
+            <br><br>
+          </p>
+          <p>
+            Para distribuidores que trabalham com venda de caixas ou múltiplos, mas controlam seus estoques em sistemas internos e centro de distribuição por unidades, é necessário que os estoques sejam enviados para cada SKU respeitando a lógica de unidade ou caixa vendida no site. Ou seja, neste caso, o estoque deve ser calculado para a versão da caixa.
+            <br><br>
+          </p>
+          
+        </div>
+    </section>
+
+    <div class="divider-2"></div>
+
+    <section class="section" id="box3">
+      <div class="container grid">
+        <div class="faq">
+          <h2 class="title">Apoio para o desenvolvimento</h2>
+          <p>
+            O Web Service responsável pela integração de estoque é o <strong> StockServices</strong>.
+            <br><br>
+          </p>
+          <p>
+            A operação responsável pela integração de estoque é a <strong> setStock</strong>.
+            <br><br>
+          </p>
+          <p>
+            Esse WebService fica hospedado no Middleware, portanto, deve ser chamada pelo Distribuidor. O material da apoio para construção dos WSDL e XSD estão presentes no item 11 do manual.
+            <br><br>
+          </p>
+          <h4>Requisição com mais de um produto : </h4>
+          <p> <br> </p>
+          <!-- textarea-->
+          <textarea rows="20" cols="80">
+            <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stoc="http://www.accurate.com/acec/StockServices" xmlns:stoc1="http://www.accurate.com/acec/Stock">
+              <soapenv:Header/>
+              <soapenv:Body>
+                <stoc:setStockRequest>
+                  <stoc:stockList>
+                      <stoc:Stock>
+                        <stoc1:skuId>7891150058428</stoc1:skuId>
+                        <stoc1:quantity>300</stoc1:quantity>
+                      <stoc1:stockTypeSourceName>controlUnitQuantity</stoc1:stockTypeSourceName>
+                      </stoc:Stock>
+                  </stoc:stockList>
+                </stoc:setStockRequest>
+            </soapenv:Body>
+            </soapenv:Envelope>
+            </textarea> 
+            </br>
+            <h4>Requisição com mais de um produto </h4>
+          <p> <br> </p>
+          <textarea rows="20" cols="80">
+            <stoc:setStockRequest xmlns:stoc="http://www.accurate.com/acec/StockServices" xmlns:stoc1="http://www.accurate.com/acec/Stock">
+            <stoc:stockList>
+               <stoc:Stock>
+                  <stoc1:skuId>7891150058428</stoc1:skuId>
+                  <stoc1:quantity>80</stoc1:quantity>
+                  <stoc1:stockTypeSourceName>controlUnitQuantity</stoc1:stockTypeSourceName>
+               </stoc:Stock>
+               <stoc:Stock>
+                  <stoc1:skuId>7891150058428C4</stoc1:skuId>
+                  <stoc1:quantity>20</stoc1:quantity>
+                  <stoc1:stockTypeSourceName>controlUnitQuantity</stoc1:stockTypeSourceName>
+               </stoc:Stock>
+            </stoc:stockList>
+         </stoc:setStockRequest>
+          </textarea>
+        </br>
+        <h4>Exemplo de retorno da plataforma </h4>
+        <p> <br> </p>
+        <textarea rows="20" cols="80">
+          <?xml version = '1.0' encoding = 'UTF-8'?>
+      <env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
+        <env:Body>
+          <setStockResponse xmlns="http://www.accurate.com/acec/StockServices">
+            <result>Sucesso</result>
+                </setStockResponse>
+        </env:Body>
+      </env:Envelope>
+      
+              </textarea>
+        <h4>Objetos que contemplam a integração de Estoque.</h4>
+        <!-- tabelas do diego-->
+        <table style="border: 1p%">
+          <tr>
+            <th width="25%">Campo</th>
+            <th width="25%">Descrição</th>
+            <th width="25%">Tipo</th>
+            <th width="25%">Obrigatoriedade</th>
+          </tr> 
+          <tr>
+            <td>stockList</td>
+            <td>Lista de estoque</td>
+            <td>List<Stock></td>
+            <td><b>Obrigatório</b></td>
+
+          </tr> 
+        </table>
+        <br>
+
+          <p><b>Objeto Stock</b></p>
+
+
+        <table style="margin-right: 20px">
+          <tr>
+            <th width="25%">Campo</th>
+            <th width="25%">Descrição</th>
+            <th width="25%">Tipo</th>
+            <th width="25%">Obrigatoriedade</th>
+          </tr> 
+          <tr>
+            <td>skuId</td>
+            <td>EAN do SKU</td>
+            <td>String (30)</td>
+            <td><b>Obrigatório</b></td>
+
+          </tr> 
+           <tr>
+            <td>stockType</td>
+            <td>Indica disponibilidade de estoque.
+0 = indisponível.
+1 = disponível.</td>
+            <td>int</td>
+            <td>Opcional desde que seja enviado stockTypeSourceName</td>
+
+          </tr> 
+              <tr>
+            <td>stockTypeSourceName</td>
+            <td>Se será controlado por unidade enviar valor
+controlUnitQuantity</td>
+            <td>String (30)</td>
+            <td>Opcional</td>
+
+          </tr> 
+             <tr>
+            <td>quantity</td>
+            <td>Se for controlado por unidade enviar a quantidade de estoque</td>
+            <td>int</td>
+            <td>Opcional, mas deve ser passado caso seja enviando stockTypeSourceName para indicar a quantidade real.</td>
+          </tr> 
+        </table>
+        <br>
+         <p><b>Objeto Objeto setStockResponse</b></p>
+         <table style="border: 1p%">
+          <tr>
+            <th width="25%">Campo</th>
+            <th width="25%">Descrição</th>
+            <th width="25%">Tipo</th>
+            <th width="25%">Obrigatoriedade</th>
+          </tr> 
+          <tr>
+            <td>result</td>
+            <td>Contém uma mensagem indicando se o estoque foi recebido com sucesso ou se houve um erro.</td>
+            <td>String (30)</td>
+            <td><b>Obrigatório</b></td>
+
+          </tr> 
+      </table>
+        <!-- terminou tabelas do diego-->
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-2"></div>
+  </main>
+
+  <footer class="section">
+    <div class="container grid">
+      <div class="brand">
+        <div class="logoft">
+          <a href="https://www.infracommerce.com.br/" target="_blank"><img src="assets/img/GifInfracommerce.gif"
+              alt="GifInfracommerce" /></a>
+          <!--<a class="logo" href="#">beauty<span>salon</span>.</a> -->
+        </div>
+        <!--<a class="logo logo-alt" href="#home">pantheon<span>.net</span>.br</a> -->
+        <p>©2022 infracommerce.com.br</p>
+        <p>Todos os direitos reservados.</p>
+      </div>
+
+      <div class="social grid">
+        <a href="https://www.instagram.com/infracommerce/" target="_blank">
+          <i class="icon-instagram"></i>
+        </a>
+        <a href="https://www.facebook.com/infracommerce" target="_blank">
+          <i class="icon-facebook2"></i></a>
+        <a href="https://www.youtube.com/channel/UCMTRfzdvbTB0HTQPvwpwhLg" target="_blank"><i
+            class="icon-youtube"></i></a>
+        <a href="https://www.linkedin.com/company/infracommerce/" target="_blank"><i class="icon-linkedin"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#home" class="back-to-top"><i class="icon-arrow-up"></i></a>
+
+  <!-- swiper -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+  <!-- scrollreveal -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <!-- main.js -->
+  <script src="main.js"></script>
+  <!-- Por: Jonatha A. Oliveira-->
+</body>
+
+</html>
