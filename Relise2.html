@@ -34,7 +34,7 @@
       <!-- menu -->
       <div class="menu">
         <ul class="grid">
-          <li><a class="title" href="#home">Introdução</a></li>
+          <li><a class="title" href="#home">Integração de estoque</a></li>
           <li><a class="title" href="#box2">Regras</a></li>
           <li><a class="title" href="#box3">Desenvolvimento</a></li>
           <li><a class="title" href="#box4"></a></li>
@@ -57,20 +57,24 @@
     <section class="section" id="home">
       <div class="container grid">
         <div class="faq">
-          <h2 class="title">Introdução</h2>
+          <h2 class="title">Integração de estoque</h2>
           <p>
-            O padrão utilizado na plataforma, segue o padrão EAN/SKU, sendo necessário que os produtos estejam cadastrados no ERP e também na plataforma.
+            O padrão utilizado na plataforma, segue o padrão EAN/SKU, sendo necessário que os produtos estejam
+            cadastrados no ERP e também na plataforma.
             <br> <br>
             <strong> Exemplo de SKU unitário: 7891150058428 </strong>
-            <br> <br> 
+            <br> <br>
           </p>
           <h4>Produtos no padrão caixa</h4>
           <p> <br> </p>
           <p>
-            O Padrão de SKU de caixa, segue no modelo <strong> EAN + C + Quantidade que será vendido na caixa</strong>, sendo necessário que o distribuidor configure e cadastre os produtos em caixaria nesse padrão em seu ERP. <br><br>
+            O Padrão de SKU de caixa, segue no modelo <strong> EAN + C + Quantidade que será vendido na caixa</strong>,
+            sendo necessário que o distribuidor configure e cadastre os produtos em caixaria nesse padrão em seu ERP.
+            <br><br>
           </p>
           <p>
-            Exemplo do EAN 7891150058428 sendo vendido em uma caixa de 4 unidades, o cadastro em seu erp deve ser: <strong> 7891150058428C4</strong>.
+            Exemplo do EAN 7891150058428 sendo vendido em uma caixa de 4 unidades, o cadastro em seu erp deve ser:
+            <strong> 7891150058428C4</strong>.
             <br> <br>
           </p>
           <h4>Gerenciamento de estoque para produtos com caixa</h4>
@@ -80,15 +84,19 @@
             <br><br>
           </p>
           <p>
-            Enviar 250 como unidade de estoque, pois 1000/4=250. Se enviasse 1000, permitiríamos que o cliente compre até 1000 caixas de 4, totalizando 4000 unidades.
+            Enviar 250 como unidade de estoque, pois 1000/4=250. Se enviasse 1000, permitiríamos que o cliente compre
+            até 1000 caixas de 4, totalizando 4000 unidades.
             <br><br>
           </p>
           <p>
-            Atenção: Este desenvolvimento só é necessário para distribuidores que enviam integrações de SKU’s de caixas que não são trabalhadas fisicamente pelo distribuidor.
+            Atenção: Este desenvolvimento só é necessário para distribuidores que enviam integrações de SKU’s de caixas
+            que não são trabalhadas fisicamente pelo distribuidor.
             <br><br>
           </p>
           <p>
-            O distribuidor deve ser capaz de desabilitar a trava, caso a tenha, de envio de estoque via integração apenas quando o SKU respeitar a regra de possuir estoque mínimo suficiente para a venda de pelo menos 3 dias (D-3) de venda.
+            O distribuidor deve ser capaz de desabilitar a trava, caso a tenha, de envio de estoque via integração
+            apenas quando o SKU respeitar a regra de possuir estoque mínimo suficiente para a venda de pelo menos 3 dias
+            (D-3) de venda.
             <br><br>
           </p>
         </div>
@@ -103,11 +111,15 @@
         <div class="faq">
           <h2 class="title">Regras</h2>
           <p>
-            O distribuidor deve ser capaz de definir de quanto em quanto tempo a integração de estoque deve ocorrer, para que sejam enviadas em períodos pré-determinados e não a todo momento que há alguma alteração de estoque em algum SKU.
+            O distribuidor deve ser capaz de definir de quanto em quanto tempo a integração de estoque deve ocorrer,
+            para que sejam enviadas em períodos pré-determinados e não a todo momento que há alguma alteração de estoque
+            em algum SKU.
             <br><br>
           </p>
           <p>
-            Só enviar a integração de atualização de estoque para SKUs que tenham alteração em sua quantidade de 5% ou mais desde a última integração enviada. <strong> Importante que o Seller não envie carga FULL a todo momento para não onerar a fila de integração.</strong>
+            Só enviar a integração de atualização de estoque para SKUs que tenham alteração em sua quantidade de 5% ou
+            mais desde a última integração enviada. <strong> Importante que o Seller não envie carga FULL a todo momento
+              para não onerar a fila de integração.</strong>
             <br><br>
           </p>
           <p>
@@ -115,10 +127,13 @@
             <br><br>
           </p>
           <p>
-            Para distribuidores que trabalham com venda de caixas ou múltiplos, mas controlam seus estoques em sistemas internos e centro de distribuição por unidades, é necessário que os estoques sejam enviados para cada SKU respeitando a lógica de unidade ou caixa vendida no site. Ou seja, neste caso, o estoque deve ser calculado para a versão da caixa.
+            Para distribuidores que trabalham com venda de caixas ou múltiplos, mas controlam seus estoques em sistemas
+            internos e centro de distribuição por unidades, é necessário que os estoques sejam enviados para cada SKU
+            respeitando a lógica de unidade ou caixa vendida no site. Ou seja, neste caso, o estoque deve ser calculado
+            para a versão da caixa.
             <br><br>
           </p>
-          
+
         </div>
     </section>
 
@@ -137,13 +152,15 @@
             <br><br>
           </p>
           <p>
-            Esse WebService fica hospedado no Middleware, portanto, deve ser chamada pelo Distribuidor. O material da apoio para construção dos WSDL e XSD estão presentes no item 11 do manual.
+            Esse WebService fica hospedado no Middleware, portanto, deve ser chamada pelo Distribuidor. O material da
+            apoio para construção dos WSDL e XSD estão presentes no item 11 do manual.
             <br><br>
           </p>
           <h4>Requisição com mais de um produto : </h4>
           <p> <br> </p>
           <!-- textarea-->
-          <textarea rows="20" cols="80">
+          <p>
+            <textarea rows="20" cols="80">
             <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stoc="http://www.accurate.com/acec/StockServices" xmlns:stoc1="http://www.accurate.com/acec/Stock">
               <soapenv:Header/>
               <soapenv:Body>
@@ -158,11 +175,13 @@
                 </stoc:setStockRequest>
             </soapenv:Body>
             </soapenv:Envelope>
-            </textarea> 
+            </textarea>
             </br>
-            <h4>Requisição com mais de um produto </h4>
+          </p>
+          <h4>Requisição com mais de um produto </h4>
           <p> <br> </p>
-          <textarea rows="20" cols="80">
+          <p>
+            <textarea rows="20" cols="80">
             <stoc:setStockRequest xmlns:stoc="http://www.accurate.com/acec/StockServices" xmlns:stoc1="http://www.accurate.com/acec/Stock">
             <stoc:stockList>
                <stoc:Stock>
@@ -178,10 +197,12 @@
             </stoc:stockList>
          </stoc:setStockRequest>
           </textarea>
-        </br>
-        <h4>Exemplo de retorno da plataforma </h4>
-        <p> <br> </p>
-        <textarea rows="20" cols="80">
+            </br>
+          </p>
+          <h4>Exemplo de retorno da plataforma </h4>
+          <p> <br> </p>
+          <p>
+            <textarea rows="20" cols="80">
           <?xml version = '1.0' encoding = 'UTF-8'?>
       <env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
         <env:Body>
@@ -192,84 +213,88 @@
       </env:Envelope>
       
               </textarea>
-        <h4>Objetos que contemplam a integração de Estoque.</h4>
-        <!-- tabelas do diego-->
-        <table style="border: 1p%">
-          <tr>
-            <th width="25%">Campo</th>
-            <th width="25%">Descrição</th>
-            <th width="25%">Tipo</th>
-            <th width="25%">Obrigatoriedade</th>
-          </tr> 
-          <tr>
-            <td>stockList</td>
-            <td>Lista de estoque</td>
-            <td>List<Stock></td>
-            <td><b>Obrigatório</b></td>
+            <br>
+          </p>
+          <h4>Objetos que contemplam a integração de Estoque.</h4>
+          <!-- tabelas do diego-->
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>stockList</td>
+              <td>Lista de estoque</td>
+              <td>List<Stock>
+              </td>
+              <td><b>Obrigatório</b></td>
 
-          </tr> 
-        </table>
-        <br>
+            </tr>
+          </table>
+          <br>
 
           <p><b>Objeto Stock</b></p>
 
 
-        <table style="margin-right: 20px">
-          <tr>
-            <th width="25%">Campo</th>
-            <th width="25%">Descrição</th>
-            <th width="25%">Tipo</th>
-            <th width="25%">Obrigatoriedade</th>
-          </tr> 
-          <tr>
-            <td>skuId</td>
-            <td>EAN do SKU</td>
-            <td>String (30)</td>
-            <td><b>Obrigatório</b></td>
+          <table style="margin-right: 20px">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>skuId</td>
+              <td>EAN do SKU</td>
+              <td>String (30)</td>
+              <td><b>Obrigatório</b></td>
 
-          </tr> 
-           <tr>
-            <td>stockType</td>
-            <td>Indica disponibilidade de estoque.
-0 = indisponível.
-1 = disponível.</td>
-            <td>int</td>
-            <td>Opcional desde que seja enviado stockTypeSourceName</td>
+            </tr>
+            <tr>
+              <td>stockType</td>
+              <td>Indica disponibilidade de estoque.
+                0 = indisponível.
+                1 = disponível.</td>
+              <td>int</td>
+              <td>Opcional desde que seja enviado stockTypeSourceName</td>
 
-          </tr> 
-              <tr>
-            <td>stockTypeSourceName</td>
-            <td>Se será controlado por unidade enviar valor
-controlUnitQuantity</td>
-            <td>String (30)</td>
-            <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>stockTypeSourceName</td>
+              <td>Se será controlado por unidade enviar valor
+                controlUnitQuantity</td>
+              <td>String (30)</td>
+              <td>Opcional</td>
 
-          </tr> 
-             <tr>
-            <td>quantity</td>
-            <td>Se for controlado por unidade enviar a quantidade de estoque</td>
-            <td>int</td>
-            <td>Opcional, mas deve ser passado caso seja enviando stockTypeSourceName para indicar a quantidade real.</td>
-          </tr> 
-        </table>
-        <br>
-         <p><b>Objeto Objeto setStockResponse</b></p>
-         <table style="border: 1p%">
-          <tr>
-            <th width="25%">Campo</th>
-            <th width="25%">Descrição</th>
-            <th width="25%">Tipo</th>
-            <th width="25%">Obrigatoriedade</th>
-          </tr> 
-          <tr>
-            <td>result</td>
-            <td>Contém uma mensagem indicando se o estoque foi recebido com sucesso ou se houve um erro.</td>
-            <td>String (30)</td>
-            <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>quantity</td>
+              <td>Se for controlado por unidade enviar a quantidade de estoque</td>
+              <td>int</td>
+              <td>Opcional, mas deve ser passado caso seja enviando stockTypeSourceName para indicar a quantidade real.
+              </td>
+            </tr>
+          </table>
+          <br>
+          <p><b>Objeto Objeto setStockResponse</b></p>
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>result</td>
+              <td>Contém uma mensagem indicando se o estoque foi recebido com sucesso ou se houve um erro.</td>
+              <td>String (30)</td>
+              <td><b>Obrigatório</b></td>
 
-          </tr> 
-      </table>
-        <!-- terminou tabelas do diego-->
+            </tr>
+          </table>
+          <!-- terminou tabelas do diego-->
         </div>
       </div>
     </section>

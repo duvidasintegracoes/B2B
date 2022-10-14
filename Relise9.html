@@ -5,7 +5,7 @@
   <!-- PAGE INFO -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>------***</title>
+  <title>Integração de Pagamento</title>
   <link rel="icon" type="image/png" href="./assets/img/icoifc">
 
   <!-- Icones -->
@@ -34,9 +34,9 @@
       <!-- menu -->
       <div class="menu">
         <ul class="grid">
-          <li><a class="title" href="#home">--1</a></li>
-          <li><a class="title" href="#box2">--2</a></li>
-          <li><a class="title" href="#box3">--3</a></li>
+          <li><a class="title" href="#home">Integração de Pagamento</a></li>
+          <li><a class="title" href="#box2"></a></li>
+          <li><a class="title" href="#box3"></a></li>
           <li><a class="title" href="#box4"></a></li>
           <li><a class="title" href="#box5"></a></li>
           <li><a class="title" href="#box6"></a></li>
@@ -57,35 +57,175 @@
     <section class="section" id="home">
       <div class="container grid">
         <div class="faq">
-          <h2 class="title">01</h2>
-          
-        </div>
+          <h2 class="title">Integração de Pagamento</h2>
+          <p>
+            A integração de pagamento, tem como objetivo, informar ao distribuidor se os pedidos integrados em seu ERP,
+            houveram pagamento aprovado ou reprovado, para que assim o ciclo de vida dos pedidos evoluam para as
+            trackings (status atual do pedido). A integração de pagamento se aplica somente para pedidos cujo o meio de
+            pagamento é gerenciado pela Infracommerce, sendo eles: Boleto antecipado, Cartão de crédito, PIX, Vale
+            Troca, Vale Compra Agora (exclusivo para integrações da loja Compra Agora). Uma vez que o distribuidor
+            recebe a confirmação de pagamento dos pedidos mencionados com o status de aprovação (AP), o mesmo deve
+            seguir com o fluxo de trackings para o pedido, para seguir o fluxo de vida.
+            <br><br>
+          </p>
+          <h4>Pré requisitos:</h4>
+          <p>
+            <br><br>
+            - Distribuidor deve disponibilizar um web service exporto na web e que contenham os objetos presente no
+            arquivo PaymentServices.wsdl
+            <br><br>
+            - O web service deve ser protegido por usuário e senha Basic64
+            <br><br>
+            - Possuir certificado digital SSL instalado. Recomendamos o modelo Wildcard.
+            <br><br>
+            - O retorno da requisição deve estar dentro dos padrões estabelecidos no exemplo de retorno de requisição
+            <br><br>
+            - ERP integrar e identicar corretamente se o pedido houve o pagamento confirmado ou reprovado
+            <br><br>
+          </p>
+          <p>
+            Importante: Pedidos cujo gerenciamento do pagamento é feito por responsabilidade do seller (Pedidos
+            realizados com a forma de pagamento em boleto faturado) não recebem da plataforma confirmações de pagamento,
+            pois é responsabilidade do distribuidor em decidir seguir ou não com o pedido, esses pedidos uma vez que
+            recebidos já devem ser tratados no fluxo de trackings.
+            <br><br>
+          </p>
 
+          <p>
+            Para pedidos que recebem confirmações de pagamento: a confirmação de pagamento é enviada em até 8 dias
+            corridos, importante que neste prazo, o seller mantenha a reserva de estoque, por este motivo, é importante
+            que o seller não efetue o cancelamento neste período.
+            <br><br>
+          </p>
+          <h4>Exemplo de requisição de pagamento aprovado</h4>
+          <p>
+            <br><br>
+            <textarea rows="15" cols="82">
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pay="http://www.accurate.com/acec/PaymentServices">
+        <soapenv:Header/>
+        <soapenv:Body>
+            <confirmPaymentRequest xmlns="http://www.accurate.com/acec/PaymentServices">
+                <orderId>1234567</orderId>
+                <amount>767.34</amount>
+                <status>AP</status>
+            </confirmPaymentRequest>
+        </soapenv:Body>
+    </soapenv:Envelope>
+    </textarea>
+            <br><br>
+          </p>
+          <h4>Exemplo de requisição de pagamento reprovado</h4>
+          <p>
+            <textarea rows="15" cols="82">
+              <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pay="http://www.accurate.com/acec/PaymentServices">
+                <soapenv:Header/>
+                <soapenv:Body>
+                    <confirmPaymentRequest xmlns="http://www.accurate.com/acec/PaymentServices">
+                        <orderId>1234567</orderId>
+                        <amount>3582.00</amount>
+                        <status>RP</status>
+                    </confirmPaymentRequest>
+                </soapenv:Body>
+            </soapenv:Envelope>
+            </textarea>
+            <br><br>
+          </p>
+          <p>Quando um pagamento reprovado é enviado ao distribuidor, o mesmo não deverá seguir o fluxo de vida do
+            mesmo, o ERP não deverá seguir com fluxo de trackings de continuidade do mesmo. <br><br></p>
+          <h4>Exemplo de retorno da requisição</h4>
+          <p>
+            Abaixo segue o modelo de retorno que o web service de pagamento, hospedado no distribuidor, deve enviar para
+            cada integração que houver sucesso. Valido tanto para pagamento aprovado quanto reprovado.
+            <br><br>
+          </p>
+          <p>
+            <br><br>
+            <textarea rows="15" cols="82">
+              <env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
+               <env:Body>
+                  <confirmPaymentResponse xmlns="http://www.accurate.com/acec/PaymentServices">
+                     <success>true</success>
+                  </confirmPaymentResponse>
+               </env:Body>
+            </env:Envelope>
+            </textarea>
+            <br><br>
+          </p>
+          <h4>Informação dos objetos</h4>
+          <p>
+            <i class="gambi">orderId: Numero do pedido</i>
+            <br><br>
+            <i class="gambi">amount: Valor do pedido</i>
+            <br><br>
+            <i class="gambi">status: AP indica que foi pago.RP indica que o pedido não foi pago (para esses casos o
+              pedido nao segue o fluxo de vida)</i>
+            <br><br>
+          </p>
+          <h4>Objeto confirmPaymentRequest</h4>
+          <p>
+            <br><br>
+
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Parametro</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>orderId</td>
+              <td>Identificador do pedido</td>
+              <td>String(15)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+
+
+            <tr>
+              <td>amount</td>
+              <td>Valor total do pedido</td>
+              <td>Decimal</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>status</td>
+              <td>Status do pagamento:
+                <li style="font-size:  90%"><b style="background-color: white">AP</b>: Indica que o pagamento foi
+                  aprovado</li>
+                <li style="font-size:  90%"><b style="background-color: white">RP</b>: Indica que o pagamento foi
+                  reprovado, neste caso o pedido não poderá seguir o fluxo de vida.
+
+              </td>
+              <td>String(3)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+          </table>
+          <br><br>
+          </p>
+          <h4>Objeto confirmPaymentResponse</h4>
+          <p>
+            <br><br>
+
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>success</td>
+              <td>boolean</td>
+              <td>Enviar true quando a aprovação/reprovação de pagamento tiver sido recebida com sucesso. O valor false
+                será entendido como erro e a aprovação/reprovação de pagamento será enviada novamente.</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+          </table>
+          <br><br>
+          </p>
+        </div>
       </div>
     </section>
 
-    <div class="divider-1"></div>
-
-    <section class="section" id="box2">
-      <div class="container grid">
-        <div class="faq">
-          <h2 class="title">02</h2>
-          
-        </div>
-    </section>
-
-    <div class="divider-2"></div>
-
-    <section class="section" id="box3">
-      <div class="container grid">
-        <div class="faq">
-          <h2 class="title">03</h2>
-          
-        </div>
-      </div>
-    </section>
-
-    <div class="divider-2"></div>
   </main>
 
   <footer class="section">

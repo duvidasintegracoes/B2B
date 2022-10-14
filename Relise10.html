@@ -5,7 +5,7 @@
   <!-- PAGE INFO -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>------***</title>
+  <title>Integração de trackings</title>
   <link rel="icon" type="image/png" href="./assets/img/icoifc">
 
   <!-- Icones -->
@@ -34,13 +34,13 @@
       <!-- menu -->
       <div class="menu">
         <ul class="grid">
-          <li><a class="title" href="#home">--1</a></li>
-          <li><a class="title" href="#box2">--2</a></li>
-          <li><a class="title" href="#box3">--3</a></li>
-          <li><a class="title" href="#box4"></a></li>
-          <li><a class="title" href="#box5"></a></li>
-          <li><a class="title" href="#box6"></a></li>
-          <li><a class="title" href="#box7"></a></li>
+          <li><a class="title" href="#home">Contexto</a></li>
+          <li><a class="title" href="#box2">Tipos</a></li>
+          <li><a class="title" href="#box3">Cancelar</a></li>
+          <li><a class="title" href="#box4">Pontos</a></li>
+          <li><a class="title" href="#box5">Devolução</a></li>
+          <li><a class="title" href="#box6">Requisições</a></li>
+          <li><a class="title" href="#box7">Request CAN</a></li>
           <li><a class="title" href="#box8"></a></li>
           <li><a class="title" href="#box9"></a></li>
           <li><a class="title" href="#box10"></a></li>
@@ -57,10 +57,30 @@
     <section class="section" id="home">
       <div class="container grid">
         <div class="faq">
-          <h2 class="title">01</h2>
-          
+          <h2 class="title">Contexto</h2>
+          <p>
+            Trackings consiste na continuidade do fluxo de vida de um pedido. O web service que recebe trackings será
+            exposto pelo middleware e o distribuidor deve realizar a integração para nossa plataforma, informando em
+            qual status o pedido se encontra.
+            O Web Service responsável pela integração de tracking é oTrackingServices.
+            <br><br>
+          </p>
+          <p>
+            A operação responsável pela integração de tracking é acaptureTracking.
+            <br><br>
+          </p>
+          <p>
+            Esse WebService fica hospedado no Middleware, portanto, deve ser chamada pelo Distribuidor.
+            <br><br>
+          </p>
+          <p>
+            Para pedidos cujo meio de pagamento é gerenciado pela infracommerce (Boleto à vista, cartão de crédito, PIX
+            e Vale, o processo de trackings só deverá ser realizado, uma vez que o mesmo receber a confirmação de
+            pagamento com status de pagamento aprovado. Uma vez que esse fluxo é realizado, o distribuidor deverá enviar
+            o fluxo de trackings para continuidade do pedido:
+            <br><br>
+          </p>
         </div>
-
       </div>
     </section>
 
@@ -69,8 +89,41 @@
     <section class="section" id="box2">
       <div class="container grid">
         <div class="faq">
-          <h2 class="title">02</h2>
-          
+          <h2 class="title">Tipos de trackings - ciclo de vida completo de trackings</h2>
+          <p>
+            WMS - OPCIONAL– Separação e embalagem. Esse status deverá ser enviado para plataforma uma vez que o pedido
+            entrou nesse status (A integração de WMS é opcional).
+            <br><br>
+          </p>
+          <p>
+            NFS - OBRIGATÓRIA – Nota fiscal emitida: Nessa tracking devem ser informados todos os SKUS que foram
+            farados, bem como outras informações que mostraremos no exemplo de requisição. Trata-se de uma
+            trackingobrigatória para os pedidos que seguirão o fluxo de vida.
+            <br><br>
+          </p>
+          <p>
+            FAT - Finalização de faturamento OBRIGATÓRIA- Essa tracking indica o encerramento do faturamento, uma vez
+            que ela é enviada, não será integrada mais nenhuma nota fiscal. Essa tracking, indicamos que o seller envie
+            depois de alguns minutos após a NFS para evitar algum erro de integração (Pois um pedido com a tracking FAT
+            precisa ter uma NFS). Assim como A NFS, e uma trackingobrigatória, pois sem ela, a platafoma reconhecerá o
+            faturamento do pedido. É essencial que todo pedido que possuir NFS, logo na sequencia, possuir também a
+            tracking de faturamento (FAT) a fim de evitar divergencias em repasses.
+            <br><br>
+          </p>
+          <p>
+            ETR- Opcional Entrega em andamento – Indica que a entrega está em andamento, deve ser utilizada para somente
+            casos em que o distribuidor possibilita enviar informações de rastreio da entrega.
+            <br><br>
+          </p>
+          <p>
+            ENT- Obrigatória - Entrega concluída - Essa tracking indica que o pedido foi entregue.
+            <br><br>
+          </p>
+          <h4>Imagem ilustrativa do fluxo</h4>
+          <p>
+            Atualizar imagem aqui !!!!!!!!!!!
+          </p>
+
         </div>
     </section>
 
@@ -79,13 +132,596 @@
     <section class="section" id="box3">
       <div class="container grid">
         <div class="faq">
-          <h2 class="title">03</h2>
-          
+          <h2 class="title">Cancelar pedidos</h2>
+          <p>
+            CAN- Obrigatória -Cancelamento do pedido: deverá ser utilizada em casos de cancelamento.
+            <br><br>
+          </p>
+          <h4>Exemplo ilustrativo:</h4>
+          <p>
+            Atualizar imagem aqui!!!!!!!!!
+            <br><br>
+          </p>
+          <h4>Faturamento para pedidos que existem itens bonificados</h4>
+          <p>
+            Cenários de pedidos que possuem kit bonificado: Se no pedido existir algum SKU bonificado (skuType = FFR que
+            enviamos no XML do pedido), o valor dos produtos bonificados ( skuType = FFR ) devem ser zerado no tracking
+            de Nota Fiscal Emitida ( enviando unitPrice = 0 para esses produtos), as demais SKUS cobradas do tipo normal
+            (SkuType = NOR) seguem o fluxo normal, enviando o preço unitário real.
+            <br><br>
+          </p>
+          <p>
+            Se no pedido existirem SKUs do tipo bonificados e cobrados, o envio do tracking de Nota fiscal emitida (NFS)
+            deve ser informado tanto os produtos cobrados quanto aos bonificados, levando em consideração que os itens
+            bonificados devem ser enviados com o valor unitário = zero para esses produtos, vale ressaltar que os
+            cobrados devem ser enviados o valor do item normalmente.
+            <br><br>
+          </p>
+          <p>
+            As informações que definem se o produto é ou não bonificado, são enviadas no XML do pedido, nela, existe
+            tags com o nome kitSkuId, essa tag quando enviada com valor "NOR" define que o produto é cobrado, e quando
+            enviada com valor "FFR", indica que o produto é bonificado, para esses casos FFR, o seller deve enviar o
+            valor zerado para esses produtos. O distribuidor pode optar por enviar uma NFS a parte para os itens
+            bonificados caso preferir (pois um pedido pode ter N notas ficais), porém vale ressaltar, que uma vez que a
+            tracking FAT é enviada, nenhuma nota fiscal pode ser enviada posteriormente, pois ela indica a finalização
+            de faturamento.
+            <br><br>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-1"></div>
+
+    <section class="section" id="box4">
+      <div class="container grid">
+        <div class="faq">
+          <h2 class="title">Pontos de atenção</h2>
+          <p>
+            Cada NFS só pode ter UM pedido, mas um pedido pode ter N notas fiscais, seja por uma nota bonificada, uma
+            nota de venda ou um faturamento dividido em algumas notas. Sendo assim, ao faturar um pedido com mais de uma
+            nota fiscal, será necessário gerar uma chave para cada nota e enviar todas as notas e chaves que estão
+            relacionadas a esse pedido.
+            <br><br>
+          </p>
+          <p>
+            Envio de chave na nota fiscal, o campo invoiceEletronicKey, representa o número da chave da nota fiscal que
+            precisa ser enviado. Para cada nota fiscal é emitido uma única chave.
+            <br><br>
+          </p>
+          <p>
+            A Tracking de FAT notifica a finalização do faturamento e os trackings de NF’s, devem, portanto, ser
+            enviados antes da tracking de FAT. Não é obrigatório o número da chave. Caso aconteça o envio, é permitido
+            que seja enviado somente uma chave entre todas notas emitidas.
+            <br><br>
+          </p>
+          <p>
+            A tracking de FAT indica que não será emitida mais nenhuma nota fiscal para o pedido. Portanto, as trackings
+            de NFS enviados após uma tracking de FAT não serão contabilizados para os valores das apurações mensais de
+            investimento, podendo causar divergências nos repasses.
+            <br><br>
+          </p>
         </div>
       </div>
     </section>
 
     <div class="divider-2"></div>
+
+    <section class="section" id="box5">
+      <div class="container grid">
+        <div class="faq">
+          <h2 class="title">Cancelamento por devolução total</h2>
+          <p>
+            Pedidos que foram faturados, mas não foram entregues ou que o cliente devolveu no ato da entrega, devem
+            receber o envio da tracking de CAN, mesmo que tenha sido faturado anteriormente. (independente do tempo que
+            foi faturado).
+            <br><br>
+          </p>
+          <p>
+            Atualizar imagem Aqui!!!!!!!!!!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-1"></div>
+
+    <section class="section" id="box6">
+      <div class="container grid">
+        <div class="faq">
+          <h2 class="title">Segue alguns exemplos de requisições para apoiar no desenvolvimento:</h2>
+          <p>
+            <br><br>
+          </p>
+          <h4>Requisição WMS - Separação e embalagem - (Opcional)</h4>
+          <p>
+            <br><br>
+            <textarea rows="17" cols="80" style="align-self: ">
+            <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:trac="http://www.accurate.com/acec/TrackingServices" xmlns:trac1="http://www.accurate.com/acec/Tracking" xmlns:inv="http://www.accurate.com/acec/InvoiceInfo">
+      <soapenv:Body>
+         <trac:captureTrackingRequest>
+            <trac1:trackingList>
+               <trac1:tracking>
+                  <trac1:orderId>1826201</trac1:orderId>
+                  <trac1:controlPointId>WMS</trac1:controlPointId>
+                  <trac1:controlPointNm>Os produtos estão em separação e embalagem.</trac1:controlPointNm>
+                  <trac1:occurrenceDt>2022-03-21T15:13:21.058-03:00</trac1:occurrenceDt>
+               </trac1:tracking>
+            </trac1:trackingList>
+         </trac:captureTrackingRequest>
+      </soapenv:Body>
+   </soapenv:Envelope>
+                   </textarea>
+            <br><br>
+          </p>
+          <p>
+            <i class="gambi">No exemplo de requisição, foi enviado para a plataforma a informação que o pedido 1826201
+              entrou em separação e embalagem.</i>
+          </p>
+          <h4>Requisição NFS - Nota Fiscal emitida:</h4>
+          <p>
+            <br><br>
+            <textarea rows="17" cols="80" style="align-self: ">
+            <soapenv:Envelope xmlns:inv="http://www.accurate.com/acec/InvoiceInfo" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:trac="http://www.accurate.com/acec/TrackingServices" xmlns:trac1="http://www.accurate.com/acec/Tracking">
+              <soapenv:Body>
+                 <trac:captureTrackingRequest>
+                    <trac1:trackingList>
+                       <trac1:tracking>
+                          <trac1:orderId>1826201</trac1:orderId>
+                          <trac1:controlPointId>NFS</trac1:controlPointId>
+                          <trac1:controlPointNm>Nota fiscal emitida.</trac1:controlPointNm>
+                          <trac1:occurrenceDt>2022-04-25T15:35:21.058-03:00</trac1:occurrenceDt>
+                          <trac1:invoiceURL>https://nfe.fazenda.sp.gov.br/ConsultaNFe/consulta/publica/ConsultarNFe.aspx?chaveAcesso=35150919493442000145550010000063271811111111</trac1:invoiceURL>
+                          <inv:invoiceInfo>
+                             <inv:issuerDocumentNr>11111222000233</inv:issuerDocumentNr>
+                             <inv:invoiceNumber>91111</inv:invoiceNumber>
+                             <inv:invoiceSerialNumber>1</inv:invoiceSerialNumber>
+                             <inv:invoiceEmissionDate>2022-04-25T15:18:21.058-03:00</inv:invoiceEmissionDate>
+                             <inv:invoiceEletronicKey>35150919493442000145550010000063271811111111</inv:invoiceEletronicKey>
+                          </inv:invoiceInfo>
+                          <trac1:skuDeliveryTrackingList>
+                             <trac1:skuDeliveryTracking>
+                                <trac1:skuId>7312040070756C1</trac1:skuId>
+                                <trac1:preparedQt>11</trac1:preparedQt>
+                                <trac1:unitPrice>24.40</trac1:unitPrice>
+                             </trac1:skuDeliveryTracking>
+                          </trac1:skuDeliveryTrackingList>
+                       </trac1:tracking>
+                    </trac1:trackingList>
+                 </trac:captureTrackingRequest>
+              </soapenv:Body>
+           </soapenv:Envelope>     
+                         </textarea>
+            <br><br>
+          </p>
+          <p>
+            <i class="gambi">No exemplo de requisição trata-se de uma emissão de nota fiscal emitida para o pedido
+              1826201, que contém 11 unidades do produto 7312040070756C1, esse produto possui o valor unitário de
+              R$24.40. O campo "inv:issuerDocumentNr 11111222000233 deve ser informado o CNPJ do distribuidor"</i>
+            <br><br>
+          </p>
+          <h4>Requisição FAT - Finalização do faturamento:</h4>
+          <p>
+            <br><br>
+            <textarea rows="17" cols="80" style="align-self: ">
+            <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:trac="http://www.accurate.com/acec/TrackingServices" xmlns:trac1="http://www.accurate.com/acec/Tracking" xmlns:inv="http://www.accurate.com/acec/InvoiceInfo">
+             <soapenv:Body>
+                <trac:captureTrackingRequest>
+                   <trac1:trackingList>
+                      <trac1:tracking>
+                         <trac1:orderId>1826201</trac1:orderId>
+                         <trac1:controlPointId>FAT</trac1:controlPointId>
+                         <trac1:controlPointNm>O pedido foi faturado.</trac1:controlPointNm>
+                         <trac1:occurrenceDt>2022-04-25T15:33:21.058-03:00</trac1:occurrenceDt>
+                      </trac1:tracking>
+                   </trac1:trackingList>
+                </trac:captureTrackingRequest>
+             </soapenv:Body>
+            </soapenv:Envelope> 
+                          </textarea>
+            <br><br>
+          </p>
+          <p>
+            <i class="gambi">No exemplo de requisição, é enviado a tracking FAT para o pedido 1826201, que indica a
+              finalização do faturamento do pedido. Uma vez que ela é enviada e nenhuma outra nota fiscal poderá ser
+              enviada. Importante se atentar ao cenário de sempre enviar a tracking FAT para pedidos que houveram
+              emissao de NFS, para evitar divergencias nos repasses ao seller.</i>
+            <br><br>
+          </p>
+          <h4>Requisição ETR - Entrega em andamento - Opcional:</h4>
+          <p>
+            <br><br>
+            <textarea rows="17" cols="80" style="align-self: ">
+            <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:trac="http://www.accurate.com/acec/TrackingServices" xmlns:trac1="http://www.accurate.com/acec/Tracking" xmlns:inv="http://www.accurate.com/acec/InvoiceInfo">
+              <soapenv:Body>
+                 <trac:captureTrackingRequest>
+                    <trac1:trackingList>
+                       <trac1:tracking>
+                          <trac1:orderId>1826201</trac1:orderId>
+                          <trac1:controlPointId>ETR</trac1:controlPointId>
+                          <trac1:controlPointNm>Entregue a Transportadora</trac1:controlPointNm>
+                          <trac1:occurrenceDt>2022-04-25T15:38:21.058-03:00</trac1:occurrenceDt>
+                          <trac1:invoiceURL>https://nfe.fazenda.sp.gov.br/ConsultaNFe/consulta/publica/ConsultarNFe.aspx?chaveAcesso=35150919493442000145550010000063271811111111</trac1:invoiceURL>
+                          <inv:invoiceInfo>
+                             <inv:issuerDocumentNr>11111222000233</inv:issuerDocumentNr>
+                             <inv:invoiceNumber>91111</inv:invoiceNumber>
+                             <inv:invoiceSerialNumber>1</inv:invoiceSerialNumber>
+                             <inv:invoiceEmissionDate>2015-09-23T15:18:21.058-03:00</inv:invoiceEmissionDate>
+                             <inv:invoiceEletronicKey>35150919493442000145550010000063271811111111</inv:invoiceEletronicKey>
+                             <inv:objectDataList>
+                                <inv:objectData>
+                                   <inv:objectId>DFV9798P95943BRS</inv:objectId>
+                                </inv:objectData>
+                             </inv:objectDataList>
+                          </inv:invoiceInfo>
+                       </trac1:tracking>
+                    </trac1:trackingList>
+                 </trac:captureTrackingRequest>
+              </soapenv:Body>
+           </soapenv:Envelope>
+                         
+                         </textarea>
+            <br><br>
+          </p>
+          <p>
+            <i class="gambi">No exemplo de requisição, é enviado a tracking ETR para o pedido 1826201, que indica que o
+              mesmo encontra-se na transportadora, essa tracking é opcional e deve ser utilizada para distribuidores que
+              possuem controle de rastreamento do pedido, conforme e possível visualizar o exemplo no objeto objectId,
+              informando o codigo de rastreamento.</i>
+            <br><br>
+          </p>
+          <h4>Requisição ENT - Entrega Concluída:</h4>
+          <p>
+            <br><br>
+            <textarea rows="17" cols="80" style="align-self: ">
+            <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:trac="http://www.accurate.com/acec/TrackingServices" xmlns:trac1="http://www.accurate.com/acec/Tracking" xmlns:inv="http://www.accurate.com/acec/InvoiceInfo">
+              <soapenv:Body>
+                 <trac:captureTrackingRequest>
+                    <trac1:trackingList>
+                       <trac1:tracking>
+                          <trac1:orderId>1826201</trac1:orderId>
+                          <trac1:controlPointId>ENT</trac1:controlPointId>
+                          <trac1:controlPointNm>Entrega concluída.</trac1:controlPointNm>
+                          <trac1:occurrenceDt>2022-04-25T15:40:21.058-03:00</trac1:occurrenceDt>
+                       </trac1:tracking>
+                    </trac1:trackingList>
+                 </trac:captureTrackingRequest>
+              </soapenv:Body>
+           </soapenv:Envelope>               
+                         </textarea>
+            <br><br>
+          </p>
+          <p>
+            <i class="gambi">No exemplo de requisição, é enviado a tracking ENT para o pedido 1826201, que indica que o
+              mesmo encontra-se foi entregue, encerrando totalmente o ciclo de vida de um pedido com ciclo completo</i>
+            <br><br>
+          </p>
+          <h4>Exemplo de resposta que deve ser retornado para as requisições de trackings</h4>
+          <p>
+            <br><br>
+            <textarea rows="17" cols="80" style="align-self: ">
+            <?xml version = '1.0' encoding = 'UTF-8'?>
+           <env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
+             <env:Body>
+               <captureTrackingResponse xmlns="http://www.accurate.com/acec/TrackingServices">
+                 <success>true</success>
+               </captureTrackingResponse>
+             </env:Body>
+           </env:Envelope>       
+                         </textarea>
+            <br><br>
+          </p>
+          <p>
+            Esse retorno deverá ser informado na resposta para todos os tipos de requisições de trackings
+            <br><br>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-1"></div>
+
+    <section class="section" id="box7">
+      <div class="container grid">
+        <div class="faq">
+          <h2 class="title">Cancelar pedidos</h2>
+          <p>
+            <br><br>
+          </p>
+          <h4>Requisição CAN - CANCELAMENTO - obrigatório para cancelar pedidos:</h4>
+          <p>
+            <br><br>
+            <textarea rows="17" cols="80" style="align-self: ">
+              <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:trac="http://www.accurate.com/acec/TrackingServices" xmlns:trac1="http://www.accurate.com/acec/Tracking" xmlns:inv="http://www.accurate.com/acec/InvoiceInfo">
+                 <soapenv:Body>
+                    <trac:captureTrackingRequest>
+                       <trac1:trackingList>
+                          <trac1:tracking>
+                             <trac1:orderId>52388314</trac1:orderId>
+                             <trac1:controlPointId>CAN</trac1:controlPointId>
+                             <trac1:controlPointNm>Pedido cancelado.</trac1:controlPointNm>
+                             <trac1:occurrenceDt>2022-04-25T15:18:21.058-03:00</trac1:occurrenceDt>
+                          </trac1:tracking>
+                       </trac1:trackingList>
+                    </trac:captureTrackingRequest>
+                 </soapenv:Body>
+              </soapenv:Envelope>   
+                            </textarea>
+            <br><br>
+          </p>
+          <p>
+            <i class="gambi">No exemplo de requisição, é enviado a tracking CAN informando para plataforma que o pedido
+              52388314 foi cancelado. Essa mesma estrutura de trackig de cancelamento e utilizada para os demais tipos
+              de pedidos.</i>
+            <br><br>
+          </p>
+          <h4>Apoios para situações distintas de cenários de trackings</h4>
+          <p>
+            <br><br>
+          </p>
+          <h4>TRACKING NFS para pedidos que contém itens bonificados:</h4>
+          <p>
+            <br><br>
+            <textarea rows="17" cols="80 " style="align-self: ">
+              <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:trac="http://www.accurate.com/acec/TrackingServices" xmlns:trac1="http://www.accurate.com/acec/Tracking" xmlns:inv="http://www.accurate.com/acec/InvoiceInfo">
+                 <soapenv:Body>
+                    <trac:captureTrackingRequest>
+                       <trac1:trackingList>
+                          <trac1:tracking>
+                             <trac1:orderId>52388318</trac1:orderId>
+                             <trac1:controlPointId>NFS</trac1:controlPointId>
+                             <trac1:controlPointNm>Nota fiscal emitida.</trac1:controlPointNm>
+                             <trac1:occurrenceDt>2016-10-10T15:40:21.058-03:00</trac1:occurrenceDt>
+                             <trac1:invoiceURL>https://nfe.fazenda.sp.gov.br/ConsultaNFe/consulta/publica/ConsultarNFe.aspx?chaveAcesso=3333194934420001455500100000632333333743</trac1:invoiceURL>
+                             <inv:invoiceInfo>
+                                <inv:issuerDocumentNr>33.333.333/0001-55</inv:issuerDocumentNr>
+                                <inv:invoiceNumber>91161</inv:invoiceNumber>
+                                <inv:invoiceSerialNumber>1</inv:invoiceSerialNumber>
+                                <inv:invoiceEmissionDate>2015-09-23T15:18:21.058-03:00</inv:invoiceEmissionDate>
+                                <inv:invoiceEletronicKey>3333194934420001455500100000632333333743</inv:invoiceEletronicKey>
+                             </inv:invoiceInfo>
+                             <trac1:skuDeliveryTrackingList>
+                                <trac1:skuDeliveryTracking>
+                                   <trac1:skuId>7891050004604</trac1:skuId>
+                                   <trac1:preparedQt>21</trac1:preparedQt>
+                                   <trac1:unitPrice>11.20</trac1:unitPrice>
+                                   <trac1:kitSkuId>9909</trac1:kitSkuId>
+                                </trac1:skuDeliveryTracking>
+                                <trac1:skuDeliveryTracking>
+                                   <trac1:skuId>7891050004604</trac1:skuId>
+                                   <trac1:preparedQt>3</trac1:preparedQt>
+                                   <trac1:unitPrice>0.00</trac1:unitPrice>
+                                   <trac1:kitSkuId>9909</trac1:kitSkuId>
+                                </trac1:skuDeliveryTracking>
+                             </trac1:skuDeliveryTrackingList>
+                          </trac1:tracking>
+                       </trac1:trackingList>
+                    </trac:captureTrackingRequest>
+                 </soapenv:Body>
+              </soapenv:Envelope>
+                            </textarea>
+            <br><br>
+          </p>
+          <p>
+            <i class="gambi">No exemplo de envio para tracking NFS para o pedido 52388318, foi informado que o pedido
+              possui 21 unidades do SKU 7891050004604 com preço unitário no valor de R$11.20, e neste pedido, houveram 3
+              unidades do mesmo SKU bonificado, sendo enviado com a tag unitPrice = 0.00 e também o codigo do kit
+              (kitSkuId) que é declarado no pedido. Observação, o seller pode optar em enviar duas notas, uma para os
+              itens cobrados e outra para os bonificados dependendo do seu modelo de negócio, levando em consideração
+              que a tracking FAT só deverá ser enviada após o envio de todas as notas, se assim preferir. </i>
+            <br><br>
+          </p>
+          <h4>Modelo de dados</h4>
+          <p>
+            <br><br>
+          </p>
+          <h4>Objeto captureTrackingRequest</h4>
+          <p>
+
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Parametro</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>trackingList</td>
+              <td>Lista do objeto Tracking</td>
+              <td>List<'Tracking>
+              </td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+          </table>
+          <br><br>
+          </p>
+          <h4>Objeto Tracking</h4>
+          <p>
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>orderId</td>
+              <td>Identificador do pedido</td>
+              <td>String (20)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            </tr>
+            <tr>
+              <td>controlPointId</td>
+              <td>Identificador do ponto de controle (Verificar na tabela Tipos de Tracking) </td>
+              <td>String (5)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>controlPointNm</td>
+              <td>Descrição do ponto de controle </td>
+              <td>String (100)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>occurrenceDt</td>
+              <td>Data da ocorrência do evento </td>
+              <td>Date</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>invoiceUrl</td>
+              <td>URL de acesso a nota fiscal eletrônica </td>
+              <td>String (2500)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>invoiceInfo</td>
+              <td>Informações adicionais sobre nota fiscal </td>
+              <td>InvoiceInfo</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>skuDeliveryTrackingList</td>
+              <td>Lista de todos os itens faturados. </td>
+              <td>SkuDeliveryTrackingList</td>
+              <td>Obrigatório para o tracking NFS</td>
+            </tr>
+          </table>
+          <br><br>
+          </p>
+          <h4>Objeto InvoiceInfo</h4>
+          <p>
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>issuerDocumentNr</td>
+              <td>CNPJ Emissor</td>
+              <td>String (15)</td>
+              <td>Obrigatório para o tracking NFS</td>
+            </tr>
+            <tr>
+              <td>invoiceNumber</td>
+              <td>Número da nota fiscal</td>
+              <td>String (20)</td>
+              <td>Obrigatório para o tracking NFS</td>
+            </tr>
+            <tr>
+              <td>invoiceSerialNumber</td>
+              <td>Número de série</td>
+              <td>String (255)</td>
+              <td>Obrigatório para o tracking NFS</td>
+            </tr>
+            <tr>
+              <td>invoiceEmissionDate</td>
+              <td>Data da emissão</td>
+              <td>Date</td>
+              <td>Obrigatório para o tracking NFS</td>
+            </tr>
+            <tr>
+              <td>invoiceEletronicKey</td>
+              <td>Chave de acesso da nota fiscal</td>
+              <td>String (255)</td>
+              <td>Obrigatório para o tracking NFS</td>
+            </tr>
+            <tr>
+              <td>objectDataList</td>
+              <td>Dados específicos relacionados ao tracking.</td>
+              <td>List<'ObjectData>
+              </td>
+              <td>Opcional para o tracking FAT</td>
+            </tr>
+
+          </table>
+          <br><br>
+          </p>
+          <h4>Objeto SkuDeliveryTrackingList</h4>
+          <p>
+            <br><br>
+          <table style="margin-right: 20px">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>skuDeliveryTracking</td>
+              <td>Lista de SKUs que foram faturados</td>
+              <td>List<'SkuDeliveryTracking>
+              </td>
+              <td>Obrigatório para o tracking NFS</td>
+            </tr>
+          </table>
+          <br><br>
+          </p>
+          <h4>Objeto SkuDeliveryTracking</h4>
+          <p>
+            <br><br>
+
+          <table style="margin-right: 20px">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>skuId</td>
+              <td>EAN do SKU</td>
+              <td>String (30)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>unitPrice</td>
+              <td>Valor unitário faturado</td>
+              <td>Decimal (15,2)</td>
+              <td>Obrigatório, valores separados por ponto</td>
+            </tr>
+            <tr>
+              <td>preparedQt</td>
+              <td>Quantidade faturada</td>
+              <td>int</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>kitSkuId</td>
+              <td>Id do KIT do SKU</td>
+              <td>String (30)</td>
+              <td>Obrigatório apenas para SKUs que fazem parte de um KIT. Essa informação e resgatada no XML do pedido
+                que possui kit.</td>
+            </tr>
+          </table>
+          <br><br>
+          </p>
+          <h4>Objeto captureTrackingResponse</h4>
+          <p>
+            <br><br>
+
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>success</td>
+              <td>Determina se a captura ocorreu com sucesso.</td>
+              <td>Boolean</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+          </table>
+          <br><br>
+          </p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="section">

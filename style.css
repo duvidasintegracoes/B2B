@@ -634,7 +634,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .card {
-  padding: 3.625rem 2rem;
+  padding: 3.625rem 1rem;
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.08);
   border-bottom: 0.25rem solid var(--base-color);
   border-radius: 0.25rem 0.25rem 0 0;

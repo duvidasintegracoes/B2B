@@ -34,11 +34,11 @@
       <!-- menu -->
       <div class="menu">
         <ul class="grid">
-          <li><a class="title" href="#home">Integração de Pedidos</a></li>
-          <li><a class="title" href="#box2">--2</a></li>
-          <li><a class="title" href="#box3">--3</a></li>
-          <li><a class="title" href="#box4"></a></li>
-          <li><a class="title" href="#box5"></a></li>
+          <li><a class="title" href="#home">Integração</a></li>
+          <li><a class="title" href="#box2">Dados</a></li>
+          <li><a class="title" href="#box3">Objetos</a></li>
+          <li><a class="title" href="#box4">Requisições</a></li>
+          <li><a class="title" href="#box5">Retorno</a></li>
           <li><a class="title" href="#box6"></a></li>
           <li><a class="title" href="#box7"></a></li>
           <li><a class="title" href="#box8"></a></li>
@@ -58,51 +58,78 @@
       <div class="container grid">
         <div class="faq">
           <h2 class="title">Integração de Pedidos</h2>
-          
+
           <p>
-            A integração de pedidos nasce na plataforma e é enviado para o distribuidor através do web service que deve ser disponibilizado pelo distribuidor para que os dados enviados sejam integrados em sua base de dados. O distribuidor devera disponibilizar e implementar o WSDL OrderINtegration.wsdl, presente em nosso manual de integração. Através desse serviço o Middleware padroniza a estrutura do pedido que é enviada para todos os Distribuidores.
+            A integração de pedidos nasce na plataforma e é enviado para o distribuidor através do web service que deve
+            ser disponibilizado pelo distribuidor para que os dados enviados sejam integrados em sua base de dados. O
+            distribuidor devera disponibilizar e implementar o WSDL OrderINtegration.wsdl, presente em nosso manual de
+            integração. Através desse serviço o Middleware padroniza a estrutura do pedido que é enviada para todos os
+            Distribuidores.
             <br><br>
           </p>
           <p>
-            Um pedido feito na plataforma pode conter SKUs de mais de um Distribuidor. Dentro da estrutura desse pedido haverá uma entrega (nó delivery) para cada Distribuidor, contendo apenas os produtos e os valores referentes ao Distribuidor em questão.
+            Um pedido feito na plataforma pode conter SKUs de mais de um Distribuidor. Dentro da estrutura desse pedido
+            haverá uma entrega (nó delivery) para cada Distribuidor, contendo apenas os produtos e os valores referentes
+            ao Distribuidor em questão.
             <br><br>
           </p>
           <p>
-            Antes do pedido ser integrado com os Distribuidores ele passa pelo processo de quebra de entregas, onde é gerada uma estrutura completa de pedido (objeto Order) para cada uma das entregas que o pedido possuir, gerando assim, uma estrutura completa de pedido que será enviada para cada um dos Distribuidores.
+            Antes do pedido ser integrado com os Distribuidores ele passa pelo processo de quebra de entregas, onde é
+            gerada uma estrutura completa de pedido (objeto Order) para cada uma das entregas que o pedido possuir,
+            gerando assim, uma estrutura completa de pedido que será enviada para cada um dos Distribuidores.
             <br><br>
           </p>
           <p>
             <strong>
-              OBS: os pagamentos de produtos referentes ao mesmo Distribuidor devem ser pagos integralmente com um único meio de pagamento, ou seja, os produtos referentes a um Distribuidor devem ser pagos integralmente com boleto faturado OU cartão de crédito OU boleto à vista. A única exceção a essa regra é o vale troca. O meio de pagamento vale troca pode ser combinado com qualquer outro meio de pagamento gerenciado pela plataforma Infrashop, sendo assim, podem existir casos nos quais o pedido enviado para o Distribuidor possua dois pagamentos: vale troca e cartão de crédito/boleto à vista e PIX. Pedidos pagos com boleto faturado não poderão ser combinados com vale troca.
+              OBS: os pagamentos de produtos referentes ao mesmo Distribuidor devem ser pagos integralmente com um único
+              meio de pagamento, ou seja, os produtos referentes a um Distribuidor devem ser pagos integralmente com
+              boleto faturado OU cartão de crédito OU boleto à vista. A única exceção a essa regra é o vale troca. O
+              meio de pagamento vale troca pode ser combinado com qualquer outro meio de pagamento gerenciado pela
+              plataforma Infrashop, sendo assim, podem existir casos nos quais o pedido enviado para o Distribuidor
+              possua dois pagamentos: vale troca e cartão de crédito/boleto à vista e PIX. Pedidos pagos com boleto
+              faturado não poderão ser combinados com vale troca.
             </strong>
             <br><br>
           </p>
           <p>
-            Pedidos feitos na forma de pagamento boleto antecipado/cartão o Distribuidor não pode emitir data de vencimento do pagamento na nota fiscal, pois essas formas de pagamento são tratadas pela infracommerce.
+            Pedidos feitos na forma de pagamento boleto antecipado/cartão o Distribuidor não pode emitir data de
+            vencimento do pagamento na nota fiscal, pois essas formas de pagamento são tratadas pela infracommerce.
             <br><br>
           </p>
           <p>
-            As promoções aplicadas (criados) na plataforma Infrashop podem dar descontos no valor dos SKUs e também podem dar bonificações (SKUs que não são cobrados do lojista). Quando um SKU recebe desconto o seu preço de listagem (listPrice) é diferente do preço de venda (salePrice). Quando um SKU é bonificado ele é enviado com o tipo FFR e o preço de venda R$ 0,00, indicando que o Distribuidor deve aplicar o tratamento necessário para faturar tal SKU como uma bonificação.
+            As promoções aplicadas (criados) na plataforma Infrashop podem dar descontos no valor dos SKUs e também
+            podem dar bonificações (SKUs que não são cobrados do lojista). Quando um SKU recebe desconto o seu preço de
+            listagem (listPrice) é diferente do preço de venda (salePrice). Quando um SKU é bonificado ele é enviado com
+            o tipo FFR e o preço de venda R$ 0,00, indicando que o Distribuidor deve aplicar o tratamento necessário
+            para faturar tal SKU como uma bonificação.
             <br><br>
           </p>
           <p>
-            Caso haja alguma falha no envio do pedido ele é enfileirado para futuras tentativas. Após cinco tentativas falhas de integração o pedido automaticamente cai em um alarme para que passe por análise manual.
+            Caso haja alguma falha no envio do pedido ele é enfileirado para futuras tentativas. Após cinco tentativas
+            falhas de integração o pedido automaticamente cai em um alarme para que passe por análise manual.
             <br><br>
           </p>
           <p>
-            Conforme requisitado pela plataforma, a integração do primeiro pedido do cliente sempre deve ser aceita pelo distribuidor.
+            Conforme requisitado pela plataforma, a integração do primeiro pedido do cliente sempre deve ser aceita pelo
+            distribuidor.
             <br><br>
           </p>
           <p>
-            Devido ao fato da plataforma Infrashop trabalhar com filas distintas de integração, é necessário que o Distribuidor esteja preparado para que, eventualmente, o primeiro pedido do cliente seja informado antes da Notificação de Criação do Cliente.
+            Devido ao fato da plataforma Infrashop trabalhar com filas distintas de integração, é necessário que o
+            Distribuidor esteja preparado para que, eventualmente, o primeiro pedido do cliente seja informado antes da
+            Notificação de Criação do Cliente.
             <br><br>
           </p>
           <p>
-            É necessário que o Distribuidor receba a requisição e retorne uma resposta imediatamente para o Middleware. Somente após retornar a resposta para o Middleware o distribuidor deve realizar a integração do pedido com o seu ERP.
+            É necessário que o Distribuidor receba a requisição e retorne uma resposta imediatamente para o Middleware.
+            Somente após retornar a resposta para o Middleware o distribuidor deve realizar a integração do pedido com o
+            seu ERP.
             <br><br>
           </p>
           <p>
-            OBS: O pedido realizado através da plataforma, é integrado no ERP do seller de forma unificada, caso o distribuidor tenha necessidade do split de pedido a partir de pastas de vendedores ou indústrias, esta configuração deve ser desenhada e desenvolvida internamente pelo distribuidor.
+            OBS: O pedido realizado através da plataforma, é integrado no ERP do seller de forma unificada, caso o
+            distribuidor tenha necessidade do split de pedido a partir de pastas de vendedores ou indústrias, esta
+            configuração deve ser desenhada e desenvolvida internamente pelo distribuidor.
             <br><br>
           </p>
         </div>
@@ -123,6 +150,10 @@
             <i class="gambi">Esse WebService fica hospedado no Distribuidor e é chamado pelo Middleware.</i>
             <br><br>
           </p>
+          <p>
+            ** Imagem do fluxo *** Atualizar aqui!!!!1
+
+          </p>
         </div>
     </section>
 
@@ -131,13 +162,2145 @@
     <section class="section" id="box3">
       <div class="container grid">
         <div class="faq">
-          <h2 class="title">03</h2>
-          
+          <h2 class="title">Objetos que contemplam a integração de pedidos.</h2>
+          <p>
+            <br><br>
+          </p>
+          <h4>Objeto integrateOrderRequest</h4>
+          <p>
+            <br><br>
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Parametro</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>order</td>
+              <td>Pedido</td>
+              <td>Order (lista que armazenara toda requisição)</td>
+              <td><b>Obrigatório</b></td>
+
+            </tr>
+          </table>
+          <br><br>
+          </p>
+          <h4>Objeto Order</h4>
+          <p>
+            <br><br>
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>orderId</td>
+              <td>Identificador do pedido</td>
+              <td>String (15)</td>
+              <td><b>Obrigatório</b></td>
+
+            </tr>
+            <tr>
+              <td>totalAmount</td>
+              <td>Valor total do pedido</td>
+              <td>Decimal (15,2)</td>
+              <td><b>Obrigatório</b></td>
+
+            </tr>
+            <tr>
+              <td>totalDiscountAmount</td>
+              <td>Valor total de descontos no pedido</td>
+              <td>Decimal (15,2)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>purchaseDate</td>
+              <td>Data e hora do pedido</td>
+              <td>Date/Time</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>sessionCreationDate</td>
+              <td>Date e hora da sessão que originou o pedido</td>
+              <td>Date/Time</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>applicationVersion</td>
+              <td>Versão da aplicação que gerou o pedido</td>
+              <td>String (20)</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>listId</td>
+              <td>Identificador da lista que originou o pedido (lista de casamento, desejos, etc)</td>
+              <td>String (15)</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>saleChannel</td>
+              <td>Canal de venda. é através desse campo que o distribuidor identificará a origem de qual loja pertence
+                ao pedido. Importante a identificação desse campo principalmente quando o seller é integrado em
+                múltiplas canais (lojas) em nossa plataforma.</td>
+              <td>String (6)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>salesOperatorId</td>
+              <td>Id do operador de venda (Matricula do vendedor)</td>
+              <td>String (20)</td>
+              <td>Opcional, é enviado somente em pedidos de venda assitida (Simulados pelo vendedor) Essa tag será
+                enviada como comentário na integração.</td>
+            </tr>
+            <td>salesOperatorName</td>
+            <td>Nome do operador de venda</td>
+            <td>String (70)</td>
+            <td>Opcional, é enviado somente em pedidos de venda assitida (Simulados pelo vendedor). Essa tag será
+              enviada como comentário na integração.</td>
+            </tr>
+            <tr>
+              <td>purchaseOrder</td>
+              <td>Identificador do pedido de compra de uso do cliente (Exclusivo para Loja Mondelez)</td>
+              <td>String (10)</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>origin</td>
+              <td>Origem do pedido, exemplo: SITE-CUL, APP-TAQTILE ou DEFAULT</td>
+              <td>String (20)</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>deliveries</td>
+              <td>Lista de entregas</td>
+              <td>List <'Delivery'>
+              </td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>customer</td>
+              <td>Cliente (lista de dados)</td>
+              <td>List <'customer'>
+              </td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>billingAddress</td>
+              <td>Endereço de cobrança</td>
+              <td>List <'address'>
+              </td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>paymentList</td>
+              <td>Lista de pagamentos</td>
+              <td>List <'payment'>
+              </td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>freightChargedAmount</td>
+              <td>Valor cobrado de frete</td>
+              <td>Decimal (15,2)</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>freightActualAmount</td>
+              <td>Valor total de frete</td>
+              <td>Decimal (15,2)</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>countDistinctSku</td>
+              <td>Contagem distinta dos SKUs do pedido</td>
+              <td>int</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+          </table>
+          <br><br>
+          </p>
+          <h4>Objeto Delivery</h4>
+          <p>
+            <br><br>
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>orderId</td>
+              <td>Identificador do pedido</td>
+              <td>String (15)</td>
+              <td><b>Obrigatório</b></td>
+
+            </tr>
+            <tr>
+              <td>deliveryId</td>
+              <td>Identificador da entrega</td>
+              <td>String (15)</td>
+              <td><b>Obrigatório</b></td>
+
+            </tr>
+            </tr>
+            <tr>
+              <td>totalAmount</td>
+              <td>Valor total da entrega</td>
+              <td>Decimal (15,2)</td>
+              <td><b>Obrigatório</b></td>
+
+            </tr>
+            <tr>
+              <td>totalDiscountAmount</td>
+              <td>Valor de descontos na entrega</td>
+              <td>Decimal (15,2)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>orderLineList</td>
+              <td>Lista de itens da entrega</td>
+              <td>List<'OrderLine'>
+              </td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>freightAmount</td>
+              <td>Informações do frete da entrega</td>
+              <td>Freight</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>deliveryAddress</td>
+              <td>Endereço da entrega</td>
+              <td>Address</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+          </table>
+          <br><br>
+          </p>
+          <h4>Objeto OrderLine</h4>
+          <p>
+            <br><br>
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>sku</td>
+              <td>Identificador do SKU</td>
+              <td>String (30)</td>
+              <td><b>Obrigatório</b></td>
+
+            </tr>
+            <tr>
+              <td>skuType</td>
+              <td>Tipo do SKU:<br>
+                NOR = Normal (cobrado)<br>
+                FFR = Bonificado (esses itens devem ser faturados com valor zero na NFS)</td>
+              <td>String (3)</td>
+              <td><b>Obrigatório</b></td>
+
+            </tr>
+            <tr>
+              <td>quantity</td>
+              <td>Quantidade</td>
+              <td>int</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>catalogListPrice</td>
+              <td>Preço de listagem base no catálogo do último preço DFL para o produto. Não levando em consideração por
+                qual distribuidor foi enviado.</td>
+              <td>Decimal (15,2)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>listPrice</td>
+              <td>Preço de listagem do SKU na sacola.
+                Esse preço pode levar em consideração as taxas de forma de pagamento.</td>
+              <td>Decimal (15,2)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>salePrice</td>
+              <td>Preço da venda.
+                Esse é o preço que o SKU foi, de fato, vendido, incluindo promoções.Quando o SKU é uma bonificação esse
+                preço é R$ 0,00.</td>
+              <td>Decimal (15,2)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>unconditionalDiscountAmount</td>
+              <td>Descontos incondicionais</td>
+              <td>Decimal (15,2) </td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>roundingDiscountAmount</td>
+              <td>Valor total dos arredondamentos de descontos aplicados à linha</td>
+              <td>Decimal (15,2) </td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>promotionList</td>
+              <td>Lista de promoções</td>
+              <td>List<'Promotion'>
+              </td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>freight</td>
+              <td>Informações do frete</td>
+              <td>Freight</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>kitSkuId</td>
+              <td>Identificador do KIT</td>
+              <td>String (30)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>kitSkuName</td>
+              <td>Nome do KIT, caso esse item seja de um KIT</td>
+              <td>String (255)</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>kitQuantity</td>
+              <td>Quantidade desse item no KIT, caso esse item seja de um KIT</td>
+              <td>int</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>service</td>
+              <td>É um serviço?</td>
+              <td>boolean</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>skuName</td>
+              <td>Nome do SKU</td>
+              <td>String (255)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+          </table>
+          <br><br>
+          </p>
+          <h4>Objeto Promotion</h4>
+          <p>
+            <br><br>
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>promotionId</td>
+              <td>Identificador da promoção</td>
+              <td>String (255)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>promotionName</td>
+              <td>Nome da promoção</td>
+              <td>String (255)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>promotionStartDate</td>
+              <td>Data de início de validade da promo</td>
+              <td>DateTime</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>promotionEndDate</td>
+              <td>Data de fim de validade da promo</td>
+              <td>DateTime</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>campaignId</td>
+              <td>Identificador da campanha da promoção</td>
+              <td>String (255)</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>label</td>
+              <td>Título da promoção aplicada (usada no site para destaque)</td>
+              <td>String (255)</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>type</td>
+              <td>Tipo da promoção. Ex: Frete, Subtotal, Produto,...</td>
+              <td>String (255)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>amount</td>
+              <td>Valor do desconto concedido por está promoção para cada unidade da linha</td>
+              <td>Decimal (15,2)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>roundingAmount</td>
+              <td>Valor do arredondamento desconto concedido por está promoção para TODA a linha</td>
+              <td>Decimal</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>minimumQuantity</td>
+              <td>Nos casos de promoção compre X pague Y, esse campo contem a quantidade minima para receber o desconto
+              </td>
+              <td>int</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>couponPromo</td>
+              <td>Flag que indica se essa promoção será paga pelo fornecedor</td>
+              <td>boolean</td>
+              <td>Opcional</td>
+            </tr>
+          </table>
+          <br><br>
+          </p>
+          <h4>Objeto Freight</h4>
+          <p>
+            <br><br>
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>chargedAmount</td>
+              <td>Valor de frete cobrado</td>
+              <td>Decimal (15,2)</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>actualAmount</td>
+              <td>Valor de frete sem descontos</td>
+              <td>Decimal (15,2)</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>commercialAmount</td>
+              <td>Margem comercial de frete</td>
+              <td>Decimal (15,2)</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>freightTime</td>
+              <td>Tempo do frete</td>
+              <td>int</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>pickupLeadTime</td>
+              <td>Tempo de espera no armazem</td>
+              <td>int</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>logisticContract</td>
+              <td>Contrato logístico</td>
+              <td>String (25)</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>expectedDeliveryDate</td>
+              <td>Data estimada de entrega</td>
+              <td>Date</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>adjustedDeliveryDate</td>
+              <td>Data estimada de entrega ajustada</td>
+              <td>Date</td>
+              <td>Opcional</td>
+            </tr>
+          </table>
+          <br><br>
+          </p>
+          <h4>Objeto Address</h4>
+          <p>
+            <br><br>
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>addressId</td>
+              <td> Tipo do endereço (0-Pessoal [PERSONAL](Cobrança), 1-Presente [GIFT](Entrega))</td>
+              <td>int</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>recipientNm</td>
+              <td>Nome do destinatário</td>
+              <td>String (100)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>address</td>
+              <td>Logradouro</td>
+              <td>String (100)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>addressNr</td>
+              <td>Número</td>
+              <td>String (10)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>additionalInfo</td>
+              <td>Informações adicionais</td>
+              <td>String (100)</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>quarter</td>
+              <td>Bairro</td>
+              <td>String (80)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>city</td>
+              <td>Cidade</td>
+              <td>String (60)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>state</td>
+              <td>Estado</td>
+              <td>String (2)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>countryId</td>
+              <td>Identificação do País. Baseado na ISO-3166, padrão alpha 2</td>
+              <td>String (2)</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>postalCd</td>
+              <td>CEP</td>
+              <td>String (8)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>postalCdIntl</td>
+              <td>Código Postal Internacional</td>
+              <td>String (8)</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>reference</td>
+              <td>Referência para a entrega</td>
+              <td>String (100)</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>friendlyNm</td>
+              <td>Identificação do endereço</td>
+              <td>String (100)</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>intercom</td>
+              <td>Indica se existe interfone</td>
+              <td>boolean</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>lift</td>
+              <td>Indica se existe elevador</td>
+              <td>boolean</td>
+              <td>Opcional</td>
+            </tr>
+          </table>
+          <br><br>
+          </p>
+          <h4>Objeto Customer</h4>
+          <p>
+            <br><br>
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>customerId</td>
+              <td>Identificador do cliente</td>
+              <td>String (15)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>documentNumber</td>
+              <td>CNPJ do cliente</td>
+              <td>String (15)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>name</td>
+              <td>Razão Social do cliente</td>
+              <td>String (100)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>email</td>
+              <td>Email</td>
+              <td>String (255)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>phoneMobile</td>
+              <td>Telefone celular</td>
+              <td>String (20)</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>phoneOffice</td>
+              <td>Telefone comercial</td>
+              <td>String (20)</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>state_subscription</td>
+              <td>Inscrição estadual</td>
+              <td>String (20)</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>representativeNm</td>
+              <td>Nome do representante comercial</td>
+              <td>String (100)</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>createDt</td>
+              <td>Data de criação do cliente</td>
+              <td>Date</td>
+              <td>Opcional</td>
+            </tr>
+            <tr>
+              <td>updateDt</td>
+              <td>Data da última atualização do cliente</td>
+              <td>Date</td>
+              <td>Opcional</td>
+            </tr>
+          </table>
+          <br><br>
+          </p>
+          <h4>Objeto Payment Informações</h4>
+          <p>
+            <br><br>
+            A plataforma Infrashop pode trabalhar com alguns tipos de pagamentos diferentes, porém o Middleware vai
+            trabalhar apenas com os tipos abaixo:
+            <br><br>
+            <i class="gambi"> <strong> abstractPayment</strong>: contém informações genéricas do pagamento, como: tipo
+              do pagamento e valor</i>
+            <br><br>
+            <i class="gambi"> <strong> creditCardPayment: contém informações específicas de pagamento com cartão de
+                crédito, como: quantidade de parcelas.abstractPayment: contém informações genéricas do pagamento, como:
+                tipo do pagamento e valor.</i>
+            <br><br>
+          </p>
+          <h4>Objeto abstractPayment</h4>
+          <p>
+            <br><br>
+          <table style="margin-right: 20px">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>paymentType</td>
+              <td>Tipos de pagamento:
+                <li>BILL: Boleto à vista</li>
+                <li>CRL-{Dias}:Boleto Faturado, onde {dias}representa a quantidade
+                  de dias para o vencimento. Ex: 7, 14,21,28.</li>
+                <li>COUPON: Vale Troca </li>
+                <li>CREDIT_SITE: Vale Compra Agora. Crédito disponível para o cliente no site (fidelidade)
+                </li>
+                <li>PIX: DISPONÍVEL PARA ALGUMAS LOJAS. CONSULTAR A DISPONIBILIDADE JUNTO A INFRACOMMERCE.</li>
+              </td>
+              <td>String (4000)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>value</td>
+              <td>Valor pago através desse meio de pagamento</td>
+              <td>Decimal (15,2)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>billType</td>
+              <td>Informa para o cliente qual o tipo de limite de crédito utilizado na venda (SELLER/IFC)
+                Caso o tipo de pagamento não seja boleto faturado, o campo irá vazio.</td>
+              <td>String(6)</td>
+              <td>Obrigatório apenas para integrações com limite de crédito gerenciado pelo Infrapay (limite de credito
+                infracommerce)</td>
+            </tr>
+          </table>
+          <br><br>
+          </p>
+          <h4></h4>
+          <p>
+            <br>Objeto creditCardPayment<br>
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>paymentType</td>
+              <td>Tipo do Pagamento:
+                <li>CREDIT_CARD: Cartão de crédito</li>
+              </td>
+              <td>String (4000)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>value</td>
+              <td>Valor pago através desse meio de pagamento</td>
+              <td>String (4000)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>numberOfInstallments</td>
+              <td>Quantidade de parcelas</td>
+              <td>int</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+          </table>
+          <br><br>
+          </p>
+          <h4>Objeto integrateOrderResponse</h4>
+          <p>
+            <br><br>
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>status</td>
+              <td>Status da resposta da integração de pedido.
+                Enviar o texto “OK” sem aspas quando estiver tudo ok com a integração. O status OK também deve ser
+                retornado quando reenviamos um pedido em caso de solicitação do seller
+              </td>
+              <td>String (4000)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>message</td>
+              <td>Mensagem indicando se o pedido foi recebido com sucesso ou se houve um erro. Caso seja uma mensagem
+                indicando o erro deve-se colocar o máximo possível de informação para ajudar a identificar o problema.
+                Como padrão esperamos. "Pedido integrado com sucesso" para o primeiro envio e , "Pedido ja existe no ERP
+                caso o mesmo pedido seja reenviado pela plataforma."
+              </td>
+              <td>String (4000)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+          </table>
+          <br><br>
+          </p>
+          <h4>Informações Complementares sobre tipos de pedidos</h4>
+          <p>
+            <br><br>
+            <i class="gambi">Um pedido de boleto antecipado, será enviado a informação "BILL" na tag paymentType</i>
+            <br><br>
+            <i class="gambi">Um pedido de cartão de crédito, será enviado a informação "CREDIT_CARD" na tag
+              paymentType</i>
+            <br><br>
+            <i class="gambi">Um pedido de Boleto Faturado, será enviado a informação "CRL-{dias}" na tag paymentType</i>
+            <br><br>
+            <i class="gambi">Um pedido de vale troca, será enviado a informação "COUPON" na tag paymentType</i>
+            <br><br>
+            <i class="gambi">Um pedido de vale compra agora, será enviado a informação "CREDIT_SITE" na tag
+              paymentType</i>
+            <br><br>
+            <i class="gambi">Um pedido de vale troca, poderá ser mesclado com outra forma de pagamento como por exemplo
+              boleto antecipado e cartão de crédito, quando o valor do pedido exceder o valor do voucher, neste caso o
+              pedido terá duas formas de pagamentos na informação do pedido. OBS: não será possível mesclar com boleto
+              faturado.</i>
+            <br><br>
+          </p>
         </div>
       </div>
     </section>
 
     <div class="divider-2"></div>
+
+    <section class="section" id="box4">
+      <div class="container grid">
+        <div class="faq">
+          <h2 class="title">Exemplo de requisições de pedidos com diferentes formas de pagamento</h2>
+          <p>
+            <br><br>
+            A fim de apoiar no entendimento, segue alguns XML’s que contém a estrutura de diferentes tipos de pedidos
+            para apoiar de forma visual os objetos que são enviados nos pedidos e considerações.
+            <br><br>
+          </p>
+          <h4>
+            Pedido com boleto antecipado, com promoção e produtos dinstintos
+          </h4>
+          <p>
+            <br><br>
+            <textarea rows="20" cols="82">
+
+              <soapenv:Envelope xmlns:boor="http://www.accurate.com/acec/AcecBOSOAIntegration/BOOrderIntegration" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+     <soapenv:Header/>
+     <soapenv:Body>
+        <boor:integrateOrderRequest>
+           <order xmlns="http://www.accurate.com/acec/order" xmlns:ns2="http://www.accurate.com/acec/InvoiceInfo">
+              <orderId>CAG-61111702</orderId>
+              <totalAmount>1864.31</totalAmount>
+              <totalDiscountAmount>315.34</totalDiscountAmount>
+              <purchaseDate>2022-07-11T15:52:14-03:00</purchaseDate>
+              <sessionCreationDate>2022-07-11T15:52:14-03:00</sessionCreationDate>
+              <applicationVersion>1</applicationVersion>
+              <saleChannel>CAG</saleChannel>
+              <deliveries>
+                 <delivery>
+                    <deliveryId>1</deliveryId>
+                    <orderId>CAG-61111702</orderId>
+                    <totalAmount>1864.31</totalAmount>
+                    <totalDiscountAmount>315.34</totalDiscountAmount>
+                    <orderLineList>
+                       <orderLine>
+                          <sku>7622210411501C18</sku>
+                          <skuType>NOR</skuType>
+                          <quantity>1</quantity>
+                          <catalogListPrice>31.84</catalogListPrice>
+                          <listPrice>31.84</listPrice>
+                          <salePrice>27.23</salePrice>
+                          <unconditionalDiscountAmount>4.61</unconditionalDiscountAmount>
+                          <roundingDiscountAmount>0.00</roundingDiscountAmount>
+                          <promotionList>
+                             <promotion>
+                                <promotionId>17034</promotionId>
+                                <promotionName>CA - Lista Sugerida - Recomendados - Compre 15 e Ganhe 5% OFF</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>1.43</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                             <promotion>
+                                <promotionId>17255</promotionId>
+                                <promotionName>CA - Cupom CONSULTORES10</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>3.18</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                          </promotionList>
+                          <freight>
+                             <chargedAmount>0.00</chargedAmount>
+                             <actualAmount>0.00</actualAmount>
+                             <commercialAmount>0.00</commercialAmount>
+                             <freightTime>2</freightTime>
+                             <pickupLeadTime>0</pickupLeadTime>
+                             <logisticContract>NORMAL</logisticContract>
+                          </freight>
+                          <service>false</service>
+                          <skuName>Chocolate Lacta 5Star 40g</skuName>
+                          <productBrandName>5STAR</productBrandName>
+                       </orderLine>
+                       <orderLine>
+                          <sku>7622210566409C24</sku>
+                          <skuType>NOR</skuType>
+                          <quantity>1</quantity>
+                          <catalogListPrice>46.77</catalogListPrice>
+                          <listPrice>46.77</listPrice>
+                          <salePrice>39.99</salePrice>
+                          <unconditionalDiscountAmount>6.78</unconditionalDiscountAmount>
+                          <roundingDiscountAmount>0.00</roundingDiscountAmount>
+                          <promotionList>
+                             <promotion>
+                                <promotionId>17034</promotionId>
+                                <promotionName>CA - Lista Sugerida - Recomendados  - Compre 15 e Ganhe 5% OFF</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>2.10</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                             <promotion>
+                                <promotionId>17255</promotionId>
+                                <promotionName>CA - Cupom CONSULTORES10</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>4.68</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                          </promotionList>
+                          <freight>
+                             <chargedAmount>0.00</chargedAmount>
+                             <actualAmount>0.00</actualAmount>
+                             <commercialAmount>0.00</commercialAmount>
+                             <freightTime>2</freightTime>
+                             <pickupLeadTime>0</pickupLeadTime>
+                             <logisticContract>NORMAL</logisticContract>
+                          </freight>
+                          <service>false</service>
+                          <skuName>Bis Black Xtra Pacote 45g</skuName>
+                          <productBrandName>BIS</productBrandName>
+                       </orderLine>
+                       <orderLine>
+                          <sku>7622210936707C17</sku>
+                          <skuType>NOR</skuType>
+                          <quantity>1</quantity>
+                          <catalogListPrice>80.56</catalogListPrice>
+                          <listPrice>80.56</listPrice>
+                          <salePrice>68.87</salePrice>
+                          <unconditionalDiscountAmount>11.69</unconditionalDiscountAmount>
+                          <roundingDiscountAmount>0.00</roundingDiscountAmount>
+                          <promotionList>
+                             <promotion>
+                                <promotionId>17034</promotionId>
+                                <promotionName>CA - Lista Sugerida - Recomendados  - Compre 15 e Ganhe 5% OFF</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>3.63</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                             <promotion>
+                                <promotionId>17255</promotionId>
+                                <promotionName>CA - Cupom CONSULTORES10</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>8.06</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                          </promotionList>
+                          <freight>
+                             <chargedAmount>0.00</chargedAmount>
+                             <actualAmount>0.00</actualAmount>
+                             <commercialAmount>0.00</commercialAmount>
+                             <freightTime>2</freightTime>
+                             <pickupLeadTime>0</pickupLeadTime>
+                             <logisticContract>NORMAL</logisticContract>
+                          </freight>
+                          <service>false</service>
+                          <skuName>Chocolate Laka Com Oreo 90g</skuName>
+                          <productBrandName>LAKA</productBrandName>
+                       </orderLine>
+                       <orderLine>
+                          <sku>7622300807283</sku>
+                          <skuType>NOR</skuType>
+                          <quantity>60</quantity>
+                          <catalogListPrice>4.90</catalogListPrice>
+                          <listPrice>4.90</listPrice>
+                          <salePrice>4.19</salePrice>
+                          <unconditionalDiscountAmount>0.71</unconditionalDiscountAmount>
+                          <roundingDiscountAmount>0.00</roundingDiscountAmount>
+                          <promotionList>
+                             <promotion>
+                                <promotionId>17034</promotionId>
+                                <promotionName>CA - Lista Sugerida - Recomendados  - Compre 15 e Ganhe 5% OFF</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>0.22</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                             <promotion>
+                                <promotionId>17255</promotionId>
+                                <promotionName>CA - Cupom CONSULTORES10</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>0.49</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                          </promotionList>
+                          <freight>
+                             <chargedAmount>0.00</chargedAmount>
+                             <actualAmount>0.00</actualAmount>
+                             <commercialAmount>0.00</commercialAmount>
+                             <freightTime>2</freightTime>
+                             <pickupLeadTime>0</pickupLeadTime>
+                             <logisticContract>NORMAL</logisticContract>
+                          </freight>
+                          <service>false</service>
+                          <skuName>Bis Laka Branco 126g</skuName>
+                          <productBrandName>BIS</productBrandName>
+                       </orderLine>
+                       <orderLine>
+                          <sku>7622300807399</sku>
+                          <skuType>NOR</skuType>
+                          <quantity>120</quantity>
+                          <catalogListPrice>4.90</catalogListPrice>
+                          <listPrice>4.90</listPrice>
+                          <salePrice>4.19</salePrice>
+                          <unconditionalDiscountAmount>0.71</unconditionalDiscountAmount>
+                          <roundingDiscountAmount>0.00</roundingDiscountAmount>
+                          <promotionList>
+                             <promotion>
+                                <promotionId>17034</promotionId>
+                                <promotionName>CA - Lista Sugerida - Recomendados  - Compre 15 e Ganhe 5% OFF</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>0.22</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                             <promotion>
+                                <promotionId>17255</promotionId>
+                                <promotionName>CA - Cupom CONSULTORES10</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>0.49</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                          </promotionList>
+                          <freight>
+                             <chargedAmount>0.00</chargedAmount>
+                             <actualAmount>0.00</actualAmount>
+                             <commercialAmount>0.00</commercialAmount>
+                             <freightTime>2</freightTime>
+                             <pickupLeadTime>0</pickupLeadTime>
+                             <logisticContract>NORMAL</logisticContract>
+                          </freight>
+                          <service>false</service>
+                          <skuName>Bis Lacta Ao Leite 126g</skuName>
+                          <productBrandName>BIS</productBrandName>
+                       </orderLine>
+                       <orderLine>
+                          <sku>7622300988470C24</sku>
+                          <skuType>NOR</skuType>
+                          <quantity>1</quantity>
+                          <catalogListPrice>46.77</catalogListPrice>
+                          <listPrice>46.77</listPrice>
+                          <salePrice>39.99</salePrice>
+                          <unconditionalDiscountAmount>6.78</unconditionalDiscountAmount>
+                          <roundingDiscountAmount>0.00</roundingDiscountAmount>
+                          <promotionList>
+                             <promotion>
+                                <promotionId>17034</promotionId>
+                                <promotionName>CA - Lista Sugerida - Recomendados  - Compre 15 e Ganhe 5% OFF</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>2.10</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                             <promotion>
+                                <promotionId>17255</promotionId>
+                                <promotionName>CA - Cupom CONSULTORES10</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>4.68</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                          </promotionList>
+                          <freight>
+                             <chargedAmount>0.00</chargedAmount>
+                             <actualAmount>0.00</actualAmount>
+                             <commercialAmount>0.00</commercialAmount>
+                             <freightTime>2</freightTime>
+                             <pickupLeadTime>0</pickupLeadTime>
+                             <logisticContract>NORMAL</logisticContract>
+                          </freight>
+                          <service>false</service>
+                          <skuName>Bis Xtra Ao Leite 45g</skuName>
+                          <productBrandName>BIS</productBrandName>
+                       </orderLine>
+                       <orderLine>
+                          <sku>7622300989316</sku>
+                          <skuType>NOR</skuType>
+                          <quantity>20</quantity>
+                          <catalogListPrice>4.90</catalogListPrice>
+                          <listPrice>4.90</listPrice>
+                          <salePrice>4.19</salePrice>
+                          <unconditionalDiscountAmount>0.71</unconditionalDiscountAmount>
+                          <roundingDiscountAmount>0.00</roundingDiscountAmount>
+                          <promotionList>
+                             <promotion>
+                                <promotionId>17034</promotionId>
+                                <promotionName>CA - Lista Sugerida - Recomendados  - Compre 15 e Ganhe 5% OFF</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>0.22</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                             <promotion>
+                                <promotionId>17255</promotionId>
+                                <promotionName>CA - Cupom CONSULTORES10</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>0.49</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                          </promotionList>
+                          <freight>
+                             <chargedAmount>0.00</chargedAmount>
+                             <actualAmount>0.00</actualAmount>
+                             <commercialAmount>0.00</commercialAmount>
+                             <freightTime>2</freightTime>
+                             <pickupLeadTime>0</pickupLeadTime>
+                             <logisticContract>NORMAL</logisticContract>
+                          </freight>
+                          <service>false</service>
+                          <skuName>Bis Oreo 100,8g</skuName>
+                          <productBrandName>BIS</productBrandName>
+                       </orderLine>
+                       <orderLine>
+                          <sku>7622300991418C17</sku>
+                          <skuType>NOR</skuType>
+                          <quantity>1</quantity>
+                          <catalogListPrice>80.56</catalogListPrice>
+                          <listPrice>80.56</listPrice>
+                          <salePrice>68.87</salePrice>
+                          <unconditionalDiscountAmount>11.69</unconditionalDiscountAmount>
+                          <roundingDiscountAmount>0.00</roundingDiscountAmount>
+                          <promotionList>
+                             <promotion>
+                                <promotionId>17034</promotionId>
+                                <promotionName>CA - Lista Sugerida - Recomendados  - Compre 15 e Ganhe 5% OFF</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>3.63</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                             <promotion>
+                                <promotionId>17255</promotionId>
+                                <promotionName>CA - Cupom CONSULTORES10</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>8.06</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                          </promotionList>
+                          <freight>
+                             <chargedAmount>0.00</chargedAmount>
+                             <actualAmount>0.00</actualAmount>
+                             <commercialAmount>0.00</commercialAmount>
+                             <freightTime>2</freightTime>
+                             <pickupLeadTime>0</pickupLeadTime>
+                             <logisticContract>NORMAL</logisticContract>
+                          </freight>
+                          <service>false</service>
+                          <skuName>Chocolate Laka Lacta 90g</skuName>
+                          <productBrandName>LAKA</productBrandName>
+                       </orderLine>
+                       <orderLine>
+                          <sku>7622300991456C17</sku>
+                          <skuType>NOR</skuType>
+                          <quantity>1</quantity>
+                          <catalogListPrice>80.56</catalogListPrice>
+                          <listPrice>80.56</listPrice>
+                          <salePrice>68.87</salePrice>
+                          <unconditionalDiscountAmount>11.69</unconditionalDiscountAmount>
+                          <roundingDiscountAmount>0.00</roundingDiscountAmount>
+                          <promotionList>
+                             <promotion>
+                                <promotionId>17034</promotionId>
+                                <promotionName>CA - Lista Sugerida - Recomendados  - Compre 15 e Ganhe 5% OFF</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>3.63</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                             <promotion>
+                                <promotionId>17255</promotionId>
+                                <promotionName>CA - Cupom CONSULTORES10</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>8.06</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                          </promotionList>
+                          <freight>
+                             <chargedAmount>0.00</chargedAmount>
+                             <actualAmount>0.00</actualAmount>
+                             <commercialAmount>0.00</commercialAmount>
+                             <freightTime>2</freightTime>
+                             <pickupLeadTime>0</pickupLeadTime>
+                             <logisticContract>NORMAL</logisticContract>
+                          </freight>
+                          <service>false</service>
+                          <skuName>Chocolate Lacta Ao Leite 90g</skuName>
+                          <productBrandName>LACTA</productBrandName>
+                       </orderLine>
+                       <orderLine>
+                          <sku>7622300991500C17</sku>
+                          <skuType>NOR</skuType>
+                          <quantity>1</quantity>
+                          <catalogListPrice>80.56</catalogListPrice>
+                          <listPrice>80.56</listPrice>
+                          <salePrice>68.87</salePrice>
+                          <unconditionalDiscountAmount>11.69</unconditionalDiscountAmount>
+                          <roundingDiscountAmount>0.00</roundingDiscountAmount>
+                          <promotionList>
+                             <promotion>
+                                <promotionId>17034</promotionId>
+                                <promotionName>CA - Lista Sugerida - Recomendados  - Compre 15 e Ganhe 5% OFF</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>3.63</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                             <promotion>
+                                <promotionId>17255</promotionId>
+                                <promotionName>CA - Cupom CONSULTORES10</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>8.06</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                          </promotionList>
+                          <freight>
+                             <chargedAmount>0.00</chargedAmount>
+                             <actualAmount>0.00</actualAmount>
+                             <commercialAmount>0.00</commercialAmount>
+                             <freightTime>2</freightTime>
+                             <pickupLeadTime>0</pickupLeadTime>
+                             <logisticContract>NORMAL</logisticContract>
+                          </freight>
+                          <service>false</service>
+                          <skuName>Diamante Negro Lacta 90g</skuName>
+                          <productBrandName>DIAMANTE NEGRO</productBrandName>
+                       </orderLine>
+                       <orderLine>
+                          <sku>7895800112632</sku>
+                          <skuType>NOR</skuType>
+                          <quantity>40</quantity>
+                          <catalogListPrice>4.51</catalogListPrice>
+                          <listPrice>4.51</listPrice>
+                          <salePrice>3.86</salePrice>
+                          <unconditionalDiscountAmount>0.65</unconditionalDiscountAmount>
+                          <roundingDiscountAmount>0.00</roundingDiscountAmount>
+                          <promotionList>
+                             <promotion>
+                                <promotionId>17034</promotionId>
+                                <promotionName>CA - Lista Sugerida - Recomendados  - Compre 15 e Ganhe 5% OFF</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>0.20</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                             <promotion>
+                                <promotionId>17255</promotionId>
+                                <promotionName>CA - Cupom CONSULTORES10</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>0.45</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                          </promotionList>
+                          <freight>
+                             <chargedAmount>0.00</chargedAmount>
+                             <actualAmount>0.00</actualAmount>
+                             <commercialAmount>0.00</commercialAmount>
+                             <freightTime>2</freightTime>
+                             <pickupLeadTime>0</pickupLeadTime>
+                             <logisticContract>NORMAL</logisticContract>
+                          </freight>
+                          <service>false</service>
+                          <skuName>Trident Hortela 8g</skuName>
+                          <productBrandName>TRIDENT</productBrandName>
+                       </orderLine>
+                       <orderLine>
+                          <sku>7895800112786</sku>
+                          <skuType>NOR</skuType>
+                          <quantity>80</quantity>
+                          <catalogListPrice>4.51</catalogListPrice>
+                          <listPrice>4.51</listPrice>
+                          <salePrice>3.86</salePrice>
+                          <unconditionalDiscountAmount>0.65</unconditionalDiscountAmount>
+                          <roundingDiscountAmount>0.00</roundingDiscountAmount>
+                          <promotionList>
+                             <promotion>
+                                <promotionId>17034</promotionId>
+                                <promotionName>CA - Lista Sugerida - Recomendados  - Compre 15 e Ganhe 5% OFF</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>0.20</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                             <promotion>
+                                <promotionId>17255</promotionId>
+                                <promotionName>CA - Cupom CONSULTORES10</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>0.45</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                          </promotionList>
+                          <freight>
+                             <chargedAmount>0.00</chargedAmount>
+                             <actualAmount>0.00</actualAmount>
+                             <commercialAmount>0.00</commercialAmount>
+                             <freightTime>2</freightTime>
+                             <pickupLeadTime>0</pickupLeadTime>
+                             <logisticContract>NORMAL</logisticContract>
+                          </freight>
+                          <service>false</service>
+                          <skuName>Trident Menta Sm 8g</skuName>
+                          <productBrandName>TRIDENT</productBrandName>
+                       </orderLine>
+                       <orderLine>
+                          <sku>7895800480502</sku>
+                          <skuType>NOR</skuType>
+                          <quantity>20</quantity>
+                          <catalogListPrice>4.51</catalogListPrice>
+                          <listPrice>4.51</listPrice>
+                          <salePrice>3.86</salePrice>
+                          <unconditionalDiscountAmount>0.65</unconditionalDiscountAmount>
+                          <roundingDiscountAmount>0.00</roundingDiscountAmount>
+                          <promotionList>
+                             <promotion>
+                                <promotionId>17034</promotionId>
+                                <promotionName>CA - Lista Sugerida - Recomendados  - Compre 15 e Ganhe 5% OFF</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>0.20</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                             <promotion>
+                                <promotionId>17255</promotionId>
+                                <promotionName>CA - Cupom CONSULTORES10</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>0.45</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                          </promotionList>
+                          <freight>
+                             <chargedAmount>0.00</chargedAmount>
+                             <actualAmount>0.00</actualAmount>
+                             <commercialAmount>0.00</commercialAmount>
+                             <freightTime>2</freightTime>
+                             <pickupLeadTime>0</pickupLeadTime>
+                             <logisticContract>NORMAL</logisticContract>
+                          </freight>
+                          <service>false</service>
+                          <skuName>Trident Morango Sm 8g</skuName>
+                          <productBrandName>TRIDENT</productBrandName>
+                       </orderLine>
+                       <orderLine>
+                          <sku>7111100110140</sku>
+                          <skuType>NOR</skuType>
+                          <quantity>20</quantity>
+                          <catalogListPrice>4.51</catalogListPrice>
+                          <listPrice>4.51</listPrice>
+                          <salePrice>3.86</salePrice>
+                          <unconditionalDiscountAmount>0.65</unconditionalDiscountAmount>
+                          <roundingDiscountAmount>0.00</roundingDiscountAmount>
+                          <promotionList>
+                             <promotion>
+                                <promotionId>17034</promotionId>
+                                <promotionName>CA - Lista Sugerida - Recomendados  - Compre 15 e Ganhe 5% OFF</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>0.20</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                             <promotion>
+                                <promotionId>17255</promotionId>
+                                <promotionName>CA - Cupom CONSULTORES10</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>0.45</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                          </promotionList>
+                          <freight>
+                             <chargedAmount>0.00</chargedAmount>
+                             <actualAmount>0.00</actualAmount>
+                             <commercialAmount>0.00</commercialAmount>
+                             <freightTime>2</freightTime>
+                             <pickupLeadTime>0</pickupLeadTime>
+                             <logisticContract>NORMAL</logisticContract>
+                          </freight>
+                          <service>false</service>
+                          <skuName>Trident Melancia 8g</skuName>
+                          <productBrandName>TRIDENT</productBrandName>
+                       </orderLine>
+                       <orderLine>
+                          <sku>7895800911150C21</sku>
+                          <skuType>NOR</skuType>
+                          <quantity>1</quantity>
+                          <catalogListPrice>30.43</catalogListPrice>
+                          <listPrice>30.43</listPrice>
+                          <salePrice>26.02</salePrice>
+                          <unconditionalDiscountAmount>4.41</unconditionalDiscountAmount>
+                          <roundingDiscountAmount>0.00</roundingDiscountAmount>
+                          <promotionList>
+                             <promotion>
+                                <promotionId>17034</promotionId>
+                                <promotionName>CA - Lista Sugerida - Recomendados  - Compre 15 e Ganhe 5% OFF</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>1.37</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                             <promotion>
+                                <promotionId>17255</promotionId>
+                                <promotionName>CA - Cupom CONSULTORES10</promotionName>
+                                <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                                <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                                <label/>
+                                <type>PRODUCT</type>
+                                <amount>3.04</amount>
+                                <roundingAmount>0</roundingAmount>
+                                <minimumQuantity>1</minimumQuantity>
+                                <couponPromo>false</couponPromo>
+                             </promotion>
+                          </promotionList>
+                          <freight>
+                             <chargedAmount>0.00</chargedAmount>
+                             <actualAmount>0.00</actualAmount>
+                             <commercialAmount>0.00</commercialAmount>
+                             <freightTime>2</freightTime>
+                             <pickupLeadTime>0</pickupLeadTime>
+                             <logisticContract>NORMAL</logisticContract>
+                          </freight>
+                          <service>false</service>
+                          <skuName>Trident Fresh Intense 8g</skuName>
+                          <productBrandName>TRIDENT</productBrandName>
+                       </orderLine>
+                    </orderLineList>
+                    <freightAmount>
+                       <chargedAmount>0.00</chargedAmount>
+                       <actualAmount>0.00</actualAmount>
+                       <commercialAmount>0.00</commercialAmount>
+                       <freightTime>2</freightTime>
+                       <pickupLeadTime>0</pickupLeadTime>
+                       <logisticContract>NORMAL</logisticContract>
+                    </freightAmount>
+                    <wareHouseCNPJ>0</wareHouseCNPJ>
+                    <deliveryAddress>
+                       <addressId>184111</addressId>
+                       <recipientNm>TESTE RAZAO SOCIAL X - ME</recipientNm>
+                       <address>RUA TESTE</address>
+                       <addressNr>169</addressNr>
+                       <quarter>DOM CORREA</quarter>
+                       <city>Manhuacu</city>
+                       <state>MG</state>
+                       <countryId>BR</countryId>
+                       <postalCd>31100000</postalCd>
+                       <postalCdIntl>31100000</postalCdIntl>
+                       <friendlyNm>TESTE RAZAO SOCIAL X - ME</friendlyNm>
+                       <lift>false</lift>
+                       <intercom>false</intercom>
+                    </deliveryAddress>
+                 </delivery>
+              </deliveries>
+              <customer>
+                 <customerId>21111111111113</customerId>
+                 <documentNumber>21111111111113</documentNumber>
+                 <name>TESTE RAZAO SOCIAL X - ME</name>
+                 <email>emailteste@gmail.com</email>
+                 <phoneMobile>3333783008</phoneMobile>
+                 <phoneOffice>3333783008</phoneOffice>
+                 <state_subscription>0</state_subscription>
+                 <representativeNm>TESTE RAZAO SOCIAL X - ME</representativeNm>
+                 <createDt>2017-05-15T14:37:45-03:00</createDt>
+                 <updateDt>2017-05-15T14:37:45-03:00</updateDt>
+              </customer>
+              <billingAddress>
+                 <addressId>184111</addressId>
+                 <recipientNm>TESTE RAZAO SOCIAL X - ME</recipientNm>
+                 <address>RUA TESTE</address>
+                 <addressNr>169</addressNr>
+                 <quarter>DOM CORREA</quarter>
+                 <city>Manhuacu</city>
+                 <state>MG</state>
+                 <countryId>BR</countryId>
+                 <postalCd>31100000</postalCd>
+                 <postalCdIntl>31100000</postalCdIntl>
+                 <friendlyNm>TESTE RAZAO SOCIAL X - ME</friendlyNm>
+                 <lift>false</lift>
+                 <intercom>false</intercom>
+              </billingAddress>
+              <paymentList>
+                 <payment>
+                    <abstractPayment>
+                       <paymentType>BILL</paymentType>
+                       <value>1864.31</value>
+                    </abstractPayment>
+                 </payment>
+              </paymentList>
+              <freightChargedAmount>0.00</freightChargedAmount>
+              <freightActualAmount>0.00</freightActualAmount>
+              <countDistinctSku>15</countDistinctSku>
+           </order>
+        </boor:integrateOrderRequest>
+     </soapenv:Body>
+  </soapenv:Envelope>
+            </textarea>
+            <br><br>
+          </p>
+          <p>
+            <i class="gambi">No exemplo de requisição, foi enviado para o endpoint do distribuidor o pedido
+              CAG-61111702, no valor de R$1864.31. Esse pedido teve um desconto de R$315.34 e foi feito com a forma de
+              pagamento boleto antecipado(<'paymentType>BILL<' /paymentType>)</i>
+            <br><br>
+          </p>
+          <h4>
+            Pedido com Cartão de crédito e promoção
+          </h4>
+          <p>
+            <br><br>
+            <textarea rows="20" cols="82">
+              <soapenv:Envelope xmlns:boor="http://www.accurate.com/acec/AcecBOSOAIntegration/BOOrderIntegration" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+      <boor:integrateOrderRequest>
+        <order xmlns="http://www.accurate.com/acec/order" xmlns:ns2="http://www.accurate.com/acec/InvoiceInfo">
+          <orderId>CAG-11117744</orderId>
+          <totalAmount>140.99</totalAmount>
+          <totalDiscountAmount>19.22</totalDiscountAmount>
+          <purchaseDate>2022-07-11T15:00:54-03:00</purchaseDate>
+          <sessionCreationDate>2022-07-11T15:00:54-03:00</sessionCreationDate>
+          <applicationVersion>1</applicationVersion>
+          <saleChannel>CAG</saleChannel>
+          <deliveries>
+            <delivery>
+              <deliveryId>1</deliveryId>
+              <orderId>CAG-11117744</orderId>
+              <totalAmount>140.99</totalAmount>
+              <totalDiscountAmount>19.22</totalDiscountAmount>
+              <orderLineList>
+                <orderLine>
+                  <sku>7816000006482C3</sku>
+                  <skuType>NOR</skuType>
+                  <quantity>3</quantity>
+                  <catalogListPrice>39.49</catalogListPrice>
+                  <listPrice>39.49</listPrice>
+                  <salePrice>34.75</salePrice>
+                  <unconditionalDiscountAmount>4.74</unconditionalDiscountAmount>
+                  <roundingDiscountAmount>0.00</roundingDiscountAmount>
+                  <promotionList>
+                    <promotion>
+                      <promotionId>17118</promotionId>
+                      <promotionName>CA - Desconto exclusivo Bauducco. compre até 900 reais e ganhe 12% OFF</promotionName>
+                      <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                      <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                      <label/>
+                      <type>PRODUCT</type>
+                      <amount>4.74</amount>
+                      <roundingAmount>0</roundingAmount>
+                      <minimumQuantity>1</minimumQuantity>
+                      <couponPromo>false</couponPromo>
+                    </promotion>
+                  </promotionList>
+                  <freight>
+                    <chargedAmount>0.00</chargedAmount>
+                    <actualAmount>0.00</actualAmount>
+                    <commercialAmount>0.00</commercialAmount>
+                    <freightTime>1</freightTime>
+                    <pickupLeadTime>0</pickupLeadTime>
+                    <logisticContract>NORMAL</logisticContract>
+                  </freight>
+                  <service>false</service>
+                  <skuName>Salgadinho Pringles Original 114g</skuName>
+                  <productBrandName>PRINGLES</productBrandName>
+                </orderLine>
+                <orderLine>
+                  <sku>7891911011962C20</sku>
+                  <skuType>NOR</skuType>
+                  <quantity>2</quantity>
+                  <catalogListPrice>20.87</catalogListPrice>
+                  <listPrice>20.87</listPrice>
+                  <salePrice>18.37</salePrice>
+                  <unconditionalDiscountAmount>2.50</unconditionalDiscountAmount>
+                  <roundingDiscountAmount>0.00</roundingDiscountAmount>
+                  <promotionList>
+                    <promotion>
+                      <promotionId>17118</promotionId>
+                      <promotionName>CA - Desconto exclusivo Bauducco. compre até 900 reais e ganhe 12% OFF</promotionName>
+                      <promotionStartDate>1980-01-01T00:00:00-02:00</promotionStartDate>
+                      <promotionEndDate>2029-01-01T00:00:00-02:00</promotionEndDate>
+                      <label/>
+                      <type>PRODUCT</type>
+                      <amount>2.50</amount>
+                      <roundingAmount>0</roundingAmount>
+                      <minimumQuantity>1</minimumQuantity>
+                      <couponPromo>false</couponPromo>
+                    </promotion>
+                  </promotionList>
+                  <freight>
+                    <chargedAmount>0.00</chargedAmount>
+                    <actualAmount>0.00</actualAmount>
+                    <commercialAmount>0.00</commercialAmount>
+                    <freightTime>1</freightTime>
+                    <pickupLeadTime>0</pickupLeadTime>
+                    <logisticContract>NORMAL</logisticContract>
+                  </freight>
+                  <service>false</service>
+                  <skuName>Barrinha Bauducco Maxi Goiabinha 30g | Com 20 Unidades</skuName>
+                  <productBrandName>BAUDUCCO</productBrandName>
+                </orderLine>
+              </orderLineList>
+              <freightAmount>
+                <chargedAmount>0.00</chargedAmount>
+                <actualAmount>0.00</actualAmount>
+                <commercialAmount>0.00</commercialAmount>
+                <freightTime>1</freightTime>
+                <pickupLeadTime>0</pickupLeadTime>
+                <logisticContract>NORMAL</logisticContract>
+              </freightAmount>
+              <wareHouseCNPJ>0</wareHouseCNPJ>
+              <deliveryAddress>
+                <addressId>335979</addressId>
+                <recipientNm>RAZAO SOCIAL TESTE</recipientNm>
+                <address>ESTRADA DAS LAGRIMAS 3621</address>
+                <addressNr>3621</addressNr>
+                <quarter>IPIRANGA</quarter>
+                <city>SAO PAULO</city>
+                <state>SP</state>
+                <countryId>BR</countryId>
+                <postalCd>04232901</postalCd>
+                <postalCdIntl>04232901</postalCdIntl>
+                <friendlyNm>RAZAO SOCIAL TESTE</friendlyNm>
+                <lift>false</lift>
+                <intercom>false</intercom>
+              </deliveryAddress>
+            </delivery>
+          </deliveries>
+          <customer>
+            <customerId>41111111000172</customerId>
+            <documentNumber>41111111000172</documentNumber>
+            <name>RAZAO SOCIAL TESTE</name>
+            <email>emaiteste@gmail.com</email>
+            <phoneMobile>11911111023</phoneMobile>
+            <phoneOffice>1120222222</phoneOffice>
+            <state_subscription>0</state_subscription>
+            <representativeNm>RAZAO SOCIAL TESTE</representativeNm>
+            <createDt>2021-07-02T16:14:02-03:00</createDt>
+            <updateDt>2021-07-02T16:14:02-03:00</updateDt>
+          </customer>
+          <billingAddress>
+            <addressId>335979</addressId>
+            <recipientNm>RAZAO SOCIAL TESTE</recipientNm>
+            <address>ESTRADA DAS LAGRIMAS 3621</address>
+            <addressNr>3621</addressNr>
+            <quarter>IPIRANGA</quarter>
+            <city>SAO PAULO</city>
+            <state>SP</state>
+            <countryId>BR</countryId>
+            <postalCd>04232901</postalCd>
+            <postalCdIntl>04232901</postalCdIntl>
+            <friendlyNm>RAZAO SOCIAL TESTE</friendlyNm>
+            <lift>false</lift>
+            <intercom>false</intercom>
+          </billingAddress>
+          <paymentList>
+            <payment>
+              <creditCardPayment>
+                <paymentType>CREDIT_CARD</paymentType>
+                <value>140.99</value>
+                <numberOfInstallments>1</numberOfInstallments>
+              </creditCardPayment>
+            </payment>
+          </paymentList>
+          <freightChargedAmount>0.00</freightChargedAmount>
+          <freightActualAmount>0.00</freightActualAmount>
+          <countDistinctSku>2</countDistinctSku>
+        </order>
+      </boor:integrateOrderRequest>
+    </soapenv:Body>
+  </soapenv:Envelope>
+  
+  </textarea>
+            <br><br>
+          </p>
+          <p>
+            <i class="gambi">No exemplo de requisição, foi enviado para o endpoint do distribuidor o pedido
+              CAG-11117744, no valor de R$140.99. Esse pedido teve um desconto de R$19.22 e foi feito com a forma de
+              pagamento cartão de crédito(<'paymentType>CREDIT_CARD<' /paymentType>).</i>
+            <br><br>
+          </p>
+          <h4>Pedido com boleto faturado para 7 sem promoção</h4>
+          <p>
+            <br><br>
+            <textarea rows="20" cols="82">
+
+              <soapenv:Envelope xmlns:boor="http://www.accurate.com/acec/AcecBOSOAIntegration/BOOrderIntegration" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+         <soapenv:Header/>
+         <soapenv:Body>
+           <boor:integrateOrderRequest>
+             <order xmlns="http://www.accurate.com/acec/order" xmlns:ns2="http://www.accurate.com/acec/InvoiceInfo">
+               <orderId>CAG-11812111</orderId>
+               <totalAmount>440.22</totalAmount>
+               <totalDiscountAmount>0.00</totalDiscountAmount>
+               <purchaseDate>2022-07-11T07:17:22-03:00</purchaseDate>
+               <sessionCreationDate>2022-07-11T07:17:22-03:00</sessionCreationDate>
+               <applicationVersion>1</applicationVersion>
+               <saleChannel>CAG</saleChannel>
+               <deliveries>
+                 <delivery>
+                   <deliveryId>1</deliveryId>
+                   <orderId>CAG-11812111</orderId>
+                   <totalAmount>440.22</totalAmount>
+                   <totalDiscountAmount>0.00</totalDiscountAmount>
+                   <orderLineList>
+                     <orderLine>
+                       <sku>7896012829856</sku>
+                       <skuType>NOR</skuType>
+                       <quantity>11</quantity>
+                       <catalogListPrice>40.02</catalogListPrice>
+                       <listPrice>40.02</listPrice>
+                       <salePrice>40.02</salePrice>
+                       <unconditionalDiscountAmount>0.00</unconditionalDiscountAmount>
+                       <roundingDiscountAmount>0.00</roundingDiscountAmount>
+                       <promotionList/>
+                       <freight>
+                         <chargedAmount>0.00</chargedAmount>
+                         <actualAmount>0.00</actualAmount>
+                         <commercialAmount>0.00</commercialAmount>
+                         <freightTime>4</freightTime>
+                         <pickupLeadTime>0</pickupLeadTime>
+                         <logisticContract>NORMAL</logisticContract>
+                       </freight>
+                       <service>false</service>
+                       <skuName>Fralda Turma da Monica Baby Mega XXG 36 Unidades</skuName>
+                       <productBrandName>TURMA DA MONICA</productBrandName>
+                     </orderLine>
+                   </orderLineList>
+                   <freightAmount>
+                     <chargedAmount>0.00</chargedAmount>
+                     <actualAmount>0.00</actualAmount>
+                     <commercialAmount>0.00</commercialAmount>
+                     <freightTime>4</freightTime>
+                     <pickupLeadTime>0</pickupLeadTime>
+                     <logisticContract>NORMAL</logisticContract>
+                   </freightAmount>
+                   <wareHouseCNPJ>0</wareHouseCNPJ>
+                   <deliveryAddress>
+                     <addressId>392256</addressId>
+                     <recipientNm>TESTE RAZAO SOCIAL</recipientNm>
+                     <address>R TOMAZ AQUINO PEREIRA</address>
+                     <addressNr>141</addressNr>
+                     <quarter>JARDIM NOVA ITAPEVA</quarter>
+                     <city>ITAPEVA</city>
+                     <state>SP</state>
+                     <countryId>BR</countryId>
+                     <postalCd>18111115</postalCd>
+                     <postalCdIntl>18111115</postalCdIntl>
+                     <friendlyNm>TESTE RAZAO SOCIAL</friendlyNm>
+                     <lift>false</lift>
+                     <intercom>false</intercom>
+                   </deliveryAddress>
+                 </delivery>
+               </deliveries>
+               <customer>
+                 <customerId>41111101011145</customerId>
+                 <documentNumber>41111101011145</documentNumber>
+                 <name>TESTE RAZAO SOCIAL</name>
+                 <email>teste@teste.com.br</email>
+                 <phoneMobile>15911111118</phoneMobile>
+                 <phoneOffice>15911111118</phoneOffice>
+                 <state_subscription>0</state_subscription>
+                 <representativeNm>TESTE RAZAO SOCIAL</representativeNm>
+                 <createDt>2022-05-29T12:01:55-03:00</createDt>
+                 <updateDt>2022-05-29T12:01:55-03:00</updateDt>
+               </customer>
+               <billingAddress>
+                 <addressId>392256</addressId>
+                 <recipientNm>TESTE RAZAO SOCIAL</recipientNm>
+                 <address>R TESTE</address>
+                 <addressNr>141</addressNr>
+                 <quarter>JARDIM NOVA ITAPEVA</quarter>
+                 <city>ITAPEVA</city>
+                 <state>SP</state>
+                 <countryId>BR</countryId>
+                 <postalCd>18111115</postalCd>
+                 <postalCdIntl>18111115</postalCdIntl>
+                 <friendlyNm>TESTE RAZAO SOCIAL</friendlyNm>
+                 <lift>false</lift>
+                 <intercom>false</intercom>
+               </billingAddress>
+               <paymentList>
+                 <payment>
+                   <abstractPayment>
+                     <paymentType>CRL-7</paymentType>
+                     <value>440.22</value>
+                   </abstractPayment>
+                 </payment>
+               </paymentList>
+               <freightChargedAmount>0.00</freightChargedAmount>
+               <freightActualAmount>0.00</freightActualAmount>
+               <countDistinctSku>1</countDistinctSku>
+             </order>
+           </boor:integrateOrderRequest>
+         </soapenv:Body>
+       </soapenv:Envelope>
+       
+       </textarea>
+            <br><br>
+          </p>
+
+          <p>
+            <i class="gambi">No exemplo de requisição, foi enviado para o endpoint do distribuidor o pedido
+              CAG-11812111, no valor de R$440.22. Realizado com a forma de pagamento boleto faturado 7 dias(
+              <'paymentType>CRL-7<' /paymentType>). Diferente dos modelos de XML acima, não houve desconto neste pedido,
+                  pois a tag totalDiscountAmount está com valor zerado. Para as demais formas de pagamento em boleto
+                  faturado o que é modificado são os valores de dias informados após o CRL, exemplo: CRL-14. CRL-21. E
+                  para casos de boleto faturado parcelado pe enviado por exemplo: CRL-7_14_21_28.</i>
+            <br><br>
+          </p>
+          <h4>Pedido com boleto faturado para 14 dias contendo produtos bonificados</h4>
+          <p>
+            <br><br>
+            <textarea rows="20" cols="82">
+
+              <soapenv:Envelope xmlns:boor="http://www.accurate.com/acec/AcecBOSOAIntegration/BOOrderIntegration" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+     <soapenv:Header/>
+     <soapenv:Body>
+       <boor:integrateOrderRequest>
+         <order xmlns="http://www.accurate.com/acec/order" xmlns:ns2="http://www.accurate.com/acec/InvoiceInfo">
+           <orderId>CAG-51118000</orderId>
+           <totalAmount>339.00</totalAmount>
+           <totalDiscountAmount>0.00</totalDiscountAmount>
+           <purchaseDate>2022-03-17T14:52:56-03:00</purchaseDate>
+           <sessionCreationDate>2022-03-17T14:52:56-03:00</sessionCreationDate>
+           <applicationVersion>1</applicationVersion>
+           <saleChannel>CAG</saleChannel>
+           <deliveries>
+             <delivery>
+               <deliveryId>1</deliveryId>
+               <orderId>CAG-51118000</orderId>
+               <totalAmount>339.00</totalAmount>
+               <totalDiscountAmount>0.00</totalDiscountAmount>
+               <orderLineList>
+                 <orderLine>
+                   <sku>7312045557010</sku>
+                   <skuType>NOR</skuType>
+                   <quantity>30</quantity>
+                   <catalogListPrice>11.30</catalogListPrice>
+                   <listPrice>11.30</listPrice>
+                   <salePrice>11.30</salePrice>
+                   <unconditionalDiscountAmount>0.00</unconditionalDiscountAmount>
+                   <roundingDiscountAmount>0.00</roundingDiscountAmount>
+                   <promotionList/>
+                   <freight>
+                     <chargedAmount>0.00</chargedAmount>
+                     <actualAmount>0.00</actualAmount>
+                     <commercialAmount>0.00</commercialAmount>
+                     <freightTime>3</freightTime>
+                     <pickupLeadTime>0</pickupLeadTime>
+                     <logisticContract>NORMAL</logisticContract>
+                   </freight>
+                   <kitSkuId>9894</kitSkuId>
+                   <kitSkuName>KIT Vodka Rollout M</kitSkuName>
+                   <kitQuantity>3</kitQuantity>
+                   <service>false</service>
+                   <skuName>produto teste</skuName>
+                   <productBrandName>marca</productBrandName>
+                 </orderLine>
+                 <orderLine>
+                   <sku>7312045557010</sku>
+                   <skuType>FFR</skuType>
+                   <quantity>10</quantity>
+                   <catalogListPrice>11.30</catalogListPrice>
+                   <listPrice>11.30</listPrice>
+                   <salePrice>0.00</salePrice>
+                   <unconditionalDiscountAmount>11.30</unconditionalDiscountAmount>
+                   <roundingDiscountAmount>0.00</roundingDiscountAmount>
+                   <promotionList/>
+                   <freight>
+                     <chargedAmount>0.00</chargedAmount>
+                     <actualAmount>0.00</actualAmount>
+                     <commercialAmount>0.00</commercialAmount>
+                     <freightTime>3</freightTime>
+                     <pickupLeadTime>0</pickupLeadTime>
+                     <logisticContract>NORMAL</logisticContract>
+                   </freight>
+                   <kitSkuId>9894</kitSkuId>
+                   <kitSkuName>KIT teste</kitSkuName>
+                   <kitQuantity>3</kitQuantity>
+                   <service>false</service>
+                   <skuName>produto teste</skuName>
+                   <productBrandName>MARCA</productBrandName>
+                 </orderLine>
+               </orderLineList>
+               <freightAmount>
+                 <chargedAmount>0.00</chargedAmount>
+                 <actualAmount>0.00</actualAmount>
+                 <commercialAmount>0.00</commercialAmount>
+                 <freightTime>3</freightTime>
+                 <pickupLeadTime>0</pickupLeadTime>
+                 <logisticContract>NORMAL</logisticContract>
+               </freightAmount>
+               <wareHouseCNPJ>0</wareHouseCNPJ>
+               <deliveryAddress>
+                 <addressId>54509</addressId>
+                 <recipientNm>RAZAO SOCIAL TESTE</recipientNm>
+                 <address>AV TESTE</address>
+                 <addressNr>97</addressNr>
+                 <quarter>CENTRO</quarter>
+                 <city>ALEGRE</city>
+                 <state>ES</state>
+                 <countryId>BR</countryId>
+                 <postalCd>29500000</postalCd>
+                 <postalCdIntl>29500000</postalCdIntl>
+                 <friendlyNm>RAZAO SOCIAL TESTE</friendlyNm>
+                 <lift>false</lift>
+                 <intercom>false</intercom>
+               </deliveryAddress>
+             </delivery>
+           </deliveries>
+           <customer>
+             <customerId>21111111000170</customerId>
+             <documentNumber>21111111000170</documentNumber>
+             <name>RAZAO SOCIAL TESTE</name>
+             <email>teste@teste.com.br</email>
+             <phoneMobile>11911111111</phoneMobile>
+             <phoneOffice>13111341111</phoneOffice>
+             <state_subscription>0</state_subscription>
+             <representativeNm>RAZAO SOCIAL TESTE</representativeNm>
+             <createDt>2022-03-11T11:30:18-03:00</createDt>
+             <updateDt>2022-03-11T11:30:18-03:00</updateDt>
+           </customer>
+           <billingAddress>
+             <addressId>54509</addressId>
+             <recipientNm>RAZAO SOCIAL TESTE</recipientNm>
+             <address>AV TESTE</address>
+             <addressNr>97</addressNr>
+             <quarter>CENTRO</quarter>
+             <city>ALEGRE</city>
+             <state>ES</state>
+             <countryId>BR</countryId>
+             <postalCd>20000000</postalCd>
+             <postalCdIntl>20000000</postalCdIntl>
+             <friendlyNm>RAZAO SOCIAL TESTE</friendlyNm>
+             <lift>false</lift>
+             <intercom>false</intercom>
+           </billingAddress>
+           <paymentList>
+             <payment>
+               <abstractPayment>
+                 <paymentType>CRL-28</paymentType>
+                 <value>339.00</value>
+               </abstractPayment>
+             </payment>
+           </paymentList>
+           <freightChargedAmount>0.00</freightChargedAmount>
+           <freightActualAmount>0.00</freightActualAmount>
+           <countDistinctSku>1</countDistinctSku>
+         </order>
+       </boor:integrateOrderRequest>
+     </soapenv:Body>
+   </soapenv:Envelope>
+   </textarea>
+            <br><br>
+          </p>
+          <p>
+            No exemplo de requisição, foi enviado para o endpoint do distribuidor o pedido CAG-51118000, no valor de
+            R$339.00. Realizado com a forma de pagamento boleto faturado 28 dias(<'paymentType>CRL-28<' /paymentType>) e
+                sem descontos. Notem que este pedido é composto por SKUS: 7312045557010 quantidade 30 do tipo NOR e 10
+                unidades para o tipo FFR, isso significa que o pedido contempla 30 unidades que serão cobradas e 10
+                unidades que foram bonificados. Neste caso o envio de NFS para esse pedido deverá conter os 30 itens com
+                valor cobrado normalmente, declarando o valor unitário e quantidade e também os 10 itens bonificados com
+                valor unitario = 0.00 e a quantidade de itens FFR.
+                <br><br>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-1"></div>
+
+    <section class="section" id="box5">
+      <div class="container grid">
+        <div class="faq">
+          <h2 class="title">Exemplo de retorno para integração de Pedidos</h2>
+          <p>
+            <br><br>
+            Quando a plataforma enviar requições de pedidos para o distribuidor, o retorno deverá estar no padrao para
+            que a plataforma idetifique a integração adequada. Para os casos de sucessos essas etapas consistem em dois
+            retornos, por exemplo:
+            <br><br>
+          </p>
+          <p>
+            <i class="gambi">Quando um pedido é integrado de primeira vez com sucesso.</i>
+            <br><br>
+            <i class="gambi">Outra resposta que o seller retorne para plataforma que o pedido ja foi integrado
+              anteriormente.</i>
+            <br><br>
+          </p>
+          <h4>Exemplo padrão de resposta</h4>
+          <p>
+            <br><br>
+            <textarea rows="20" cols="82">
+              <env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
+                <env:Body>
+                  <integrateOrderResponse xmlns="http://www.accurate.com/acec/AcecBOSOAIntegration/BOOrderIntegration">
+                    <status>OK</status>
+                    <message>Pedido integrado com sucesso</message>
+                  </integrateOrderResponse>
+                </env:Body>
+              </env:Envelope>
+                             </textarea>
+            <br><br>
+          </p>
+          <h4>Exemplo para caso o pedido ja exista no ERP</h4>
+          <p>
+            <br><br>
+            <textarea rows="20" cols="82">
+              <env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
+                <env:Body>
+                  <integrateOrderResponse xmlns="http://www.accurate.com/acec/AcecBOSOAIntegration/BOOrderIntegration">
+                    <status>OK</status>
+                    <message>Pedido já existe no ERP</message>
+                  </integrateOrderResponse>
+                </env:Body>
+              </env:Envelope>
+                             </textarea>
+            <br><br>
+          </p>
+          <p>
+            Importante: Caso o distribuidor tenha regras de validação de estoque ou caso do tipo, não deve rejeitar a
+            integração do pedido, uma vez que um pedido pode ser faturado parcialmente e caso houver necessidade de não
+            seguir com o mesmo, deverá ser tratado com cancelamento, ou seja, o ERP deve se comportar de maneira com que
+            a integração ocorra para os pedidos emitidos no e-commerce.
+
+          </p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="section">

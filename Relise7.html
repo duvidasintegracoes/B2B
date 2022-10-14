@@ -58,13 +58,17 @@
       <div class="container grid">
         <div class="faq">
           <h2 class="title">integração de limite de crédito</h2>
-          
+
           <p>
-            A integração de status de cliente é de origem distribuidor para plataforma, e para esta ação, será disponibilizado pela Infracommerce, o endereço do endpoint e credenciais.
+            A integração de status de cliente é de origem distribuidor para plataforma, e para esta ação, será
+            disponibilizado pela Infracommerce, o endereço do endpoint e credenciais.
             <br><br>
           </p>
           <p>
-            Conceito: Uma vez que um determinado CNPJ possua limite de crédito, status de aprovação é liberado na plataforma a funcionalidade que permite de compras em forma de boleto faturado. É fundamental que o distribuidor gerencie os limites e disponibilize esses valores apenas para os clientes desejados e que tenham confiabilidade no mercado, a fim de evitar inadimplência.
+            Conceito: Uma vez que um determinado CNPJ possua limite de crédito, status de aprovação é liberado na
+            plataforma a funcionalidade que permite de compras em forma de boleto faturado. É fundamental que o
+            distribuidor gerencie os limites e disponibilize esses valores apenas para os clientes desejados e que
+            tenham confiabilidade no mercado, a fim de evitar inadimplência.
             <br><br>
           </p>
           <h4>Exemplo de requisição de limite de crédito</h4>
@@ -87,19 +91,23 @@
               </soapenv:Envelope>
                            
                               </textarea>
-                              <br><br>
+            <br><br>
           </p>
           <p>
-           <strong> customerDocumentNr</strong> = CNPJ do cliente que será concedido limite.
-           <br><br>
+            <strong> customerDocumentNr</strong> = CNPJ do cliente que será concedido limite.
+            <br><br>
           </p>
           <p>
-           <strong> customerDocumentNr</strong> = CNPJ do cliente que será concedido limite.
-           <br><br>
+            <strong> customerDocumentNr</strong> = CNPJ do cliente que será concedido limite.
+            <br><br>
           </p>
           <p>
-           <strong> Origin = SELLER</strong> (Limite gerenciado pelo distribuidor). Caso esse campo seja informado com valor:IFC e seja enviado com qualquer valor fictício, o limite de crédito será gerenciado pela Infracommerce. Esse tipo de integração gerenciada pela plataforma vale apenas para casos para projetos gerenciados pelo Infrapay. Em caso de dúvidas, falar com o time de projetos da infracommerce para mais informações.
-           <br><br>
+            <strong> Origin = SELLER</strong> (Limite gerenciado pelo distribuidor). Caso esse campo seja informado com
+            valor:IFC e seja enviado com qualquer valor fictício, o limite de crédito será gerenciado pela
+            Infracommerce. Esse tipo de integração gerenciada pela plataforma vale apenas para casos para projetos
+            gerenciados pelo Infrapay. Em caso de dúvidas, falar com o time de projetos da infracommerce para mais
+            informações.
+            <br><br>
           </p>
           <h4>Exemplo de Retorno da requisição</h4>
           <p>
@@ -114,89 +122,94 @@
               </env:Envelope>
                
               
-                               </textarea>   
+                               </textarea>
             <br><br>
           </p>
           <h4>Informações Complementares:</h4>
           <p>
             <br><br>
-            <i class="gambi">Para impossibilitar o cliente (já ativo nessa modalidade em outro momento) basta enviar valor 0 de limite de crédito.</i>
+            <i class="gambi">Para impossibilitar o cliente (já ativo nessa modalidade em outro momento) basta enviar
+              valor 0 de limite de crédito.</i>
             <br> <br>
-            <i class="gambi">Caso o distribuidor enviar duas requisições com valores diferentes para um cliente, o que prevalecerá como valor é sempre a requisição mais recente (os valores não são somados)</i>
+            <i class="gambi">Caso o distribuidor enviar duas requisições com valores diferentes para um cliente, o que
+              prevalecerá como valor é sempre a requisição mais recente (os valores não são somados)</i>
             <br> <br>
-            <i class="gambi">Enviar apenas atualizações, boas práticas, não repetir valores que não houve atualizações.</i>
+            <i class="gambi">Enviar apenas atualizações, boas práticas, não repetir valores que não houve
+              atualizações.</i>
             <br><br>
           </p>
           <h4>Objeto replaceVoucherRequest</h4>
           <p>
             <br><br>
-            <table style="border: 1p%">
-              <tr>
-                <th width="25%">Parametro</th>
-                <th width="25%">Descrição</th>
-                <th width="25%">Tipo</th>
-                 <th width="25%">Obrigatoriedade</th>
-              </tr> 
-                <tr>
-                <td>coupons</td>
-                <td>Lista de atualizações de limite de crédito</td>
-                <td>List<'Coupon></td>
-                  <td><b>Obrigatório</b></td>
-              </tr>
-            </table>
-            <br><br>
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Parametro</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>coupons</td>
+              <td>Lista de atualizações de limite de crédito</td>
+              <td>List<'Coupon>
+              </td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+          </table>
+          <br><br>
           </p>
           <h4>Objeto Coupon</h4>
           <p>
             <br><br>
-            <table style="border: 1p%">
-              <tr>
-                <th width="25%">Campo</th>
-                <th width="25%">Descrição</th>
-                <th width="25%">Tipo</th>
-                 <th width="25%">Obrigatoriedade</th>
-              </tr> 
-                <tr>
-                <td>customerDocumentNr</td>
-                <td>CNPJ do cliente</td>
-                <td>String (15)</td>
-                  <td><b>Obrigatório</b></td>
-              </tr>
-                <tr>
-                <td>value</td>
-                <td>Valor disponível para o limite de crédito</td>
-                <td>Decimal (15.2) Valores com separados com ponto e não virgula</td>
-                  <td><b>Obrigatório</b></td>
-              </tr>
-                <tr>
-                <td>origin</td>
-                <td>Valor disponível para o limite de crédito</td>
-                <td>Este campo identifica para onde o distribuidor está passando o crédito do cliente. Caso Selecione IFC o campo value é desconsiderado, caso mande SELLER, o funcionamento se mantém como é hoje em dia.
-Caso a tag não seja enviada, mantém-se o que está cadastrado. </td>
-                  <td><b>Obrigatório</b></td>
-              </tr>
-            </table>
-            <br><br>
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>customerDocumentNr</td>
+              <td>CNPJ do cliente</td>
+              <td>String (15)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>value</td>
+              <td>Valor disponível para o limite de crédito</td>
+              <td>Decimal (15.2) Valores com separados com ponto e não virgula</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>origin</td>
+              <td>Valor disponível para o limite de crédito</td>
+              <td>Este campo identifica para onde o distribuidor está passando o crédito do cliente. Caso Selecione IFC
+                o campo value é desconsiderado, caso mande SELLER, o funcionamento se mantém como é hoje em dia.
+                Caso a tag não seja enviada, mantém-se o que está cadastrado. </td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+          </table>
+          <br><br>
           </p>
 
           <h4>replaceVoucherResponse</h4>
           <p>
             <br><br>
-            <table style="border: 1p%">
-              <tr>
-                <th width="25%">Campo</th>
-                <th width="25%">Descrição</th>
-                <th width="25%">Tipo</th>
-                 <th width="25%">Obrigatoriedade</th>
-              </tr> 
-                <tr>
-                <td>Success</td>
-                <td>String(4000)</td>
-                <td>Contém uma mensagem indicando se o preço foi recebido com sucesso ou se houve um erro.</td>
-                  <td><b>Obrigatório</b></td>
-              </tr>
-            </table>
-            <br><br>
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>Success</td>
+              <td>String(4000)</td>
+              <td>Contém uma mensagem indicando se o preço foi recebido com sucesso ou se houve um erro.</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+          </table>
+          <br><br>
           </p>
         </div>
       </div>

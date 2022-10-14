@@ -5,7 +5,7 @@
   <!-- PAGE INFO -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FAQ Integrações B2B - Monday</title>
+  <title>Integração de Preço (XML)</title>
   <link rel="icon" type="image/png" href="./assets/img/icoifc">
 
   <!-- Icones -->
@@ -34,8 +34,8 @@
       <!-- menu -->
       <div class="menu">
         <ul class="grid">
-          <li><a class="title" href="#home">Introdução</a></li>
-          <li><a class="title" href="#box2">Preços (XML)</a></li>
+          <li><a class="title" href="#home">Integração de Preço</a></li>
+          <li><a class="title" href="#box2">Tabelas de preços</a></li>
           <li><a class="title" href="#box3">Objetos</a></li>
           <!--<li><a class="title" href="#box4"></a></li>-->
           <!--<li><a class="title" href="#box5">Prazos</a></li>-->
@@ -52,7 +52,7 @@
     <section class="section" id="home">
       <div class="container grid">
         <div class="faq">
-          <h2 class="title">Introdução</h2>
+          <h2 class="title">Integração de Preço (XML)</h2>
           <p>
             Existem duas formas de envios de preços para a plataforma. no formato XML, seguindo o mesmo protocolo das
             demais integrações (SOAP) onde os preços enviados pelo distribuidor, serão aplicados para todos os clientes
@@ -79,14 +79,15 @@
           <h2 class="title">Tabelas de preços</h2>
           <p>
             <br>
-            <strong> DFL</strong> = Preço à vista. 
+            <strong> DFL</strong> = Preço à vista.
             <i>Obrigatório para que um produto apareça no site.</i> <br>
             <strong>CRL-7</strong> = Boleto faturado para 7 dias <br>
             <strong>CRL-14</strong> = Boleto faturado para 14 dias <br>
             <strong>CRL-21</strong> = Boleto faturado para 21 dias <br>
             <strong>CRL-28</strong> = Boleto faturado para 28 dias <br>
             <br>
-            Observação: <i> Os preços em boleto faturado só estarão disponíveis para os clientes que possuírem aprovação e limite de crédito na plataforma (APIS chamadas pelo distribuidor)</i> <br><br>
+            Observação: <i> Os preços em boleto faturado só estarão disponíveis para os clientes que possuírem aprovação
+              e limite de crédito na plataforma (APIS chamadas pelo distribuidor)</i> <br><br>
           </p>
           <h4>Exemplo de requisição com uma tabela de preço</h4>
           <p> <br>
@@ -111,8 +112,9 @@
             </soapenv:Envelope>
             
                         </textarea>
-                        <br> <br> <small> <i>No exemplo acima foi enviado O valor de R$1.55 para o produto 7891150055087 na condição de pagamento à vista (DFL).</i></small>
-                        <br> <br>
+            <br> <br> <small> <i>No exemplo acima foi enviado O valor de R$1.55 para o produto 7891150055087 na condição
+                de pagamento à vista (DFL).</i></small>
+            <br> <br>
 
           </p>
           <h4>Exemplo de requisição com multiplas tabelas de preços.</h4>
@@ -173,15 +175,19 @@
         </br:integrateProductPriceFromSku>
      </soapenv:Body>
   </soapenv:Envelope>
-                 </textarea> 
-                 <br><br>
-                 <small> <i>No exemplo acima, enviado para plataforma a requisição de preços para o SKU 7891150055087 com as tabelas de preços à vista (DFL), Boleto faturado para 7, 14, 21 e 28 dias. Cada tabela de preço pode ter seu respectivo preço de forma dinâmica gerenciado pelo distribuidor. Como boa pratica, o distribuidor deverá seguir as boas praticas de não enviar mais de 50 produtos na mesma requisição, a fim de não onerar a fila de integração.</i> </small> <br><br>
+                 </textarea>
+            <br><br>
+            <small> <i>No exemplo acima, enviado para plataforma a requisição de preços para o SKU 7891150055087 com as
+                tabelas de preços à vista (DFL), Boleto faturado para 7, 14, 21 e 28 dias. Cada tabela de preço pode ter
+                seu respectivo preço de forma dinâmica gerenciado pelo distribuidor. Como boa pratica, o distribuidor
+                deverá seguir as boas praticas de não enviar mais de 50 produtos na mesma requisição, a fim de não
+                onerar a fila de integração.</i> </small> <br><br>
 
           </p>
           <h4>Exemplo de requisição com multiplas tabelas de preços.</h4>
           <p>
             <br>
-            <textarea rows="10" cols="80"> 
+            <textarea rows="10" cols="80">
               <S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
                  <S:Body>
                     <ns2:integrateProductPriceFromSkuResponse xmlns:ns2="br.com.accurate.acpr.priceservices">
@@ -190,104 +196,111 @@
                 </S:Body>
               </S:Envelope>
                          </textarea>
-                         <br><br>
+            <br><br>
           </p>
+        </div>
 
-          <div class="divider-2"></div>
+      </div>
+    </section>
+
+    <div class="divider-2"></div>
 
     <section class="section" id="box3">
       <div class="container grid">
         <div class="faq">
           <h2 class="title">Objetos que contemplam a integração de Preços XML.</h2>
           <p>
-            <p><b>Objeto integrateProductPriceFromSku</b></p>
+            <br><br>
+          <p><b>Objeto integrateProductPriceFromSku</b></p>
 
-            <table style="border: 1p%">
-              <tr>
-                <th width="25%">Parâmetro</th>
-                <th width="25%">Descrição</th>
-                <th width="25%">Tipo</th>
-                <th width="25%">Obrigatoriedade</th>
-              </tr> 
-              <tr>
-                <td>sku_list</td>
-                <td>Lista do objeto sku</td>
-                <td>List<'Sku></td>
-                <td><b>Obrigatório</b></td>
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Parâmetro</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>sku_list</td>
+              <td>Lista do objeto sku</td>
+              <td>List<'Sku>
+              </td>
+              <td><b>Obrigatório</b></td>
 
-              </tr> 
-            </table>
-            <br>
-            <p><b>Objeto Sku</b></p>
+            </tr>
+          </table>
+          <br>
+          <p><b>Objeto Sku</b></p>
 
-            <table style="border: 1p%">
-              <tr>
-                <th width="25%">Campo</th>
-                <th width="25%">Descrição</th>
-                <th width="25%">Tipo</th>
-                <th width="25%">Obrigatoriedade</th>
-              </tr> 
-              <tr>
-                <td>skuId</td>
-                <td>Código do sku do produto</td>
-                <td>String (30)</td>
-                <td><b>Obrigatório</b></td>
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>skuId</td>
+              <td>Código do sku do produto</td>
+              <td>String (30)</td>
+              <td><b>Obrigatório</b></td>
 
-              </tr> 
-                <tr>
-                <td>productPriceList</td>
-                <td>Lista de objetos ProductPrice</td>
-                <td>List<'ProductPrice></td>
-                <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>productPriceList</td>
+              <td>Lista de objetos ProductPrice</td>
+              <td>List<'ProductPrice>
+              </td>
+              <td><b>Obrigatório</b></td>
 
-              </tr> 
-            </table>
-            <br>
-            <p><b>Objeto ProductPrice</b></p>
+            </tr>
+          </table>
+          <br>
+          <p><b>Objeto ProductPrice</b></p>
 
-            <table style="border: 1p%">
-              <tr>
-                <th width="25%">Campo</th>
-                <th width="25%">Descrição</th>
-                <th width="25%">Tipo</th>
-                <th width="25%">Obrigatoriedade</th>
-              </tr> 
-              <tr>
-                <td>priceValue</td>
-                <td>Valor do preço</td>
-                <td>Decimal (15,2)</td>
-                <td><b>Obrigatório</b></td>
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>priceValue</td>
+              <td>Valor do preço</td>
+              <td>Decimal (15,2)</td>
+              <td><b>Obrigatório</b></td>
 
-              </tr> 
-                 <tr>
-                <td>priceTp</td>
-                <td>Tabela de preço</td>
-                <td>String (10)</td>
-                <td><b>Obrigatório</b></td>
+            </tr>
+            <tr>
+              <td>priceTp</td>
+              <td>Tabela de preço</td>
+              <td>String (10)</td>
+              <td><b>Obrigatório</b></td>
 
-              </tr> 
-</table>
-<br>
-    <p><b>Objeto integrateProductPriceFromSkuResponse</b></p>
-    <table style="border: 1p%">
-              <tr>
-                <th width="25%">Campo</th>
-                <th width="25%">Descrição</th>
-                <th width="25%">Tipo</th>
-                <th width="25%">Obrigatoriedade</th>
-              </tr> 
-              <tr>
-                <td>result</td>
-                <td>String (4000)</td>
-                <td>Contém uma mensagem indicando se o preço foi recebido com sucesso ou se houve um erro.
-</td>
-                <td><b>Obrigatório</b></td>
+            </tr>
+          </table>
+          <br>
+          <p><b>Objeto integrateProductPriceFromSkuResponse</b></p>
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>result</td>
+              <td>String (4000)</td>
+              <td>Contém uma mensagem indicando se o preço foi recebido com sucesso ou se houve um erro.
+              </td>
+              <td><b>Obrigatório</b></td>
 
-              </tr> 
-            </table>
+            </tr>
+          </table>
           </p>
 
-      </div>
+        </div>
     </section>
 
 

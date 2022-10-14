@@ -60,31 +60,38 @@
           <h2 class="title">Introdução</h2>
           <p>
             <br>
-            Conceito: Uma vez que o seller recebe os cadastros de clientes em sua base e já possui o status (PEN que foi retornado durante a integração do cliente), é possível que o seller envie outros dois status na integração de Status de cliente, que possibilitam enviar dois status, sendo eles APV(aprovação) e RPV(reprovação).
+            Conceito: Uma vez que o seller recebe os cadastros de clientes em sua base e já possui o status (PEN que foi
+            retornado durante a integração do cliente), é possível que o seller envie outros dois status na integração
+            de Status de cliente, que possibilitam enviar dois status, sendo eles APV(aprovação) e RPV(reprovação).
             <br><br>
           </p>
           <p>
             <br>
-            A integração de status de cliente é de origem distribuidor para plataforma, e para esta ação, será disponibilizado pela Infracommerce, o endereço do endpoint e credenciais para essa integração ocorrer.
+            A integração de status de cliente é de origem distribuidor para plataforma, e para esta ação, será
+            disponibilizado pela Infracommerce, o endereço do endpoint e credenciais para essa integração ocorrer.
             <br><br>
           </p>
           <h4>Tipos de Status:</h4>
           <p>
             <br>
             <strong> APV (aprovado)</strong>:
-            Possibilita que o cliente esteja apto para efetuar pedidos com a modalidade de boleto faturado (boleto a prazo), porém é preciso que o mesmo possua limite de crédito (consultar a etapa de integração de limite de crédito).
+            Possibilita que o cliente esteja apto para efetuar pedidos com a modalidade de boleto faturado (boleto a
+            prazo), porém é preciso que o mesmo possua limite de crédito (consultar a etapa de integração de limite de
+            crédito).
             <br><br>
           </p>
           <p>
-            <strong> RPV (reprovado)</strong>: Reprova o cliente. Com esse Status não será possível efetuar pedidos em quaisquer tipos de formas de pagamento, os produtos não serão disponibilizados no front para compra para tais clientes que estiverem nesta condição.
+            <strong> RPV (reprovado)</strong>: Reprova o cliente. Com esse Status não será possível efetuar pedidos em
+            quaisquer tipos de formas de pagamento, os produtos não serão disponibilizados no front para compra para
+            tais clientes que estiverem nesta condição.
             <br><br>
           </p>
           <h4>Exemplo de requisição de Aprovação de cliente: (Método: updateCustomerRequest)</h4>
           <p>
             <br><br>
-            <textarea rows="18" cols="85" >
+            <textarea rows="18" cols="85">
 
-              
+
               <soapenv:Envelope xmlns:cli="http://www.accurate.com/acec/Customer"
                xmlns:cus="http://www.accurate.com/acec/CustomerServices" 
                xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
@@ -104,9 +111,9 @@
           </p>
           <p>
             <br><br>
-            <textarea rows="18" cols="85" >
+            <textarea rows="18" cols="85">
 
-              
+
               <soapenv:Envelope xmlns:cli="http://www.accurate.com/acec/Customer"
                xmlns:cus="http://www.accurate.com/acec/CustomerServices" 
                xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
@@ -127,7 +134,7 @@
           <h4>Exemplo de retorno da requisição</h4>
           <p>
             <br><br>
-            <textarea rows="12" cols="85" >
+            <textarea rows="12" cols="85">
               <?xml version = '1.0' encoding = 'UTF-8'?>
                 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
                   <soapenv:Header/>
@@ -138,61 +145,65 @@
                   </soapenv:Body>
                 </soapenv:Envelope>           
                          
-              </textarea> 
+              </textarea>
             <br><br>
           </p>
           <h4>Objeto updateCustomerRequest</h4>
           <p>
             <br><br>
-            <table style="border: 1p%">
-              <tr>
-                <th width="25%">Campo</th>
-                <th width="25%">Descrição</th>
-                <th width="25%">Tipo</th>
-                 <th width="25%">Obrigatoriedade</th>
-              </tr> 
-                <tr>
-                <td>customer</td>
-                <td>No escopo do Middleware (aprovação/bloqueio do cliente) é necessário enviar apenas o campo documentNr.</td>
-                <td>Customer</td>
-                  <td><b>Obrigatório</b></td>
-              </tr>
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>customer</td>
+              <td>No escopo do Middleware (aprovação/bloqueio do cliente) é necessário enviar apenas o campo documentNr.
+              </td>
+              <td>Customer</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
 
 
 
-               <tr>
-                <td>status</td>
-                <td>Status da aptidão do cliente para realizar compras.<br>
+            <tr>
+              <td>status</td>
+              <td>Status da aptidão do cliente para realizar compras.<br>
 
-                  <li style="font-size:  90%"><b style="background-color: white">APV </b>: Aprovado para realizar compras, incluive, caso o seller necessite enviar valores em limite de crédito, o cliente precisará estar com status aprovado.</li>
-                  <li style="font-size:  90%"><b style="background-color: white">RPV</b>: Bloqueia o cliente para efetuar compras, com quaisquer modalidades de meios de pagamentos.</li>
-                </td>
-                <td>String (3)</td>
-                  <td><b>Obrigatório</b></td>
-              </tr>
-            </table>
+                <li style="font-size:  90%"><b style="background-color: white">APV </b>: Aprovado para realizar compras,
+                  incluive, caso o seller necessite enviar valores em limite de crédito, o cliente precisará estar com
+                  status aprovado.</li>
+                <li style="font-size:  90%"><b style="background-color: white">RPV</b>: Bloqueia o cliente para efetuar
+                  compras, com quaisquer modalidades de meios de pagamentos.</li>
+              </td>
+              <td>String (3)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+          </table>
           <br><br>
-          
+
           </p>
           <h4>Objeto updateCustomerResponse</h4>
           <p>
             <br><br>
-            <table style="border: 1p%">
-              <tr>
-                <th width="25%">Campo</th>
-                <th width="25%">Descrição</th>
-                <th width="25%">Tipo</th>
-                 <th width="25%">Obrigatoriedade</th>
-              </tr> 
-                <tr>
-                <td>status</td>
-                <td>Status da atualização do cliente.
-Será enviado “OK” (sem aspas) quando o cliente for atualizado com sucesso.</td>
-                <td>String (3)</td>
-                  <td><b>Obrigatório</b></td>
-              </tr>
-            </table>
-            <br><br>
+          <table style="border: 1p%">
+            <tr>
+              <th width="25%">Campo</th>
+              <th width="25%">Descrição</th>
+              <th width="25%">Tipo</th>
+              <th width="25%">Obrigatoriedade</th>
+            </tr>
+            <tr>
+              <td>status</td>
+              <td>Status da atualização do cliente.
+                Será enviado “OK” (sem aspas) quando o cliente for atualizado com sucesso.</td>
+              <td>String (3)</td>
+              <td><b>Obrigatório</b></td>
+            </tr>
+          </table>
+          <br><br>
           </p>
         </div>
 
