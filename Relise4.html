@@ -1513,29 +1513,33 @@
                     </p>
                     <p>
                         <strong>Objetos API GET (disponibilizado pela plataforma)</strong>
-                        <br> <br>
-                    <table style="border: 1p%">
-                        <tr>
-                            <th width="25%">price-policy-user</th>
-                            <th width="25%">Descrição</th>
-                            <th width="25%">Tipo</th>
-                            <th width="25%">Obrigatoriedade</th>
-                        </tr>
-                        <tr>
-                            <td>price-policy-user</td>
-                            <td>Usuário</td>
-                            <td>String (100)</td>
-                            <td><b>Obrigatório</b></td>
-                        </tr>
-                        <tr>
-                            <td>price-policy-pass</td>
-                            <td>Senha</td>
-                            <td>String (100)</td>
-                            <td><b>Obrigatório</b></td>
-                        </tr>
-                    </table>
+                    <div class="tabelas">
+                        <div class="layout-table">
+                            <br>
+                            <table style="border: 1p%">
+                                <tr>
+                                    <th width="25%">price-policy-user</th>
+                                    <th width="25%">Descrição</th>
+                                    <th width="25%">Tipo</th>
+                                    <th width="25%">Obrigatoriedade</th>
+                                </tr>
+                                <tr>
+                                    <td>price-policy-user</td>
+                                    <td>Usuário</td>
+                                    <td>String (100)</td>
+                                    <td><b>Obrigatório</b></td>
+                                </tr>
+                                <tr>
+                                    <td>price-policy-pass</td>
+                                    <td>Senha</td>
+                                    <td>String (100)</td>
+                                    <td><b>Obrigatório</b></td>
+                                </tr>
+                            </table>
 
-                    <br><br>
+                        </div>
+                    </div>
+
                     </small>
                     </p>
                     <p>
@@ -1571,289 +1575,329 @@
                     </p>
                     <h4>Detalhes dos objetos de retorno</h4>
                     <p>
-                        <br><br>
-                    <table style="border: 1p%">
-                        <tr>
-                            <th width="25%">Campo</th>
-                            <th width="25%">Descrição</th>
-                            <th width="25%">Tipo</th>
-                            <th width="25%">Obrigatoriedade</th>
-                        </tr>
-                        <tr>
-                            <td>access_token</td>
-                            <td>Token de autenticação para API de envios (POST)</td>
-                            <td>String (100)</td>
-                            <td><b>Obrigatório</b></td>
-                        </tr>
-                        <tr>
-                            <td>token_type</td>
-                            <td>Tipo de token</td>
-                            <td>String (100)</td>
-                            <td><b>Obrigatório</b></td>
-                        </tr>
-                        <tr>
-                            <td>refresh_token</td>
-                            <td>Token para solicitar um novo token*</td>
-                            <td>String (100)</td>
-                            <td><b>Obrigatório</b></td>
-                        </tr>
-                        </tr>
-                        <tr>
-                            <td>expires_in</td>
-                            <td>Tempo de validade em milisegundos do token</td>
-                            <td>Number</td>
-                            <td><b>Obrigatório</b></td>
-                        </tr>
-                        <tr>
-                            <td>scope</td>
-                            <td>Escopo do usuário</td>
-                            <td>String (100)</td>
-                            <td><b>Obrigatório</b></td>
-                        </tr>
-                        <tr>
-                            <td>profile_id</td>
-                            <td>Identificador do perfil do usuário</td>
-                            <td>Number</td>
-                            <td>Opcional</td>
-                        </tr>
-                        <tr>
-                            <td>authorities</td>
-                            <td>Lista de permissões do usuário</td>
-                            <td>Lista de Objetos</td>
-                            <td><b>Obrigatório</b></td>
-                        </tr>
-                        <tr>
-                            <td>user_id</td>
-                            <td>Identificador do usuário</td>
-                            <td>Number</td>
-                            <td><b>Obrigatório</b></td>
-                        </tr>
+                    <div class="tabelas">
+                        <div class="layout-table">
+                            <br>
+                            <table style="border: 1p%">
+                                <tr>
+                                    <th width="25%">Campo</th>
+                                    <th width="25%">Descrição</th>
+                                    <th width="25%">Tipo</th>
+                                    <th width="25%">Obrigatoriedade</th>
+                                </tr>
+                                <tr>
+                                    <td>access_token</td>
+                                    <td>Token de autenticação para API de envios (POST)</td>
+                                    <td>String (100)</td>
+                                    <td><b>Obrigatório</b></td>
+                                </tr>
+                                <tr>
+                                    <td>token_type</td>
+                                    <td>Tipo de token</td>
+                                    <td>String (100)</td>
+                                    <td><b>Obrigatório</b></td>
+                                </tr>
+                                <tr>
+                                    <td>refresh_token</td>
+                                    <td>Token para solicitar um novo token*</td>
+                                    <td>String (100)</td>
+                                    <td><b>Obrigatório</b></td>
+                                </tr>
+                                </tr>
+                                <tr>
+                                    <td>expires_in</td>
+                                    <td>Tempo de validade em milisegundos do token</td>
+                                    <td>Number</td>
+                                    <td><b>Obrigatório</b></td>
+                                </tr>
+                                <tr>
+                                    <td>scope</td>
+                                    <td>Escopo do usuário</td>
+                                    <td>String (100)</td>
+                                    <td><b>Obrigatório</b></td>
+                                </tr>
+                                <tr>
+                                    <td>profile_id</td>
+                                    <td>Identificador do perfil do usuário</td>
+                                    <td>Number</td>
+                                    <td>Opcional</td>
+                                </tr>
+                                <tr>
+                                    <td>authorities</td>
+                                    <td>Lista de permissões do usuário</td>
+                                    <td>Lista de Objetos</td>
+                                    <td><b>Obrigatório</b></td>
+                                </tr>
+                                <tr>
+                                    <td>user_id</td>
+                                    <td>Identificador do usuário</td>
+                                    <td>Number</td>
+                                    <td><b>Obrigatório</b></td>
+                                </tr>
+                            </table>
+                            <br>
+                        </div>
+                    </div>
 
-                    </table>
-                    <br><br>
                     </p>
                     <h4>Detalhes dos objetos de retorno da API POST</h4>
+                    <p><br></p>
                     <p>
                         Os seguintes modelos são aplicados nas chamadas de criação, atualização e deleção de políticas
                         de preço. (API POST disponibilizada pela infracommerce).
 
                         <br><br>
+                    <div class="tabelas">
+                        <div class="layout-table">
+                            <table style="margin-right: 20px">
+                                <tr>
+                                    <th width="25%">Campo</th>
+                                    <th width="25%">Descrição</th>
+                                    <th width="25%">Tipo</th>
+                                    <th width="25%">Obrigatoriedade</th>
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>Identificador da política de preço</td>
+                                    <td>String (40)</td>
+                                    <td><b>Obrigatório</b></td>
+                                </tr>
+                                <tr>
+                                    <td>criteria</td>
+                                    <td>Critérios da política de preço</td>
+                                    <td>Objeto (Customer)</td>
+                                    <td>"Opcional", Usado apenas quando será enviado clientes na requisição</td>
+                                </tr>
+                                <tr>
+                                    <td>policy</td>
+                                    <td>Definição da política de preços</td>
+                                    <td>Objeto (Politica)</td>
+                                    <td>"Opcional", deve ser declarado quando há necessidade de atualizar ou incluir
+                                        produtos ou
+                                        preços.</td>
+                                </tr>
+                            </table>
+                            <br>
+                        </div>
+                    </div>
 
-                    <table style="margin-right: 20px">
-                        <tr>
-                            <th width="25%">Campo</th>
-                            <th width="25%">Descrição</th>
-                            <th width="25%">Tipo</th>
-                            <th width="25%">Obrigatoriedade</th>
-                        </tr>
-                        <tr>
-                            <td>id</td>
-                            <td>Identificador da política de preço</td>
-                            <td>String (40)</td>
-                            <td><b>Obrigatório</b></td>
-                        </tr>
-                        <tr>
-                            <td>criteria</td>
-                            <td>Critérios da política de preço</td>
-                            <td>Objeto (Customer)</td>
-                            <td>"Opcional", Usado apenas quando será enviado clientes na requisição</td>
-                        </tr>
-                        <tr>
-                            <td>policy</td>
-                            <td>Definição da política de preços</td>
-                            <td>Objeto (Politica)</td>
-                            <td>"Opcional", deve ser declarado quando há necessidade de atualizar ou incluir produtos ou
-                                preços.</td>
-                        </tr>
-                    </table>
-                    <br><br>
                     </p>
                     <h4>Objeto Criteria</h4>
                     <p>
-                        <br><br>
-                    <table style="border: 1p%">
-                        <tr>
-                            <th width="25%">Campo</th>
-                            <th width="25%">Descrição</th>
-                            <th width="25%">Tipo</th>
-                            <th width="25%">Obrigatoriedade</th>
-                        </tr>
-                        <tr>
-                            <td>customerDocumentList</td>
-                            <td>CNPJ do cliente do distribuidor</td>
-                            <td>String (15)</td>
-                            <td><b>Obrigatório</b></td>
-                        </tr>
-                    </table>
-                    <br><br>
+                    <div class="tabelas">
+                        <div class="layout-table">
+                            <br>
+                            <table style="border: 1p%">
+                                <tr>
+                                    <th width="25%">Campo</th>
+                                    <th width="25%">Descrição</th>
+                                    <th width="25%">Tipo</th>
+                                    <th width="25%">Obrigatoriedade</th>
+                                </tr>
+                                <tr>
+                                    <td>customerDocumentList</td>
+                                    <td>CNPJ do cliente do distribuidor</td>
+                                    <td>String (15)</td>
+                                    <td><b>Obrigatório</b></td>
+                                </tr>
+                            </table>
+                            <br>
+                        </div>
+                    </div>
+
                     </p>
                     <h4>Objeto Policy</h4>
                     <p>
-                        <br>
-                    <table style="border: 1p%">
-                        <tr>
-                            <th width="25%">Campo</th>
-                            <th width="25%">Descrição</th>
-                            <th width="25%">Tipo</th>
-                            <th width="25%">Obrigatoriedade</th>
-                        </tr>
-                        <tr>
-                            <td>customerPriceList</td>
-                            <td>Lista de preços|customizados</td>
-                            <td>Objeto</td>
-                            <td>Obrigatório quando incluido preços ou produtos.</td>
-                        </tr>
+                    <div class="tabelas">
+                        <div class="layout-table">
+                            <br>
+                            <table style="border: 1p%">
+                                <tr>
+                                    <th width="25%">Campo</th>
+                                    <th width="25%">Descrição</th>
+                                    <th width="25%">Tipo</th>
+                                    <th width="25%">Obrigatoriedade</th>
+                                </tr>
+                                <tr>
+                                    <td>customerPriceList</td>
+                                    <td>Lista de preços|customizados</td>
+                                    <td>Objeto</td>
+                                    <td>Obrigatório quando incluido preços ou produtos.</td>
+                                </tr>
 
-                        <tr>
-                            <td>paymentList</td>
-                            <td>Lista de tipo de pagamento</td>
-                            <td>Objeto</td>
-                            <td>Opcional</td>
-                        </tr>
-                    </table>
-                    <br><br>
+                                <tr>
+                                    <td>paymentList</td>
+                                    <td>Lista de tipo de pagamento</td>
+                                    <td>Objeto</td>
+                                    <td>Opcional</td>
+                                </tr>
+                            </table>
+                            <br>
+                        </div>
+                    </div>
                     </p>
                     <h4>Objeto CustomerPriceList</h4>
                     <p>
-                        <br>
-                    <table style="border: 1p%">
-                        <tr>
-                            <th width="25%">Campo</th>
-                            <th width="25%">Descrição</th>
-                            <th width="25%">Tipo</th>
-                            <th width="25%">Obrigatoriedade</th>
-                        </tr>
-                        <tr>
-                            <td>productPriceList</td>
-                            <td>Lista de preços</td>
-                            <td>Objeto</td>
-                            <td>Obrigatório nas requisições de produtos ou preços</td>
-                        </tr>
-                        <tr>
-                            <td>skuId</td>
-                            <td>ID do produto (SkuId)</td>
-                            <td>String(30)</td>
-                            <td>Obrigatório nas requisições de produtos ou preços</td>
-                        </tr>
-                    </table>
-                    <br><br>
+                    <div class="tabelas">
+                        <div class="layout-table">
+                            <br>
+                            <table style="border: 1p%">
+                                <tr>
+                                    <th width="25%">Campo</th>
+                                    <th width="25%">Descrição</th>
+                                    <th width="25%">Tipo</th>
+                                    <th width="25%">Obrigatoriedade</th>
+                                </tr>
+                                <tr>
+                                    <td>productPriceList</td>
+                                    <td>Lista de preços</td>
+                                    <td>Objeto</td>
+                                    <td>Obrigatório nas requisições de produtos ou preços</td>
+                                </tr>
+                                <tr>
+                                    <td>skuId</td>
+                                    <td>ID do produto (SkuId)</td>
+                                    <td>String(30)</td>
+                                    <td>Obrigatório nas requisições de produtos ou preços</td>
+                                </tr>
+                            </table>
+                            <br>
+                        </div>
+                    </div>
+
                     </p>
                     <h4>Objeto ProductPriceList</h4>
                     <p>
-                        <br>
-                    <table style="border: 1p%">
-                        <tr>
-                            <th width="25%">Campo</th>
-                            <th width="25%">Descrição</th>
-                            <th width="25%">Tipo</th>
-                            <th width="25%">Obrigatoriedade</th>
-                        </tr>
-                        <tr>
-                            <td>productPrice</td>
-                            <td>Lista de tipos de preços do SKU</td>
-                            <td>Objeto</td>
-                            <td><b>Obrigatório</b></td>
-                        </tr>
-                    </table>
-                    <br><br>
+                    <div class="tabelas">
+                        <div class="layout-table">
+                            <br>
+                            <table style="border: 1p%">
+                                <tr>
+                                    <th width="25%">Campo</th>
+                                    <th width="25%">Descrição</th>
+                                    <th width="25%">Tipo</th>
+                                    <th width="25%">Obrigatoriedade</th>
+                                </tr>
+                                <tr>
+                                    <td>productPrice</td>
+                                    <td>Lista de tipos de preços do SKU</td>
+                                    <td>Objeto</td>
+                                    <td><b>Obrigatório</b></td>
+                                </tr>
+                            </table>
+                            <br>
+                        </div>
+                    </div>
                     </p>
                     <h4>Objeto ProductPrice</h4>
                     <p>
-                        <br>
-                    <table style="border: 1p%">
-                        <tr>
-                            <th width="25%">Campo</th>
-                            <th width="25%">Descrição</th>
-                            <th width="25%">Tipo</th>
-                            <th width="25%">Obrigatoriedade</th>
-                        </tr>
-                        <tr>
-                            <td>priceTp</td>
-                            <td>Tipos de preços de acordo com a tabela abaixo.</td>
-                            <td>String(10)</td>
-                            <td><b>Obrigatório</b></td>
-                        </tr>
-                        <tr>
-                            <td>priceValue</td>
-                            <td>Valor del preço</td>
-                            <td>Number</td>
-                            <td><b>Obrigatório</b></td>
-                        </tr>
-                    </table>
-                    <br><br>
+                    <div class="tabelas">
+                        <div class="layout-table">
+                            <br>
+                            <table style="border: 1p%">
+                                <tr>
+                                    <th width="25%">Campo</th>
+                                    <th width="25%">Descrição</th>
+                                    <th width="25%">Tipo</th>
+                                    <th width="25%">Obrigatoriedade</th>
+                                </tr>
+                                <tr>
+                                    <td>priceTp</td>
+                                    <td>Tipos de preços de acordo com a tabela abaixo.</td>
+                                    <td>String(10)</td>
+                                    <td><b>Obrigatório</b></td>
+                                </tr>
+                                <tr>
+                                    <td>priceValue</td>
+                                    <td>Valor del preço</td>
+                                    <td>Number</td>
+                                    <td><b>Obrigatório</b></td>
+                                </tr>
+                            </table>
+                            <br>
+                        </div>
+                    </div>
                     </p>
                     <h4>Tabelas de preços</h4>
                     <p>
-                        <br>
-                    <table style="border: 1p%">
-                        <tr>
-                            <th width="25%">PriceTp</th>
-                            <th width="25%">Descrição</th>
-                            <th width="25%">Obrigatoriedade</th>
-                        </tr>
-                        <tr>
-                            <td>DFL</td>
-                            <td>Tabela de preços base (preço a vista).</td>
-                            <td>Obrigatório para que o produto apareça no site.</td>
-                        </tr>
-                        <tr>
-                            <td>CRL-7</td>
-                            <td>Tabela de preço de boleto faturado para 7 dias.</td>
-                            <td>opcional, porém necessário testa em etapa de homologação</td>
-                        </tr>
-                        <tr>
-                            <td>CRL-14</td>
-                            <td>Tabela de preço de boleto faturado para 14 dias.</td>
-                            <td>opcional, porém necessário testa em etapa de homologação</td>
-                        </tr>
-                        </tr>
-                        <tr>
-                            <td>CRL-21</td>
-                            <td>Tabela de preço de boleto faturado para 21 dias.</td>
-                            <td>opcional, porém necessário testa em etapa de homologação</td>
-                        </tr>
-                        <td>CRL-28</td>
-                        <td>Tabela de preço de boleto faturado para 28 dias.</td>
-                        <td>opcional, porém necessário testa em etapa de homologação</td>
-                        </tr>
-                        <td>CRL-7_14_21_28</td>
-                        <td>Tabela de preço de boleto faturado parcelado</td>
-                        <td>opcional, tabelas parceladas só poderão ser habilitadas somente em produção</td>
-                        </tr>
-                    </table>
-                    <br><br>
+                    <div class="tabelas">
+                        <div class="layout-table">
+                            <br>
+                            <table style="border: 1p%">
+                                <tr>
+                                    <th width="25%">PriceTp</th>
+                                    <th width="25%">Descrição</th>
+                                    <th width="25%">Obrigatoriedade</th>
+                                </tr>
+                                <tr>
+                                    <td>DFL</td>
+                                    <td>Tabela de preços base (preço a vista).</td>
+                                    <td>Obrigatório para que o produto apareça no site.</td>
+                                </tr>
+                                <tr>
+                                    <td>CRL-7</td>
+                                    <td>Tabela de preço de boleto faturado para 7 dias.</td>
+                                    <td>opcional, porém necessário testa em etapa de homologação</td>
+                                </tr>
+                                <tr>
+                                    <td>CRL-14</td>
+                                    <td>Tabela de preço de boleto faturado para 14 dias.</td>
+                                    <td>opcional, porém necessário testa em etapa de homologação</td>
+                                </tr>
+                                </tr>
+                                <tr>
+                                    <td>CRL-21</td>
+                                    <td>Tabela de preço de boleto faturado para 21 dias.</td>
+                                    <td>opcional, porém necessário testa em etapa de homologação</td>
+                                </tr>
+                                <td>CRL-28</td>
+                                <td>Tabela de preço de boleto faturado para 28 dias.</td>
+                                <td>opcional, porém necessário testa em etapa de homologação</td>
+                                </tr>
+                                <td>CRL-7_14_21_28</td>
+                                <td>Tabela de preço de boleto faturado parcelado</td>
+                                <td>opcional, tabelas parceladas só poderão ser habilitadas somente em produção</td>
+                                </tr>
+                            </table>
+                            <br>
+                        </div>
+                    </div>
                     </p>
                     <h4>Modelo de Dados para as Respostas para API de envio de preços</h4>
                     <p>
-                        <br>
-                    <table style="border: 1p%">
-                        <tr>
-                            <th width="25%">Campo</th>
-                            <th width="25%">Descrição</th>
-                            <th width="25%">Tipo</th>
-                            <th width="25%">Obrigatoriedade</th>
-                        </tr>
-                        <tr>
-                            <td>success</td>
-                            <td>Indica se a solicitude foi executada com sucesso</td>
-                            <td>Boolean</td>
-                            <td><b>Obrigatório</b></td>
-                        </tr>
+                    <div class="tabelas">
+                        <div class="layout-table">
+                            <br>
+                            <table style="border: 1p%">
+                                <tr>
+                                    <th width="25%">Campo</th>
+                                    <th width="25%">Descrição</th>
+                                    <th width="25%">Tipo</th>
+                                    <th width="25%">Obrigatoriedade</th>
+                                </tr>
+                                <tr>
+                                    <td>success</td>
+                                    <td>Indica se a solicitude foi executada com sucesso</td>
+                                    <td>Boolean</td>
+                                    <td><b>Obrigatório</b></td>
+                                </tr>
 
-                        <tr>
-                            <td>skusErrors</td>
-                            <td>Lista de erros chados nos SKUs</td>
-                            <td>List</td>
-                            <td>Obrigatório (será gerado só quando houver erros)</td>
-                        </tr>
-                        <tr>
-                            <td>customersErrors</td>
-                            <td>Lista de erros achados nos critérios</td>
-                            <td>List</td>
-                            <td>Obrigatório (será gerado só quando houver erros)</td>
-                        </tr>
-                    </table>
-                    <br><br>
+                                <tr>
+                                    <td>skusErrors</td>
+                                    <td>Lista de erros chados nos SKUs</td>
+                                    <td>List</td>
+                                    <td>Obrigatório (será gerado só quando houver erros)</td>
+                                </tr>
+                                <tr>
+                                    <td>customersErrors</td>
+                                    <td>Lista de erros achados nos critérios</td>
+                                    <td>List</td>
+                                    <td>Obrigatório (será gerado só quando houver erros)</td>
+                                </tr>
+                            </table>
+                            <br>
+                        </div>
+                    </div>
                     </p>
                 </div>
         </section>
@@ -1940,85 +1984,101 @@
                     <h4>Objetos que contemplam a integração de Estoque.</h4>
                     <!-- tabelas do diego-->
                     <p>
-                    <table style="border: 1p%">
-                        <tr>
-                            <th width="25%">Campo</th>
-                            <th width="25%">Descrição</th>
-                            <th width="25%">Tipo</th>
-                            <th width="25%">Obrigatoriedade</th>
-                        </tr>
-                        <tr>
-                            <td>stockList</td>
-                            <td>Lista de estoque</td>
-                            <td>List<Stock>
-                            </td>
-                            <td><b>Obrigatório</b></td>
+                    <div class="tabelas">
+                        <div class="layout-table">
+                            <br>
+                            <table style="border: 1p%">
+                                <tr>
+                                    <th width="25%">Campo</th>
+                                    <th width="25%">Descrição</th>
+                                    <th width="25%">Tipo</th>
+                                    <th width="25%">Obrigatoriedade</th>
+                                </tr>
+                                <tr>
+                                    <td>stockList</td>
+                                    <td>Lista de estoque</td>
+                                    <td>List<Stock>
+                                    </td>
+                                    <td><b>Obrigatório</b></td>
 
-                        </tr>
-                    </table>
-                    <br>
+                                </tr>
+                            </table>
+                            <br>
+                        </div>
+                    </div>
                     </p>
-                    <p><b>Objeto Stock</b></p>
+                    <h4>Objeto Stock</h4>
+                    <div class="tabelas">
+                        <div class="layout-table">
+                            <br>
+                            <table style="margin-right: 20px">
+                                <tr>
+                                    <th width="25%">Campo</th>
+                                    <th width="25%">Descrição</th>
+                                    <th width="25%">Tipo</th>
+                                    <th width="25%">Obrigatoriedade</th>
+                                </tr>
+                                <tr>
+                                    <td>skuId</td>
+                                    <td>EAN do SKU</td>
+                                    <td>String (30)</td>
+                                    <td><b>Obrigatório</b></td>
 
+                                </tr>
+                                <tr>
+                                    <td>stockType</td>
+                                    <td>Indica disponibilidade de estoque.
+                                        0 = indisponível.
+                                        1 = disponível.</td>
+                                    <td>int</td>
+                                    <td>Opcional desde que seja enviado stockTypeSourceName</td>
 
-                    <table style="margin-right: 20px">
-                        <tr>
-                            <th width="25%">Campo</th>
-                            <th width="25%">Descrição</th>
-                            <th width="25%">Tipo</th>
-                            <th width="25%">Obrigatoriedade</th>
-                        </tr>
-                        <tr>
-                            <td>skuId</td>
-                            <td>EAN do SKU</td>
-                            <td>String (30)</td>
-                            <td><b>Obrigatório</b></td>
+                                </tr>
+                                <tr>
+                                    <td>stockTypeSourceName</td>
+                                    <td>Se será controlado por unidade enviar valor
+                                        controlUnitQuantity</td>
+                                    <td>String (30)</td>
+                                    <td>Opcional</td>
 
-                        </tr>
-                        <tr>
-                            <td>stockType</td>
-                            <td>Indica disponibilidade de estoque.
-                                0 = indisponível.
-                                1 = disponível.</td>
-                            <td>int</td>
-                            <td>Opcional desde que seja enviado stockTypeSourceName</td>
+                                </tr>
+                                <tr>
+                                    <td>quantity</td>
+                                    <td>Se for controlado por unidade enviar a quantidade de estoque</td>
+                                    <td>int</td>
+                                    <td>Opcional, mas deve ser passado caso seja enviando stockTypeSourceName para
+                                        indicar a
+                                        quantidade real.
+                                    </td>
+                                </tr>
+                            </table>
+                            <br>
+                        </div>
+                    </div>
+                    <h4>Objeto Objeto setStockResponse</h4>
+                    <div class="tabelas">
+                        <div class="layout-table">
+                            <br>
+                            <table style="border: 1p%">
+                                <tr>
+                                    <th width="25%">Campo</th>
+                                    <th width="25%">Descrição</th>
+                                    <th width="25%">Tipo</th>
+                                    <th width="25%">Obrigatoriedade</th>
+                                </tr>
+                                <tr>
+                                    <td>result</td>
+                                    <td>Contém uma mensagem indicando se o estoque foi recebido com sucesso ou se houve
+                                        um erro.
+                                    </td>
+                                    <td>String (30)</td>
+                                    <td><b>Obrigatório</b></td>
 
-                        </tr>
-                        <tr>
-                            <td>stockTypeSourceName</td>
-                            <td>Se será controlado por unidade enviar valor
-                                controlUnitQuantity</td>
-                            <td>String (30)</td>
-                            <td>Opcional</td>
-
-                        </tr>
-                        <tr>
-                            <td>quantity</td>
-                            <td>Se for controlado por unidade enviar a quantidade de estoque</td>
-                            <td>int</td>
-                            <td>Opcional, mas deve ser passado caso seja enviando stockTypeSourceName para indicar a
-                                quantidade real.
-                            </td>
-                        </tr>
-                    </table>
-                    <br>
-                    <p><b>Objeto Objeto setStockResponse</b></p>
-                    <table style="border: 1p%">
-                        <tr>
-                            <th width="25%">Campo</th>
-                            <th width="25%">Descrição</th>
-                            <th width="25%">Tipo</th>
-                            <th width="25%">Obrigatoriedade</th>
-                        </tr>
-                        <tr>
-                            <td>result</td>
-                            <td>Contém uma mensagem indicando se o estoque foi recebido com sucesso ou se houve um erro.
-                            </td>
-                            <td>String (30)</td>
-                            <td><b>Obrigatório</b></td>
-
-                        </tr>
-                    </table>
+                                </tr>
+                            </table>
+                            <br>
+                        </div>
+                    </div>
                     <!-- terminou tabelas do diego-->
                 </div>
             </div>
