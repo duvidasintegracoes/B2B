@@ -163,63 +163,70 @@
           </p>
           <h4>Objeto confirmPaymentRequest</h4>
           <p>
-            <br><br>
+          <div class="tabelas">
+            <div class="layout-table">
+              <br>
+              <table style="border: 1p%">
+                <tr>
+                  <th width="25%">Parametro</th>
+                  <th width="25%">Descrição</th>
+                  <th width="25%">Tipo</th>
+                  <th width="25%">Obrigatoriedade</th>
+                </tr>
+                <tr>
+                  <td>orderId</td>
+                  <td>Identificador do pedido</td>
+                  <td>String(15)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
 
-          <table style="border: 1p%">
-            <tr>
-              <th width="25%">Parametro</th>
-              <th width="25%">Descrição</th>
-              <th width="25%">Tipo</th>
-              <th width="25%">Obrigatoriedade</th>
-            </tr>
-            <tr>
-              <td>orderId</td>
-              <td>Identificador do pedido</td>
-              <td>String(15)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
 
+                <tr>
+                  <td>amount</td>
+                  <td>Valor total do pedido</td>
+                  <td>Decimal</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>status</td>
+                  <td>Status do pagamento:
+                    <li style="font-size:  90%"><b style="background-color: white">AP</b>: Indica que o pagamento foi
+                      aprovado</li>
+                    <li style="font-size:  90%"><b style="background-color: white">RP</b>: Indica que o pagamento foi
+                      reprovado, neste caso o pedido não poderá seguir o fluxo de vida.
 
-            <tr>
-              <td>amount</td>
-              <td>Valor total do pedido</td>
-              <td>Decimal</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>status</td>
-              <td>Status do pagamento:
-                <li style="font-size:  90%"><b style="background-color: white">AP</b>: Indica que o pagamento foi
-                  aprovado</li>
-                <li style="font-size:  90%"><b style="background-color: white">RP</b>: Indica que o pagamento foi
-                  reprovado, neste caso o pedido não poderá seguir o fluxo de vida.
+                  </td>
+                  <td>String(3)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+              </table> <br>
+            </div>
+          </div>
 
-              </td>
-              <td>String(3)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-          </table>
-          <br><br>
           </p>
           <h4>Objeto confirmPaymentResponse</h4>
           <p>
-            <br><br>
-
-          <table style="border: 1p%">
-            <tr>
-              <th width="25%">Campo</th>
-              <th width="25%">Descrição</th>
-              <th width="25%">Tipo</th>
-              <th width="25%">Obrigatoriedade</th>
-            </tr>
-            <tr>
-              <td>success</td>
-              <td>boolean</td>
-              <td>Enviar true quando a aprovação/reprovação de pagamento tiver sido recebida com sucesso. O valor false
-                será entendido como erro e a aprovação/reprovação de pagamento será enviada novamente.</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-          </table>
+          <div class="tabelas">
+            <div class="layout-table">
+              <br>
+              <table style="border: 1p%">
+                <tr>
+                  <th width="25%">Campo</th>
+                  <th width="25%">Descrição</th>
+                  <th width="25%">Tipo</th>
+                  <th width="25%">Obrigatoriedade</th>
+                </tr>
+                <tr>
+                  <td>success</td>
+                  <td>boolean</td>
+                  <td>Enviar true quando a aprovação/reprovação de pagamento tiver sido recebida com sucesso. O valor
+                    false
+                    será entendido como erro e a aprovação/reprovação de pagamento será enviada novamente.</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+              </table> <br>
+            </div>
+          </div>
           <br><br>
           </p>
         </div>

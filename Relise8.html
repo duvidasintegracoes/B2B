@@ -168,648 +168,684 @@
           </p>
           <h4>Objeto integrateOrderRequest</h4>
           <p>
-            <br><br>
-          <table style="border: 1p%">
-            <tr>
-              <th width="25%">Parametro</th>
-              <th width="25%">Descrição</th>
-              <th width="25%">Tipo</th>
-              <th width="25%">Obrigatoriedade</th>
-            </tr>
-            <tr>
-              <td>order</td>
-              <td>Pedido</td>
-              <td>Order (lista que armazenara toda requisição)</td>
-              <td><b>Obrigatório</b></td>
+          <div class="tabelas">
+            <div class="layout-table">
+              <br>
+              <table style="border: 1p%">
+                <tr>
+                  <th width="25%">Parametro</th>
+                  <th width="25%">Descrição</th>
+                  <th width="25%">Tipo</th>
+                  <th width="25%">Obrigatoriedade</th>
+                </tr>
+                <tr>
+                  <td>order</td>
+                  <td>Pedido</td>
+                  <td>Order (lista que armazenara toda requisição)</td>
+                  <td><b>Obrigatório</b></td>
 
-            </tr>
-          </table>
-          <br><br>
+                </tr>
+              </table> <br>
+            </div>
+          </div>
+
           </p>
           <h4>Objeto Order</h4>
           <p>
-            <br><br>
-          <table style="border: 1p%">
-            <tr>
-              <th width="25%">Campo</th>
-              <th width="25%">Descrição</th>
-              <th width="25%">Tipo</th>
-              <th width="25%">Obrigatoriedade</th>
-            </tr>
-            <tr>
-              <td>orderId</td>
-              <td>Identificador do pedido</td>
-              <td>String (15)</td>
-              <td><b>Obrigatório</b></td>
+          <div class="tabelas">
+            <div class="layout-table">
+              <br>
+              <table style="border: 1p%">
+                <tr>
+                  <th width="25%">Campo</th>
+                  <th width="25%">Descrição</th>
+                  <th width="25%">Tipo</th>
+                  <th width="25%">Obrigatoriedade</th>
+                </tr>
+                <tr>
+                  <td>orderId</td>
+                  <td>Identificador do pedido</td>
+                  <td>String (15)</td>
+                  <td><b>Obrigatório</b></td>
 
-            </tr>
-            <tr>
-              <td>totalAmount</td>
-              <td>Valor total do pedido</td>
-              <td>Decimal (15,2)</td>
-              <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>totalAmount</td>
+                  <td>Valor total do pedido</td>
+                  <td>Decimal (15,2)</td>
+                  <td><b>Obrigatório</b></td>
 
-            </tr>
-            <tr>
-              <td>totalDiscountAmount</td>
-              <td>Valor total de descontos no pedido</td>
-              <td>Decimal (15,2)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>purchaseDate</td>
-              <td>Data e hora do pedido</td>
-              <td>Date/Time</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>sessionCreationDate</td>
-              <td>Date e hora da sessão que originou o pedido</td>
-              <td>Date/Time</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>applicationVersion</td>
-              <td>Versão da aplicação que gerou o pedido</td>
-              <td>String (20)</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>listId</td>
-              <td>Identificador da lista que originou o pedido (lista de casamento, desejos, etc)</td>
-              <td>String (15)</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>saleChannel</td>
-              <td>Canal de venda. é através desse campo que o distribuidor identificará a origem de qual loja pertence
-                ao pedido. Importante a identificação desse campo principalmente quando o seller é integrado em
-                múltiplas canais (lojas) em nossa plataforma.</td>
-              <td>String (6)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>salesOperatorId</td>
-              <td>Id do operador de venda (Matricula do vendedor)</td>
-              <td>String (20)</td>
-              <td>Opcional, é enviado somente em pedidos de venda assitida (Simulados pelo vendedor) Essa tag será
-                enviada como comentário na integração.</td>
-            </tr>
-            <td>salesOperatorName</td>
-            <td>Nome do operador de venda</td>
-            <td>String (70)</td>
-            <td>Opcional, é enviado somente em pedidos de venda assitida (Simulados pelo vendedor). Essa tag será
-              enviada como comentário na integração.</td>
-            </tr>
-            <tr>
-              <td>purchaseOrder</td>
-              <td>Identificador do pedido de compra de uso do cliente (Exclusivo para Loja Mondelez)</td>
-              <td>String (10)</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>origin</td>
-              <td>Origem do pedido, exemplo: SITE-CUL, APP-TAQTILE ou DEFAULT</td>
-              <td>String (20)</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>deliveries</td>
-              <td>Lista de entregas</td>
-              <td>List <'Delivery'>
-              </td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>customer</td>
-              <td>Cliente (lista de dados)</td>
-              <td>List <'customer'>
-              </td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>billingAddress</td>
-              <td>Endereço de cobrança</td>
-              <td>List <'address'>
-              </td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>paymentList</td>
-              <td>Lista de pagamentos</td>
-              <td>List <'payment'>
-              </td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>freightChargedAmount</td>
-              <td>Valor cobrado de frete</td>
-              <td>Decimal (15,2)</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>freightActualAmount</td>
-              <td>Valor total de frete</td>
-              <td>Decimal (15,2)</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>countDistinctSku</td>
-              <td>Contagem distinta dos SKUs do pedido</td>
-              <td>int</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-          </table>
-          <br><br>
+                </tr>
+                <tr>
+                  <td>totalDiscountAmount</td>
+                  <td>Valor total de descontos no pedido</td>
+                  <td>Decimal (15,2)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>purchaseDate</td>
+                  <td>Data e hora do pedido</td>
+                  <td>Date/Time</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>sessionCreationDate</td>
+                  <td>Date e hora da sessão que originou o pedido</td>
+                  <td>Date/Time</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>applicationVersion</td>
+                  <td>Versão da aplicação que gerou o pedido</td>
+                  <td>String (20)</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>listId</td>
+                  <td>Identificador da lista que originou o pedido (lista de casamento, desejos, etc)</td>
+                  <td>String (15)</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>saleChannel</td>
+                  <td>Canal de venda. é através desse campo que o distribuidor identificará a origem de qual loja
+                    pertence
+                    ao pedido. Importante a identificação desse campo principalmente quando o seller é integrado em
+                    múltiplas canais (lojas) em nossa plataforma.</td>
+                  <td>String (6)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>salesOperatorId</td>
+                  <td>Id do operador de venda (Matricula do vendedor)</td>
+                  <td>String (20)</td>
+                  <td>Opcional, é enviado somente em pedidos de venda assitida (Simulados pelo vendedor) Essa tag será
+                    enviada como comentário na integração.</td>
+                </tr>
+                <td>salesOperatorName</td>
+                <td>Nome do operador de venda</td>
+                <td>String (70)</td>
+                <td>Opcional, é enviado somente em pedidos de venda assitida (Simulados pelo vendedor). Essa tag será
+                  enviada como comentário na integração.</td>
+                </tr>
+                <tr>
+                  <td>purchaseOrder</td>
+                  <td>Identificador do pedido de compra de uso do cliente (Exclusivo para Loja Mondelez)</td>
+                  <td>String (10)</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>origin</td>
+                  <td>Origem do pedido, exemplo: SITE-CUL, APP-TAQTILE ou DEFAULT</td>
+                  <td>String (20)</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>deliveries</td>
+                  <td>Lista de entregas</td>
+                  <td>List <'Delivery'>
+                  </td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>customer</td>
+                  <td>Cliente (lista de dados)</td>
+                  <td>List <'customer'>
+                  </td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>billingAddress</td>
+                  <td>Endereço de cobrança</td>
+                  <td>List <'address'>
+                  </td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>paymentList</td>
+                  <td>Lista de pagamentos</td>
+                  <td>List <'payment'>
+                  </td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>freightChargedAmount</td>
+                  <td>Valor cobrado de frete</td>
+                  <td>Decimal (15,2)</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>freightActualAmount</td>
+                  <td>Valor total de frete</td>
+                  <td>Decimal (15,2)</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>countDistinctSku</td>
+                  <td>Contagem distinta dos SKUs do pedido</td>
+                  <td>int</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+              </table> <br>
+            </div>
+          </div>
+
           </p>
           <h4>Objeto Delivery</h4>
           <p>
-            <br><br>
-          <table style="border: 1p%">
-            <tr>
-              <th width="25%">Campo</th>
-              <th width="25%">Descrição</th>
-              <th width="25%">Tipo</th>
-              <th width="25%">Obrigatoriedade</th>
-            </tr>
-            <tr>
-              <td>orderId</td>
-              <td>Identificador do pedido</td>
-              <td>String (15)</td>
-              <td><b>Obrigatório</b></td>
+          <div class="tabelas">
+            <div class="layout-table">
+              <br>
+              <table style="border: 1p%">
+                <tr>
+                  <th width="25%">Campo</th>
+                  <th width="25%">Descrição</th>
+                  <th width="25%">Tipo</th>
+                  <th width="25%">Obrigatoriedade</th>
+                </tr>
+                <tr>
+                  <td>orderId</td>
+                  <td>Identificador do pedido</td>
+                  <td>String (15)</td>
+                  <td><b>Obrigatório</b></td>
 
-            </tr>
-            <tr>
-              <td>deliveryId</td>
-              <td>Identificador da entrega</td>
-              <td>String (15)</td>
-              <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>deliveryId</td>
+                  <td>Identificador da entrega</td>
+                  <td>String (15)</td>
+                  <td><b>Obrigatório</b></td>
 
-            </tr>
-            </tr>
-            <tr>
-              <td>totalAmount</td>
-              <td>Valor total da entrega</td>
-              <td>Decimal (15,2)</td>
-              <td><b>Obrigatório</b></td>
+                </tr>
+                </tr>
+                <tr>
+                  <td>totalAmount</td>
+                  <td>Valor total da entrega</td>
+                  <td>Decimal (15,2)</td>
+                  <td><b>Obrigatório</b></td>
 
-            </tr>
-            <tr>
-              <td>totalDiscountAmount</td>
-              <td>Valor de descontos na entrega</td>
-              <td>Decimal (15,2)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>orderLineList</td>
-              <td>Lista de itens da entrega</td>
-              <td>List<'OrderLine'>
-              </td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>freightAmount</td>
-              <td>Informações do frete da entrega</td>
-              <td>Freight</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>deliveryAddress</td>
-              <td>Endereço da entrega</td>
-              <td>Address</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-          </table>
-          <br><br>
+                </tr>
+                <tr>
+                  <td>totalDiscountAmount</td>
+                  <td>Valor de descontos na entrega</td>
+                  <td>Decimal (15,2)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>orderLineList</td>
+                  <td>Lista de itens da entrega</td>
+                  <td>List<'OrderLine'>
+                  </td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>freightAmount</td>
+                  <td>Informações do frete da entrega</td>
+                  <td>Freight</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>deliveryAddress</td>
+                  <td>Endereço da entrega</td>
+                  <td>Address</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+              </table> <br>
+            </div>
+          </div>
+
           </p>
           <h4>Objeto OrderLine</h4>
           <p>
-            <br><br>
-          <table style="border: 1p%">
-            <tr>
-              <th width="25%">Campo</th>
-              <th width="25%">Descrição</th>
-              <th width="25%">Tipo</th>
-              <th width="25%">Obrigatoriedade</th>
-            </tr>
-            <tr>
-              <td>sku</td>
-              <td>Identificador do SKU</td>
-              <td>String (30)</td>
-              <td><b>Obrigatório</b></td>
+          <div class="tabelas">
+            <div class="layout-table">
+              <br>
+              <table style="border: 1p%">
+                <tr>
+                  <th width="25%">Campo</th>
+                  <th width="25%">Descrição</th>
+                  <th width="25%">Tipo</th>
+                  <th width="25%">Obrigatoriedade</th>
+                </tr>
+                <tr>
+                  <td>sku</td>
+                  <td>Identificador do SKU</td>
+                  <td>String (30)</td>
+                  <td><b>Obrigatório</b></td>
 
-            </tr>
-            <tr>
-              <td>skuType</td>
-              <td>Tipo do SKU:<br>
-                NOR = Normal (cobrado)<br>
-                FFR = Bonificado (esses itens devem ser faturados com valor zero na NFS)</td>
-              <td>String (3)</td>
-              <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>skuType</td>
+                  <td>Tipo do SKU:<br>
+                    NOR = Normal (cobrado)<br>
+                    FFR = Bonificado (esses itens devem ser faturados com valor zero na NFS)</td>
+                  <td>String (3)</td>
+                  <td><b>Obrigatório</b></td>
 
-            </tr>
-            <tr>
-              <td>quantity</td>
-              <td>Quantidade</td>
-              <td>int</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>catalogListPrice</td>
-              <td>Preço de listagem base no catálogo do último preço DFL para o produto. Não levando em consideração por
-                qual distribuidor foi enviado.</td>
-              <td>Decimal (15,2)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>listPrice</td>
-              <td>Preço de listagem do SKU na sacola.
-                Esse preço pode levar em consideração as taxas de forma de pagamento.</td>
-              <td>Decimal (15,2)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>salePrice</td>
-              <td>Preço da venda.
-                Esse é o preço que o SKU foi, de fato, vendido, incluindo promoções.Quando o SKU é uma bonificação esse
-                preço é R$ 0,00.</td>
-              <td>Decimal (15,2)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>unconditionalDiscountAmount</td>
-              <td>Descontos incondicionais</td>
-              <td>Decimal (15,2) </td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>roundingDiscountAmount</td>
-              <td>Valor total dos arredondamentos de descontos aplicados à linha</td>
-              <td>Decimal (15,2) </td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>promotionList</td>
-              <td>Lista de promoções</td>
-              <td>List<'Promotion'>
-              </td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>freight</td>
-              <td>Informações do frete</td>
-              <td>Freight</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>kitSkuId</td>
-              <td>Identificador do KIT</td>
-              <td>String (30)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>kitSkuName</td>
-              <td>Nome do KIT, caso esse item seja de um KIT</td>
-              <td>String (255)</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>kitQuantity</td>
-              <td>Quantidade desse item no KIT, caso esse item seja de um KIT</td>
-              <td>int</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>service</td>
-              <td>É um serviço?</td>
-              <td>boolean</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>skuName</td>
-              <td>Nome do SKU</td>
-              <td>String (255)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-          </table>
-          <br><br>
+                </tr>
+                <tr>
+                  <td>quantity</td>
+                  <td>Quantidade</td>
+                  <td>int</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>catalogListPrice</td>
+                  <td>Preço de listagem base no catálogo do último preço DFL para o produto. Não levando em consideração
+                    por
+                    qual distribuidor foi enviado.</td>
+                  <td>Decimal (15,2)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>listPrice</td>
+                  <td>Preço de listagem do SKU na sacola.
+                    Esse preço pode levar em consideração as taxas de forma de pagamento.</td>
+                  <td>Decimal (15,2)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>salePrice</td>
+                  <td>Preço da venda.
+                    Esse é o preço que o SKU foi, de fato, vendido, incluindo promoções.Quando o SKU é uma bonificação
+                    esse
+                    preço é R$ 0,00.</td>
+                  <td>Decimal (15,2)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>unconditionalDiscountAmount</td>
+                  <td>Descontos incondicionais</td>
+                  <td>Decimal (15,2) </td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>roundingDiscountAmount</td>
+                  <td>Valor total dos arredondamentos de descontos aplicados à linha</td>
+                  <td>Decimal (15,2) </td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>promotionList</td>
+                  <td>Lista de promoções</td>
+                  <td>List<'Promotion'>
+                  </td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>freight</td>
+                  <td>Informações do frete</td>
+                  <td>Freight</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>kitSkuId</td>
+                  <td>Identificador do KIT</td>
+                  <td>String (30)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>kitSkuName</td>
+                  <td>Nome do KIT, caso esse item seja de um KIT</td>
+                  <td>String (255)</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>kitQuantity</td>
+                  <td>Quantidade desse item no KIT, caso esse item seja de um KIT</td>
+                  <td>int</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>service</td>
+                  <td>É um serviço?</td>
+                  <td>boolean</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>skuName</td>
+                  <td>Nome do SKU</td>
+                  <td>String (255)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+              </table> <br>
+            </div>
+          </div>
+
           </p>
           <h4>Objeto Promotion</h4>
           <p>
-            <br><br>
-          <table style="border: 1p%">
-            <tr>
-              <th width="25%">Campo</th>
-              <th width="25%">Descrição</th>
-              <th width="25%">Tipo</th>
-              <th width="25%">Obrigatoriedade</th>
-            </tr>
-            <tr>
-              <td>promotionId</td>
-              <td>Identificador da promoção</td>
-              <td>String (255)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>promotionName</td>
-              <td>Nome da promoção</td>
-              <td>String (255)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>promotionStartDate</td>
-              <td>Data de início de validade da promo</td>
-              <td>DateTime</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>promotionEndDate</td>
-              <td>Data de fim de validade da promo</td>
-              <td>DateTime</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>campaignId</td>
-              <td>Identificador da campanha da promoção</td>
-              <td>String (255)</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>label</td>
-              <td>Título da promoção aplicada (usada no site para destaque)</td>
-              <td>String (255)</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>type</td>
-              <td>Tipo da promoção. Ex: Frete, Subtotal, Produto,...</td>
-              <td>String (255)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>amount</td>
-              <td>Valor do desconto concedido por está promoção para cada unidade da linha</td>
-              <td>Decimal (15,2)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>roundingAmount</td>
-              <td>Valor do arredondamento desconto concedido por está promoção para TODA a linha</td>
-              <td>Decimal</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>minimumQuantity</td>
-              <td>Nos casos de promoção compre X pague Y, esse campo contem a quantidade minima para receber o desconto
-              </td>
-              <td>int</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>couponPromo</td>
-              <td>Flag que indica se essa promoção será paga pelo fornecedor</td>
-              <td>boolean</td>
-              <td>Opcional</td>
-            </tr>
-          </table>
-          <br><br>
+          <div class="tabelas">
+            <div class="layout-table">
+              <br>
+              <table style="border: 1p%">
+                <tr>
+                  <th width="25%">Campo</th>
+                  <th width="25%">Descrição</th>
+                  <th width="25%">Tipo</th>
+                  <th width="25%">Obrigatoriedade</th>
+                </tr>
+                <tr>
+                  <td>promotionId</td>
+                  <td>Identificador da promoção</td>
+                  <td>String (255)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>promotionName</td>
+                  <td>Nome da promoção</td>
+                  <td>String (255)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>promotionStartDate</td>
+                  <td>Data de início de validade da promo</td>
+                  <td>DateTime</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>promotionEndDate</td>
+                  <td>Data de fim de validade da promo</td>
+                  <td>DateTime</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>campaignId</td>
+                  <td>Identificador da campanha da promoção</td>
+                  <td>String (255)</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>label</td>
+                  <td>Título da promoção aplicada (usada no site para destaque)</td>
+                  <td>String (255)</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>type</td>
+                  <td>Tipo da promoção. Ex: Frete, Subtotal, Produto,...</td>
+                  <td>String (255)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>amount</td>
+                  <td>Valor do desconto concedido por está promoção para cada unidade da linha</td>
+                  <td>Decimal (15,2)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>roundingAmount</td>
+                  <td>Valor do arredondamento desconto concedido por está promoção para TODA a linha</td>
+                  <td>Decimal</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>minimumQuantity</td>
+                  <td>Nos casos de promoção compre X pague Y, esse campo contem a quantidade minima para receber o
+                    desconto
+                  </td>
+                  <td>int</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>couponPromo</td>
+                  <td>Flag que indica se essa promoção será paga pelo fornecedor</td>
+                  <td>boolean</td>
+                  <td>Opcional</td>
+                </tr>
+              </table> <br>
+            </div>
+          </div>
+
           </p>
           <h4>Objeto Freight</h4>
           <p>
-            <br><br>
-          <table style="border: 1p%">
-            <tr>
-              <th width="25%">Campo</th>
-              <th width="25%">Descrição</th>
-              <th width="25%">Tipo</th>
-              <th width="25%">Obrigatoriedade</th>
-            </tr>
-            <tr>
-              <td>chargedAmount</td>
-              <td>Valor de frete cobrado</td>
-              <td>Decimal (15,2)</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>actualAmount</td>
-              <td>Valor de frete sem descontos</td>
-              <td>Decimal (15,2)</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>commercialAmount</td>
-              <td>Margem comercial de frete</td>
-              <td>Decimal (15,2)</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>freightTime</td>
-              <td>Tempo do frete</td>
-              <td>int</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>pickupLeadTime</td>
-              <td>Tempo de espera no armazem</td>
-              <td>int</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>logisticContract</td>
-              <td>Contrato logístico</td>
-              <td>String (25)</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>expectedDeliveryDate</td>
-              <td>Data estimada de entrega</td>
-              <td>Date</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>adjustedDeliveryDate</td>
-              <td>Data estimada de entrega ajustada</td>
-              <td>Date</td>
-              <td>Opcional</td>
-            </tr>
-          </table>
-          <br><br>
+          <div class="tabelas">
+            <div class="layout-table">
+              <br>
+              <table style="border: 1p%">
+                <tr>
+                  <th width="25%">Campo</th>
+                  <th width="25%">Descrição</th>
+                  <th width="25%">Tipo</th>
+                  <th width="25%">Obrigatoriedade</th>
+                </tr>
+                <tr>
+                  <td>chargedAmount</td>
+                  <td>Valor de frete cobrado</td>
+                  <td>Decimal (15,2)</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>actualAmount</td>
+                  <td>Valor de frete sem descontos</td>
+                  <td>Decimal (15,2)</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>commercialAmount</td>
+                  <td>Margem comercial de frete</td>
+                  <td>Decimal (15,2)</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>freightTime</td>
+                  <td>Tempo do frete</td>
+                  <td>int</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>pickupLeadTime</td>
+                  <td>Tempo de espera no armazem</td>
+                  <td>int</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>logisticContract</td>
+                  <td>Contrato logístico</td>
+                  <td>String (25)</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>expectedDeliveryDate</td>
+                  <td>Data estimada de entrega</td>
+                  <td>Date</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>adjustedDeliveryDate</td>
+                  <td>Data estimada de entrega ajustada</td>
+                  <td>Date</td>
+                  <td>Opcional</td>
+                </tr>
+              </table> <br>
+            </div>
+          </div>
+
           </p>
           <h4>Objeto Address</h4>
           <p>
-            <br><br>
-          <table style="border: 1p%">
-            <tr>
-              <th width="25%">Campo</th>
-              <th width="25%">Descrição</th>
-              <th width="25%">Tipo</th>
-              <th width="25%">Obrigatoriedade</th>
-            </tr>
-            <tr>
-              <td>addressId</td>
-              <td> Tipo do endereço (0-Pessoal [PERSONAL](Cobrança), 1-Presente [GIFT](Entrega))</td>
-              <td>int</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>recipientNm</td>
-              <td>Nome do destinatário</td>
-              <td>String (100)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>address</td>
-              <td>Logradouro</td>
-              <td>String (100)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>addressNr</td>
-              <td>Número</td>
-              <td>String (10)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>additionalInfo</td>
-              <td>Informações adicionais</td>
-              <td>String (100)</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>quarter</td>
-              <td>Bairro</td>
-              <td>String (80)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>city</td>
-              <td>Cidade</td>
-              <td>String (60)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>state</td>
-              <td>Estado</td>
-              <td>String (2)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>countryId</td>
-              <td>Identificação do País. Baseado na ISO-3166, padrão alpha 2</td>
-              <td>String (2)</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>postalCd</td>
-              <td>CEP</td>
-              <td>String (8)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>postalCdIntl</td>
-              <td>Código Postal Internacional</td>
-              <td>String (8)</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>reference</td>
-              <td>Referência para a entrega</td>
-              <td>String (100)</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>friendlyNm</td>
-              <td>Identificação do endereço</td>
-              <td>String (100)</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>intercom</td>
-              <td>Indica se existe interfone</td>
-              <td>boolean</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>lift</td>
-              <td>Indica se existe elevador</td>
-              <td>boolean</td>
-              <td>Opcional</td>
-            </tr>
-          </table>
-          <br><br>
+          <div class="tabelas">
+            <div class="layout-table">
+              <br>
+              <table style="border: 1p%">
+                <tr>
+                  <th width="25%">Campo</th>
+                  <th width="25%">Descrição</th>
+                  <th width="25%">Tipo</th>
+                  <th width="25%">Obrigatoriedade</th>
+                </tr>
+                <tr>
+                  <td>addressId</td>
+                  <td> Tipo do endereço (0-Pessoal [PERSONAL](Cobrança), 1-Presente [GIFT](Entrega))</td>
+                  <td>int</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>recipientNm</td>
+                  <td>Nome do destinatário</td>
+                  <td>String (100)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>address</td>
+                  <td>Logradouro</td>
+                  <td>String (100)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>addressNr</td>
+                  <td>Número</td>
+                  <td>String (10)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>additionalInfo</td>
+                  <td>Informações adicionais</td>
+                  <td>String (100)</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>quarter</td>
+                  <td>Bairro</td>
+                  <td>String (80)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>city</td>
+                  <td>Cidade</td>
+                  <td>String (60)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>state</td>
+                  <td>Estado</td>
+                  <td>String (2)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>countryId</td>
+                  <td>Identificação do País. Baseado na ISO-3166, padrão alpha 2</td>
+                  <td>String (2)</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>postalCd</td>
+                  <td>CEP</td>
+                  <td>String (8)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>postalCdIntl</td>
+                  <td>Código Postal Internacional</td>
+                  <td>String (8)</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>reference</td>
+                  <td>Referência para a entrega</td>
+                  <td>String (100)</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>friendlyNm</td>
+                  <td>Identificação do endereço</td>
+                  <td>String (100)</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>intercom</td>
+                  <td>Indica se existe interfone</td>
+                  <td>boolean</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>lift</td>
+                  <td>Indica se existe elevador</td>
+                  <td>boolean</td>
+                  <td>Opcional</td>
+                </tr>
+              </table> <br>
+            </div>
+          </div>
+
           </p>
           <h4>Objeto Customer</h4>
           <p>
-            <br><br>
-          <table style="border: 1p%">
-            <tr>
-              <th width="25%">Campo</th>
-              <th width="25%">Descrição</th>
-              <th width="25%">Tipo</th>
-              <th width="25%">Obrigatoriedade</th>
-            </tr>
-            <tr>
-              <td>customerId</td>
-              <td>Identificador do cliente</td>
-              <td>String (15)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>documentNumber</td>
-              <td>CNPJ do cliente</td>
-              <td>String (15)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>name</td>
-              <td>Razão Social do cliente</td>
-              <td>String (100)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>email</td>
-              <td>Email</td>
-              <td>String (255)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>phoneMobile</td>
-              <td>Telefone celular</td>
-              <td>String (20)</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>phoneOffice</td>
-              <td>Telefone comercial</td>
-              <td>String (20)</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>state_subscription</td>
-              <td>Inscrição estadual</td>
-              <td>String (20)</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>representativeNm</td>
-              <td>Nome do representante comercial</td>
-              <td>String (100)</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>createDt</td>
-              <td>Data de criação do cliente</td>
-              <td>Date</td>
-              <td>Opcional</td>
-            </tr>
-            <tr>
-              <td>updateDt</td>
-              <td>Data da última atualização do cliente</td>
-              <td>Date</td>
-              <td>Opcional</td>
-            </tr>
-          </table>
-          <br><br>
+          <div class="tabelas">
+            <div class="layout-table">
+              <br>
+              <table style="border: 1p%">
+                <tr>
+                  <th width="25%">Campo</th>
+                  <th width="25%">Descrição</th>
+                  <th width="25%">Tipo</th>
+                  <th width="25%">Obrigatoriedade</th>
+                </tr>
+                <tr>
+                  <td>customerId</td>
+                  <td>Identificador do cliente</td>
+                  <td>String (15)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>documentNumber</td>
+                  <td>CNPJ do cliente</td>
+                  <td>String (15)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>name</td>
+                  <td>Razão Social do cliente</td>
+                  <td>String (100)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>email</td>
+                  <td>Email</td>
+                  <td>String (255)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>phoneMobile</td>
+                  <td>Telefone celular</td>
+                  <td>String (20)</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>phoneOffice</td>
+                  <td>Telefone comercial</td>
+                  <td>String (20)</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>state_subscription</td>
+                  <td>Inscrição estadual</td>
+                  <td>String (20)</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>representativeNm</td>
+                  <td>Nome do representante comercial</td>
+                  <td>String (100)</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>createDt</td>
+                  <td>Data de criação do cliente</td>
+                  <td>Date</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>updateDt</td>
+                  <td>Data da última atualização do cliente</td>
+                  <td>Date</td>
+                  <td>Opcional</td>
+                </tr>
+              </table> <br>
+            </div>
+          </div>
+
           </p>
           <h4>Objeto Payment Informações</h4>
           <p>
@@ -827,109 +863,126 @@
           </p>
           <h4>Objeto abstractPayment</h4>
           <p>
-            <br><br>
-          <table style="margin-right: 20px">
-            <tr>
-              <th width="25%">Campo</th>
-              <th width="25%">Descrição</th>
-              <th width="25%">Tipo</th>
-              <th width="25%">Obrigatoriedade</th>
-            </tr>
-            <tr>
-              <td>paymentType</td>
-              <td>Tipos de pagamento:
-                <li>BILL: Boleto à vista</li>
-                <li>CRL-{Dias}:Boleto Faturado, onde {dias}representa a quantidade
-                  de dias para o vencimento. Ex: 7, 14,21,28.</li>
-                <li>COUPON: Vale Troca </li>
-                <li>CREDIT_SITE: Vale Compra Agora. Crédito disponível para o cliente no site (fidelidade)
-                </li>
-                <li>PIX: DISPONÍVEL PARA ALGUMAS LOJAS. CONSULTAR A DISPONIBILIDADE JUNTO A INFRACOMMERCE.</li>
-              </td>
-              <td>String (4000)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>value</td>
-              <td>Valor pago através desse meio de pagamento</td>
-              <td>Decimal (15,2)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>billType</td>
-              <td>Informa para o cliente qual o tipo de limite de crédito utilizado na venda (SELLER/IFC)
-                Caso o tipo de pagamento não seja boleto faturado, o campo irá vazio.</td>
-              <td>String(6)</td>
-              <td>Obrigatório apenas para integrações com limite de crédito gerenciado pelo Infrapay (limite de credito
-                infracommerce)</td>
-            </tr>
-          </table>
-          <br><br>
+          <div class="tabelas">
+            <div class="layout-table">
+              <br>
+              <table style="margin-right: 20px">
+                <tr>
+                  <th width="25%">Campo</th>
+                  <th width="25%">Descrição</th>
+                  <th width="25%">Tipo</th>
+                  <th width="25%">Obrigatoriedade</th>
+                </tr>
+                <tr>
+                  <td>paymentType</td>
+                  <td>Tipos de pagamento:
+                    <li>BILL: Boleto à vista</li>
+                    <li>CRL-{Dias}:Boleto Faturado, onde {dias}representa a quantidade
+                      de dias para o vencimento. Ex: 7, 14,21,28.</li>
+                    <li>COUPON: Vale Troca </li>
+                    <li>CREDIT_SITE: Vale Compra Agora. Crédito disponível para o cliente no site (fidelidade)
+                    </li>
+                    <li>PIX: DISPONÍVEL PARA ALGUMAS LOJAS. CONSULTAR A DISPONIBILIDADE JUNTO A INFRACOMMERCE.</li>
+                  </td>
+                  <td>String (4000)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>value</td>
+                  <td>Valor pago através desse meio de pagamento</td>
+                  <td>Decimal (15,2)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>billType</td>
+                  <td>Informa para o cliente qual o tipo de limite de crédito utilizado na venda (SELLER/IFC)
+                    Caso o tipo de pagamento não seja boleto faturado, o campo irá vazio.</td>
+                  <td>String(6)</td>
+                  <td>Obrigatório apenas para integrações com limite de crédito gerenciado pelo Infrapay (limite de
+                    credito
+                    infracommerce)</td>
+                </tr>
+              </table> <br>
+            </div>
+          </div>
+
           </p>
           <h4></h4>
           <p>
             <br>Objeto creditCardPayment<br>
-          <table style="border: 1p%">
-            <tr>
-              <th width="25%">Campo</th>
-              <th width="25%">Descrição</th>
-              <th width="25%">Tipo</th>
-              <th width="25%">Obrigatoriedade</th>
-            </tr>
-            <tr>
-              <td>paymentType</td>
-              <td>Tipo do Pagamento:
-                <li>CREDIT_CARD: Cartão de crédito</li>
-              </td>
-              <td>String (4000)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>value</td>
-              <td>Valor pago através desse meio de pagamento</td>
-              <td>String (4000)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>numberOfInstallments</td>
-              <td>Quantidade de parcelas</td>
-              <td>int</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-          </table>
-          <br><br>
+          <div class="tabelas">
+            <div class="layout-table">
+              <br>
+              <table style="border: 1p%">
+                <tr>
+                  <th width="25%">Campo</th>
+                  <th width="25%">Descrição</th>
+                  <th width="25%">Tipo</th>
+                  <th width="25%">Obrigatoriedade</th>
+                </tr>
+                <tr>
+                  <td>paymentType</td>
+                  <td>Tipo do Pagamento:
+                    <li>CREDIT_CARD: Cartão de crédito</li>
+                  </td>
+                  <td>String (4000)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>value</td>
+                  <td>Valor pago através desse meio de pagamento</td>
+                  <td>String (4000)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>numberOfInstallments</td>
+                  <td>Quantidade de parcelas</td>
+                  <td>int</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+              </table> <br>
+            </div>
+          </div>
+
           </p>
           <h4>Objeto integrateOrderResponse</h4>
           <p>
-            <br><br>
-          <table style="border: 1p%">
-            <tr>
-              <th width="25%">Campo</th>
-              <th width="25%">Descrição</th>
-              <th width="25%">Tipo</th>
-              <th width="25%">Obrigatoriedade</th>
-            </tr>
-            <tr>
-              <td>status</td>
-              <td>Status da resposta da integração de pedido.
-                Enviar o texto “OK” sem aspas quando estiver tudo ok com a integração. O status OK também deve ser
-                retornado quando reenviamos um pedido em caso de solicitação do seller
-              </td>
-              <td>String (4000)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-            <tr>
-              <td>message</td>
-              <td>Mensagem indicando se o pedido foi recebido com sucesso ou se houve um erro. Caso seja uma mensagem
-                indicando o erro deve-se colocar o máximo possível de informação para ajudar a identificar o problema.
-                Como padrão esperamos. "Pedido integrado com sucesso" para o primeiro envio e , "Pedido ja existe no ERP
-                caso o mesmo pedido seja reenviado pela plataforma."
-              </td>
-              <td>String (4000)</td>
-              <td><b>Obrigatório</b></td>
-            </tr>
-          </table>
-          <br><br>
+          <div class="tabelas">
+            <div class="layout-table">
+              <br>
+              <table style="border: 1p%">
+                <tr>
+                  <th width="25%">Campo</th>
+                  <th width="25%">Descrição</th>
+                  <th width="25%">Tipo</th>
+                  <th width="25%">Obrigatoriedade</th>
+                </tr>
+                <tr>
+                  <td>status</td>
+                  <td>Status da resposta da integração de pedido.
+                    Enviar o texto “OK” sem aspas quando estiver tudo ok com a integração. O status OK também deve ser
+                    retornado quando reenviamos um pedido em caso de solicitação do seller
+                  </td>
+                  <td>String (4000)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>message</td>
+                  <td>Mensagem indicando se o pedido foi recebido com sucesso ou se houve um erro. Caso seja uma
+                    mensagem
+                    indicando o erro deve-se colocar o máximo possível de informação para ajudar a identificar o
+                    problema.
+                    Como padrão esperamos. "Pedido integrado com sucesso" para o primeiro envio e , "Pedido ja existe no
+                    ERP
+                    caso o mesmo pedido seja reenviado pela plataforma."
+                  </td>
+                  <td>String (4000)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+              </table> <br>
+            </div>
+          </div>
+
           </p>
           <h4>Informações Complementares sobre tipos de pedidos</h4>
           <p>
@@ -2078,7 +2131,8 @@
               <'paymentType>CRL-7<' /paymentType>). Diferente dos modelos de XML acima, não houve desconto neste pedido,
                   pois a tag totalDiscountAmount está com valor zerado. Para as demais formas de pagamento em boleto
                   faturado o que é modificado são os valores de dias informados após o CRL, exemplo: CRL-14. CRL-21. E
-                  para casos de boleto faturado parcelado pe enviado por exemplo: CRL-7_14_21_28.</i>
+                  para casos de boleto faturado parcelado pe enviado por exemplo: CRL-7_14_21_28.
+            </i>
             <br><br>
           </p>
           <h4>Pedido com boleto faturado para 14 dias contendo produtos bonificados</h4>

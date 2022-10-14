@@ -59,24 +59,30 @@
         <div class="faq">
           <h2 class="title">Integração de clientes</h2>
           <p>
-            A integração de clientes nasce na plataforma, no ato que um cliente realiza o cadastro no site, que é integrado com o Sintegra onde a maior parte dos dados cadastrais são extraídos por ele.
-            <br> <br> 
+            A integração de clientes nasce na plataforma, no ato que um cliente realiza o cadastro no site, que é
+            integrado com o Sintegra onde a maior parte dos dados cadastrais são extraídos por ele.
+            <br> <br>
           </p>
           <p>
-            Para que o distribuidor receber esses dados, é preciso que o mesmo disponibilize um web service exposto na web, para que os envios sejam integrados em seu sistema (banco de dados e ERP).
+            Para que o distribuidor receber esses dados, é preciso que o mesmo disponibilize um web service exposto na
+            web, para que os envios sejam integrados em seu sistema (banco de dados e ERP).
             <br>
           </p>
           <p>
             <br>
             <strong> Alguns Requisítos: </strong>
             <br><br>
-            - Para que o distribuidor esteja apto para receber essas informações, é necessário que o mesmo disponibilize um web servisse exposto na web, para que essa integração ocorra ao distribuidor, o padrão de envio dos dados são XML, no protocolo SOAP, e para criar esse componente, disponibilizamos os arquivo WSDL e XSD neste manual, no item material de apoio.
+            - Para que o distribuidor esteja apto para receber essas informações, é necessário que o mesmo disponibilize
+            um web servisse exposto na web, para que essa integração ocorra ao distribuidor, o padrão de envio dos dados
+            são XML, no protocolo SOAP, e para criar esse componente, disponibilizamos os arquivo WSDL e XSD neste
+            manual, no item material de apoio.
             <br> <br>
             - O endpoint precisa estar protegido por criptografia Basic 64 por questão de segurança.
             <br> <br>
             - O endpoint precisa possuir um certificado digital instalado.
             <br> <br>
-            - O distribuidor precisa retornar um status inicial para os novos clientes enviados, veremos o exemplo mais adiante.
+            - O distribuidor precisa retornar um status inicial para os novos clientes enviados, veremos o exemplo mais
+            adiante.
             <br><br>
           </p>
           <h4>Exemplo de requisição enviada da plataforma para o distribuidor.</h4>
@@ -127,7 +133,7 @@
     </soapenv:Envelope>
     
                    </textarea>
-                   <br><br>
+            <br><br>
           </p>
           <p>
             <br>
@@ -145,18 +151,25 @@
 
 
            </textarea>
-           <br><br>
-          </p>
-          <p>
-            O retorno de Status PEN deverá ser retornado pelo distribuidor como resposta para todo novo cliente enviado via plataforma. Um cliente com esse Status, já está apto para efetuar pedidos com as modalidades de pagamentos gerenciadas pela Infracommerce.
             <br><br>
           </p>
           <p>
-            <strong>Ressalva</strong>: Caso o limite de crédito for gerenciado por alguma fintech parteira do marketplace, e o cliente tiver crédito liberado, a plataforma também possibilitará a compra na modalidade boleto faturado mesmo com status pré aprovado.
+            O retorno de Status PEN deverá ser retornado pelo distribuidor como resposta para todo novo cliente enviado
+            via plataforma. Um cliente com esse Status, já está apto para efetuar pedidos com as modalidades de
+            pagamentos gerenciadas pela Infracommerce.
             <br><br>
           </p>
           <p>
-            Caso o cliente entre no site posteriormente para atualizar algum dado cadastral, como telefone, e-mail e etc, a informação enviada da plataforma para o distruibuidor será uma nova notificação de cadastro contendo toda a requisição. Neste caso, é sugerido que o seller retorne o status atual que o cliente se encontra. (PEN, APV ou RPV).
+            <strong>Ressalva</strong>: Caso o limite de crédito for gerenciado por alguma fintech parteira do
+            marketplace, e o cliente tiver crédito liberado, a plataforma também possibilitará a compra na modalidade
+            boleto faturado mesmo com status pré aprovado.
+            <br><br>
+          </p>
+          <p>
+            Caso o cliente entre no site posteriormente para atualizar algum dado cadastral, como telefone, e-mail e
+            etc, a informação enviada da plataforma para o distruibuidor será uma nova notificação de cadastro contendo
+            toda a requisição. Neste caso, é sugerido que o seller retorne o status atual que o cliente se encontra.
+            (PEN, APV ou RPV).
             <br><br>
           </p>
 
@@ -172,236 +185,267 @@
           <h2 class="title">Pontos de atenção:</h2>
           <p>
             <i class="gambi">
-              Durante a implantação, será enviado para o distribuidor envios massivos de clientes, atendidos pelo seu range de CEP, por este motivo, é importante que toda estrutura do seller, de banco, infraestrutura, seja capaz de receber esses dados e integrá-los. Na etapa de homologação é possível antecipar essa carga, a fim de evitar quaisquer eventuais problemas na etapa de produção.
+              Durante a implantação, será enviado para o distribuidor envios massivos de clientes, atendidos pelo seu
+              range de CEP, por este motivo, é importante que toda estrutura do seller, de banco, infraestrutura, seja
+              capaz de receber esses dados e integrá-los. Na etapa de homologação é possível antecipar essa carga, a fim
+              de evitar quaisquer eventuais problemas na etapa de produção.
               <br> <br>
             </i>
             <i class="gambi">
-              Importante ressaltar que caso o seller não queira que as informações cadastrais enviadas via plataforma sejam atualizadas em sua base já existente, como telefone, endereço, etc é necessário que o distribuidor desenvolva uma condição para não atualizar os campos desejados.
+              Importante ressaltar que caso o seller não queira que as informações cadastrais enviadas via plataforma
+              sejam atualizadas em sua base já existente, como telefone, endereço, etc é necessário que o distribuidor
+              desenvolva uma condição para não atualizar os campos desejados.
               <br> <br>
             </i>
             <i class="gambi">
-              Motivo: Antes da entrega do Seller em produção, a plataforma executará uma API responsável por enviar todos os clientes (CNPJ’s). Lembrando essa validação opcional não deve impedir as integrações de clientes, somente impedir que os campos na notificação de cadastro não atualizem informações indesejadas.
+              Motivo: Antes da entrega do Seller em produção, a plataforma executará uma API responsável por enviar
+              todos os clientes (CNPJ’s). Lembrando essa validação opcional não deve impedir as integrações de clientes,
+              somente impedir que os campos na notificação de cadastro não atualizem informações indesejadas.
               <br> <br>
             </i>
           </p>
           <h4>Objeto notifyCustomerCreationRequest</h4>
           <p>
-            <div class="tabelas">
-              <div class="layout-table">
-            <table style="border: 1p%">
-              <tr>
-                <th width="25%">Campo</th>
-                <th width="25%">Descrição</th>
-                <th width="25%">Tipo</th>
-                 <th width="25%">Obrigatoriedade</th>
-              </tr> 
-               <tr>
-                <td>customer</td>
-                <td>Cliente que foi criado</td>
-                <td>Customer</td>
+          <div class="tabelas">
+            <div class="layout-table">
+              <table style="border: 1p%">
+                <tr>
+                  <th width="25%">Campo</th>
+                  <th width="25%">Descrição</th>
+                  <th width="25%">Tipo</th>
+                  <th width="25%">Obrigatoriedade</th>
+                </tr>
+                <tr>
+                  <td>customer</td>
+                  <td>Cliente que foi criado</td>
+                  <td>Customer</td>
                   <td><b>Obrigatório</b></td>
-              </tr>
-</table> <br> </div> </div>
+                </tr>
+              </table> <br>
+            </div>
+          </div>
 
           </p>
           <h4>Objeto Customer</h4>
           <p>
-            <div class="tabelas">
-              <div class="layout-table">
-                <br>
-<table style="margin-right: 20px">
+          <div class="tabelas">
+            <div class="layout-table">
+              <br>
+              <table style="margin-right: 20px">
 
-  <tr>
-    <th width="25%">Campo</th>
-    <th width="25%">Descrição</th>
-    <th width="25%">Tipo</th>
-     <th width="25%">Obrigatoriedade</th>
-  </tr> 
-   <tr>
-    <td>documentNr</td>
-    <td>CNPJ do cliente</td>
-    <td>String (15)</td>
-      <td><b>Obrigatório</b></td>
-  </tr>
-  <tr>
-    <td>name</td>
-    <td>Razão Social do cliente</td>
-    <td>String (100)</td>
-      <td><b>Obrigatório</b></td>
-  </tr>
-  <tr>
-    <td>email</td>
-    <td>Email</td>
-    <td>String (255)</td>
-      <td><b>Obrigatório</b></td>
-  </tr>
-     <tr>
-    <td>stateSubscription</td>
-    <td>Inscrição estadual</td>
-    <td>String (20)</td>
-      <td>Opcional, quando não houver incrição, será enviado o campo sem dados</td>
-  </tr>
-       <tr>
-    <td>representativeNm</td>
-    <td>Nome do representante comercial</td>
-    <td>String (100)</td>
-      <td>Opcional</td>
-  </tr>
-         <tr>
-    <td>createDate</td>
-    <td>Data de criação</td>
-    <td>Date/Time</td>
-      <td>Opcional</td>
-  </tr>
-        <tr>
-    <td>addressList</td>
-    <td>Lista de endereços</td>
-    <td>List<'Address></td>
-      <td>Opcional</td>
-  </tr>
-      <tr>
-    <td>phoneList</td>
-    <td>Lista de telefones</td>
-    <td>List<'Phone></td>
-      <td>Opcional</td>
-  </tr>
-</table> <br> </div> </div>  
+                <tr>
+                  <th width="25%">Campo</th>
+                  <th width="25%">Descrição</th>
+                  <th width="25%">Tipo</th>
+                  <th width="25%">Obrigatoriedade</th>
+                </tr>
+                <tr>
+                  <td>documentNr</td>
+                  <td>CNPJ do cliente</td>
+                  <td>String (15)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>name</td>
+                  <td>Razão Social do cliente</td>
+                  <td>String (100)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>email</td>
+                  <td>Email</td>
+                  <td>String (255)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>stateSubscription</td>
+                  <td>Inscrição estadual</td>
+                  <td>String (20)</td>
+                  <td>Opcional, quando não houver incrição, será enviado o campo sem dados</td>
+                </tr>
+                <tr>
+                  <td>representativeNm</td>
+                  <td>Nome do representante comercial</td>
+                  <td>String (100)</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>createDate</td>
+                  <td>Data de criação</td>
+                  <td>Date/Time</td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>addressList</td>
+                  <td>Lista de endereços</td>
+                  <td>List<'Address>
+                  </td>
+                  <td>Opcional</td>
+                </tr>
+                <tr>
+                  <td>phoneList</td>
+                  <td>Lista de telefones</td>
+                  <td>List<'Phone>
+                  </td>
+                  <td>Opcional</td>
+                </tr>
+              </table> <br>
+            </div>
+          </div>
           </p>
           <h4>Objeto Address</h4>
           <p>
-            <div class="tabelas">
-              <div class="layout-table">
-                <br>
-            <table style="border: 1p%">
-              <tr>
-                <th width="25%">Campo</th>
-                <th width="25%">Descrição</th>
-                <th width="25%">Tipo</th>
-                 <th width="25%">Obrigatoriedade</th>
-              </tr> 
-               <tr>
-                <td>recipientNm</td>
-                <td>Nome do destinatário</td>
-                <td>String (100)</td>
-                  <td><b>Obrigatório</b></td>
-              </tr>
-                 <tr>
-                <td>address</td>
-                <td>Logradouro</td>
-                <td>String (100)</td>
-                  <td><b>Obrigatório</b></td>
-              </tr>
-                  <tr>
-                <td>addressNr</td>
-                <td>Número</td>
-                <td>String (10)</td>
-                  <td><b>Obrigatório</b></td>
-              </tr>
+          <div class="tabelas">
+            <div class="layout-table">
+              <br>
+              <table style="border: 1p%">
                 <tr>
-                <td>additionalInfo</td>
-                <td>Informações adicionais</td>
-                <td>String (100)</td>
+                  <th width="25%">Campo</th>
+                  <th width="25%">Descrição</th>
+                  <th width="25%">Tipo</th>
+                  <th width="25%">Obrigatoriedade</th>
+                </tr>
+                <tr>
+                  <td>recipientNm</td>
+                  <td>Nome do destinatário</td>
+                  <td>String (100)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>address</td>
+                  <td>Logradouro</td>
+                  <td>String (100)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>addressNr</td>
+                  <td>Número</td>
+                  <td>String (10)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>additionalInfo</td>
+                  <td>Informações adicionais</td>
+                  <td>String (100)</td>
                   <td>Opcional</td>
-              </tr>
-               <tr>
-                <td>quarter</td>
-                <td>Bairro</td>
-                <td>String (80)</td>
+                </tr>
+                <tr>
+                  <td>quarter</td>
+                  <td>Bairro</td>
+                  <td>String (80)</td>
                   <td><b>Obrigatório</b></td>
-              </tr>
-              <tr>
-                <td>city</td>
-                <td>Cidade</td>
-                <td>String (60)</td>
+                </tr>
+                <tr>
+                  <td>city</td>
+                  <td>Cidade</td>
+                  <td>String (60)</td>
                   <td><b>Obrigatório</b></td>
-              </tr>
-               <tr>
-                <td>state</td>
-                <td>UF do Estado</td>
-                <td>String (2)</td>
+                </tr>
+                <tr>
+                  <td>state</td>
+                  <td>UF do Estado</td>
+                  <td>String (2)</td>
                   <td><b>Obrigatório</b></td>
-              </tr>
-               <tr>
-                <td>postalCd</td>
-                <td>CEP</td>
-                <td>String (8)</td>
+                </tr>
+                <tr>
+                  <td>postalCd</td>
+                  <td>CEP</td>
+                  <td>String (8)</td>
                   <td><b>Obrigatório</b></td>
-              </tr>
-            </table> <br> </div> </div>
-            
+                </tr>
+              </table> <br>
+            </div>
+          </div>
+
           </p>
           <h4>Objeto Phone</h4>
           <p>
-            <div class="tabelas">
-              <div class="layout-table">
-                <br>
-            <table style="border: 1p%">
-              <tr>
-                <th width="25%">Campo</th>
-                <th width="25%">Descrição</th>
-                <th width="25%">Tipo</th>
-                 <th width="25%">Obrigatoriedade</th>
-              </tr> 
-               <tr>
-                <td>phoneTp</td>
-                <td>Tipo do telefone: 1 – Comercial
-2 – Celular</td>
-                <td>int</td>
-                  <td><b>Obrigatório</b></td>
-              </tr>
+          <div class="tabelas">
+            <div class="layout-table">
+              <br>
+              <table style="border: 1p%">
                 <tr>
-                <td>areaCd</td>
-                <td>Código de área (DDD)</td>
-                <td>String (4)</td>
-                  <td><b>Obrigatório</b></td>
-              </tr>
+                  <th width="25%">Campo</th>
+                  <th width="25%">Descrição</th>
+                  <th width="25%">Tipo</th>
+                  <th width="25%">Obrigatoriedade</th>
+                </tr>
                 <tr>
-                <td>phoneNr</td>
-                <td>Número do telefone</td>
-                <td>long</td>
+                  <td>phoneTp</td>
+                  <td>Tipo do telefone: 1 – Comercial
+                    2 – Celular</td>
+                  <td>int</td>
                   <td><b>Obrigatório</b></td>
-              </tr>
+                </tr>
+                <tr>
+                  <td>areaCd</td>
+                  <td>Código de área (DDD)</td>
+                  <td>String (4)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>phoneNr</td>
+                  <td>Número do telefone</td>
+                  <td>long</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
 
 
-            </table> <br> </div> </div>
-            
+              </table> <br>
+            </div>
+          </div>
+
           </p>
           <h4>Objeto notifyCustomerCreationResponse</h4>
           <p>
-            <div class="tabelas">
-              <div class="layout-table">
-                <br>
-            <table style="border: 1p%">
-              <tr>
-                <th width="25%">Campo</th>
-                <th width="25%">Descrição</th>
-                <th width="25%">Tipo</th>
-                 <th width="25%">Obrigatoriedade</th>
-              </tr> 
-               <tr>
-                <td>status</td>
-                <td>Status da aptidão do cliente para realizar compras.<br>
+          <div class="tabelas">
+            <div class="layout-table">
+              <br>
+              <table style="border: 1p%">
+                <tr>
+                  <th width="25%">Campo</th>
+                  <th width="25%">Descrição</th>
+                  <th width="25%">Tipo</th>
+                  <th width="25%">Obrigatoriedade</th>
+                </tr>
+                <tr>
+                  <td>status</td>
+                  <td>Status da aptidão do cliente para realizar compras.<br>
 
-                  <li style="font-size:  90%"><b style="background-color: white">PEN</b>: Pendente de análise. Primeiro status que deve ser retornado pelo distribuidor durante o envio de um novo cadastro via plataforma.</li>
-                  <li style="font-size:  90%"><b style="background-color: white">APV</b>: Aprovado, esse retorno só deve ser realizado em caso de atualização cadastral, para manter o mesmo status de aprovado, caso o mesmo tenha sido aprovado anteriormente </li>
-                  <li style="font-size:  90%"><b style="background-color: white">RPV</b>: reprovado, retornar esse status na mesma condição do contexto do aprovado. </li></td>
-                <td>String (3)</td>
+                    <li style="font-size:  90%"><b style="background-color: white">PEN</b>: Pendente de análise.
+                      Primeiro status que deve ser retornado pelo distribuidor durante o envio de um novo cadastro via
+                      plataforma.</li>
+                    <li style="font-size:  90%"><b style="background-color: white">APV</b>: Aprovado, esse retorno só
+                      deve ser realizado em caso de atualização cadastral, para manter o mesmo status de aprovado, caso
+                      o mesmo tenha sido aprovado anteriormente </li>
+                    <li style="font-size:  90%"><b style="background-color: white">RPV</b>: reprovado, retornar esse
+                      status na mesma condição do contexto do aprovado. </li>
+                  </td>
+                  <td>String (3)</td>
                   <td><b>Obrigatório</b></td>
-              </tr>
-            </table> <br> </div> </div>
-            
+                </tr>
+              </table> <br>
+            </div>
+          </div>
+
           </p>
           <p>
-            Informações complementares sobre o retorno para melhor entendimento: Todo novo cliente cadastrado na plataforma é enviado para o distribuidor, o retorno da requisição do web service do distribuidor deverá ser PEN, com esse status, o cliente poderá efetuar pedidos nas modalidades de pedidos, cujo meio de pagamento é gerenciado pela plataforma. Porém, é possível deixar uma flag ativa na plataforma, que possibilite que, somente um cliente com status de aprovação consiga efetuar quaisquer tipo de pedido.
+            Informações complementares sobre o retorno para melhor entendimento: Todo novo cliente cadastrado na
+            plataforma é enviado para o distribuidor, o retorno da requisição do web service do distribuidor deverá ser
+            PEN, com esse status, o cliente poderá efetuar pedidos nas modalidades de pedidos, cujo meio de pagamento é
+            gerenciado pela plataforma. Porém, é possível deixar uma flag ativa na plataforma, que possibilite que,
+            somente um cliente com status de aprovação consiga efetuar quaisquer tipo de pedido.
             <br><br>
           </p>
-          <p>Toda vez que o cliente realiza uma alteração cadastral na plataforma, é enviado uma nova notificação de cadastro para o distribuidor por completa, nesta, o distribuidor pode retornar APV ou RPV dependendo do cenário atual em que o cliente se encontra.
+          <p>Toda vez que o cliente realiza uma alteração cadastral na plataforma, é enviado uma nova notificação de
+            cadastro para o distribuidor por completa, nesta, o distribuidor pode retornar APV ou RPV dependendo do
+            cenário atual em que o cliente se encontra.
             <br><br>
           </p>
 
         </div>
     </section>
-    
+
   </main>
 
   <footer class="section">
