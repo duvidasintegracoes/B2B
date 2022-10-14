@@ -211,93 +211,111 @@
           <h2 class="title">Objetos que contemplam a integração de Preços XML.</h2>
           <p>
             <br><br>
-          <p><b>Objeto integrateProductPriceFromSku</b></p>
+          </p>
+          <h4>Objeto integrateProductPriceFromSku</h4>
+          <div class="tabelas">
+            <div class="layout-table">
+              <br>
+              <table style="border: 1p%">
+                <tr>
+                  <th width="25%">Parâmetro</th>
+                  <th width="25%">Descrição</th>
+                  <th width="25%">Tipo</th>
+                  <th width="25%">Obrigatoriedade</th>
+                </tr>
+                <tr>
+                  <td>sku_list</td>
+                  <td>Lista do objeto sku</td>
+                  <td>List<'Sku>
+                  </td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+              </table>
+              <br>
+            </div>
+          </div>
+          <h4>Objeto Sku</h4>
+          <div class="tabelas">
+            <div class="layout-table">
+              <br>
+              <table style="border: 1p%">
+                <tr>
+                  <th width="25%">Campo</th>
+                  <th width="25%">Descrição</th>
+                  <th width="25%">Tipo</th>
+                  <th width="25%">Obrigatoriedade</th>
+                </tr>
+                <tr>
+                  <td>skuId</td>
+                  <td>Código do sku do produto</td>
+                  <td>String (30)</td>
+                  <td><b>Obrigatório</b></td>
 
-          <table style="border: 1p%">
-            <tr>
-              <th width="25%">Parâmetro</th>
-              <th width="25%">Descrição</th>
-              <th width="25%">Tipo</th>
-              <th width="25%">Obrigatoriedade</th>
-            </tr>
-            <tr>
-              <td>sku_list</td>
-              <td>Lista do objeto sku</td>
-              <td>List<'Sku>
-              </td>
-              <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>productPriceList</td>
+                  <td>Lista de objetos ProductPrice</td>
+                  <td>List<'ProductPrice>
+                  </td>
+                  <td><b>Obrigatório</b></td>
 
-            </tr>
-          </table>
-          <br>
-          <p><b>Objeto Sku</b></p>
+                </tr>
+              </table>
+              <br>
+            </div>
+          </div>
 
-          <table style="border: 1p%">
-            <tr>
-              <th width="25%">Campo</th>
-              <th width="25%">Descrição</th>
-              <th width="25%">Tipo</th>
-              <th width="25%">Obrigatoriedade</th>
-            </tr>
-            <tr>
-              <td>skuId</td>
-              <td>Código do sku do produto</td>
-              <td>String (30)</td>
-              <td><b>Obrigatório</b></td>
+          <h4>Objeto ProductPrice</h4>
+          <div class="tabelas">
+            <div class="layout-table">
+              <br>
+              <table style="border: 1p%">
+                <tr>
+                  <th width="25%">Campo</th>
+                  <th width="25%">Descrição</th>
+                  <th width="25%">Tipo</th>
+                  <th width="25%">Obrigatoriedade</th>
+                </tr>
+                <tr>
+                  <td>priceValue</td>
+                  <td>Valor do preço</td>
+                  <td>Decimal (15,2)</td>
+                  <td><b>Obrigatório</b></td>
 
-            </tr>
-            <tr>
-              <td>productPriceList</td>
-              <td>Lista de objetos ProductPrice</td>
-              <td>List<'ProductPrice>
-              </td>
-              <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>priceTp</td>
+                  <td>Tabela de preço</td>
+                  <td>String (10)</td>
+                  <td><b>Obrigatório</b></td>
 
-            </tr>
-          </table>
-          <br>
-          <p><b>Objeto ProductPrice</b></p>
+                </tr>
+              </table>
+              <br>
+            </div>
+          </div>
+          <h4>Objeto integrateProductPriceFromSkuResponse</h4>
+          <div class="tabelas">
+            <div class="layout-table">
+              <br>
+              <table style="border: 1p%">
+                <tr>
+                  <th width="25%">Campo</th>
+                  <th width="25%">Descrição</th>
+                  <th width="25%">Tipo</th>
+                  <th width="25%">Obrigatoriedade</th>
+                </tr>
+                <tr>
+                  <td>result</td>
+                  <td>String (4000)</td>
+                  <td>Contém uma mensagem indicando se o preço foi recebido com sucesso ou se houve um erro.
+                  </td>
+                  <td><b>Obrigatório</b></td>
 
-          <table style="border: 1p%">
-            <tr>
-              <th width="25%">Campo</th>
-              <th width="25%">Descrição</th>
-              <th width="25%">Tipo</th>
-              <th width="25%">Obrigatoriedade</th>
-            </tr>
-            <tr>
-              <td>priceValue</td>
-              <td>Valor do preço</td>
-              <td>Decimal (15,2)</td>
-              <td><b>Obrigatório</b></td>
-
-            </tr>
-            <tr>
-              <td>priceTp</td>
-              <td>Tabela de preço</td>
-              <td>String (10)</td>
-              <td><b>Obrigatório</b></td>
-
-            </tr>
-          </table>
-          <br>
-          <p><b>Objeto integrateProductPriceFromSkuResponse</b></p>
-          <table style="border: 1p%">
-            <tr>
-              <th width="25%">Campo</th>
-              <th width="25%">Descrição</th>
-              <th width="25%">Tipo</th>
-              <th width="25%">Obrigatoriedade</th>
-            </tr>
-            <tr>
-              <td>result</td>
-              <td>String (4000)</td>
-              <td>Contém uma mensagem indicando se o preço foi recebido com sucesso ou se houve um erro.
-              </td>
-              <td><b>Obrigatório</b></td>
-
-            </tr>
-          </table>
+                </tr>
+              </table>
+            </div>
+          </div>
           </p>
 
         </div>
