@@ -217,83 +217,93 @@
           </p>
           <h4>Objetos que contemplam a integração de Estoque.</h4>
           <!-- tabelas do diego-->
-          <table style="border: 1p%">
-            <tr>
-              <th width="25%">Campo</th>
-              <th width="25%">Descrição</th>
-              <th width="25%">Tipo</th>
-              <th width="25%">Obrigatoriedade</th>
-            </tr>
-            <tr>
-              <td>stockList</td>
-              <td>Lista de estoque</td>
-              <td>List<Stock>
-              </td>
-              <td><b>Obrigatório</b></td>
+          <div class="tabelas">
+            <div class="layout-table">
+              <br>
+              <table>
+                <tr>
+                  <th width="25%">Campo</th>
+                  <th width="25%">Descrição</th>
+                  <th width="25%">Tipo</th>
+                  <th width="25%">Obrigatoriedade</th>
+                </tr>
+                <tr>
+                  <td>stockList</td>
+                  <td>Lista de estoque</td>
+                  <td>List<Stock>
+                  </td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+              </table>
+              <br>
+            </div>
+          </div>
+          <h4>Objeto Stock</h4>
+          <div class="tabelas">
+            <div class="layout-table">
+              <br>
+              <table style="margin-right: 20px">
+                <tr>
+                  <th width="25%">Campo</th>
+                  <th width="25%">Descrição</th>
+                  <th width="25%">Tipo</th>
+                  <th width="25%">Obrigatoriedade</th>
+                </tr>
+                <tr>
+                  <td>skuId</td>
+                  <td>EAN do SKU</td>
+                  <td>String (30)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+                <tr>
+                  <td>stockType</td>
+                  <td>Indica disponibilidade de estoque.
+                    0 = indisponível.
+                    1 = disponível.</td>
+                  <td>int</td>
+                  <td>Opcional desde que seja enviado stockTypeSourceName</td>
 
-            </tr>
-          </table>
-          <br>
+                </tr>
+                <tr>
+                  <td>stockTypeSourceName</td>
+                  <td>Se será controlado por unidade enviar valor
+                    controlUnitQuantity</td>
+                  <td>String (30)</td>
+                  <td>Opcional</td>
 
-          <p><b>Objeto Stock</b></p>
-
-
-          <table style="margin-right: 20px">
-            <tr>
-              <th width="25%">Campo</th>
-              <th width="25%">Descrição</th>
-              <th width="25%">Tipo</th>
-              <th width="25%">Obrigatoriedade</th>
-            </tr>
-            <tr>
-              <td>skuId</td>
-              <td>EAN do SKU</td>
-              <td>String (30)</td>
-              <td><b>Obrigatório</b></td>
-
-            </tr>
-            <tr>
-              <td>stockType</td>
-              <td>Indica disponibilidade de estoque.
-                0 = indisponível.
-                1 = disponível.</td>
-              <td>int</td>
-              <td>Opcional desde que seja enviado stockTypeSourceName</td>
-
-            </tr>
-            <tr>
-              <td>stockTypeSourceName</td>
-              <td>Se será controlado por unidade enviar valor
-                controlUnitQuantity</td>
-              <td>String (30)</td>
-              <td>Opcional</td>
-
-            </tr>
-            <tr>
-              <td>quantity</td>
-              <td>Se for controlado por unidade enviar a quantidade de estoque</td>
-              <td>int</td>
-              <td>Opcional, mas deve ser passado caso seja enviando stockTypeSourceName para indicar a quantidade real.
-              </td>
-            </tr>
-          </table>
-          <br>
-          <p><b>Objeto Objeto setStockResponse</b></p>
-          <table style="border: 1p%">
-            <tr>
-              <th width="25%">Campo</th>
-              <th width="25%">Descrição</th>
-              <th width="25%">Tipo</th>
-              <th width="25%">Obrigatoriedade</th>
-            </tr>
-            <tr>
-              <td>result</td>
-              <td>Contém uma mensagem indicando se o estoque foi recebido com sucesso ou se houve um erro.</td>
-              <td>String (30)</td>
-              <td><b>Obrigatório</b></td>
-
-            </tr>
-          </table>
+                </tr>
+                <tr>
+                  <td>quantity</td>
+                  <td>Se for controlado por unidade enviar a quantidade de estoque</td>
+                  <td>int</td>
+                  <td>Opcional, mas deve ser passado caso seja enviando stockTypeSourceName para indicar a quantidade
+                    real.
+                  </td>
+                </tr>
+              </table>
+              <br>
+            </div>
+          </div>
+          <h4>Objeto Objeto setStockResponse</h4>
+          <div class="tabelas">
+            <div class="layout-table">
+              <br>
+              <table style="border: 1p%">
+                <tr>
+                  <th width="25%">Campo</th>
+                  <th width="25%">Descrição</th>
+                  <th width="25%">Tipo</th>
+                  <th width="25%">Obrigatoriedade</th>
+                </tr>
+                <tr>
+                  <td>result</td>
+                  <td>Contém uma mensagem indicando se o estoque foi recebido com sucesso ou se houve um erro.</td>
+                  <td>String (30)</td>
+                  <td><b>Obrigatório</b></td>
+                </tr>
+              </table>
+            </div>
+          </div>
           <!-- terminou tabelas do diego-->
         </div>
       </div>
