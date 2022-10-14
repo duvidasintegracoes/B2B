@@ -432,13 +432,14 @@ nav.show div.icon-cross {
 .faq .tabelas .layout-table th,td {
   padding: 0.2rem;
   border: 0.05rem solid #3e3354;
-  
- 
   border-radius: 0.25rem;
 }
 
 .faq .tabelas .layout-table th {
-  background-color: #e4e4e4;
+  
+  color: var(--base-color-second);
+  background: var(--base-color);
+  
   font-size: 1.5rem;
   
 }
