@@ -665,7 +665,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .card a {
-  font-size: 0.95rem;
+  font-size: 0.8rem;
 }
 
 .card .title {
@@ -943,12 +943,12 @@ footer .social a:hover {
 
   /* services */
   .cards {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
 
   .card {
-    padding-left: 3rem;
-    padding-right: 3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   /* testimonials */
