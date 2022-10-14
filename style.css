@@ -424,13 +424,13 @@ nav.show div.icon-cross {
 }
 
 .faq .tabelas .layout-table {
-  padding-left: 5%;
+  padding-left: 1%;
   text-align: justify;
   
 }
 
 .faq .tabelas .layout-table th,td {
-  padding: 1rem;
+  padding: 0.2rem;
   border: 0.05rem solid #3e3354;
   
  
@@ -439,6 +439,13 @@ nav.show div.icon-cross {
 
 .faq .tabelas .layout-table th {
   background-color: #e4e4e4;
+  font-size: 1.5rem;
+  
+}
+
+.faq .tabelas .layout-table td {
+  font-size: 1.0rem;
+  
 }
 
 .faq .tabelas .layout-table .centro {
@@ -451,6 +458,7 @@ nav.show div.icon-cross {
   border-radius: 0.25rem;
   font-size: 2.8rem;
 }
+
 /*==== Perguntas e respostas FAQ====*/
 
 .section#services.section .questionfaq {
