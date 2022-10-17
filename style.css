@@ -1072,4 +1072,26 @@ footer .social a:hover {
 }
 /* medium devices: 767 > */
 
+/*
 
+#justify-content
+
+- Alinhamento dos elementos dentro do .container
+- Distribuição dos elementos
+
+# valores
+- flex-start
+- flex-end
+- center
+- space-around
+- space-between
+- space-evenly
+
+.jonatha {
+  display: flex;
+  flex-flow: column wrap;
+  /*
+  Permite que eu utilize duas propriedades ao mesmo tempo.
+  */
+/*
+*/
